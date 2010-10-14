@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+	<name>PHPCS_TYPO3_SniffPool</name>
+	<channel>pear.typo3.org</channel>
+	<summary>TYPO3 Coding Standard Pool</summary>
+	<description>This package contains custom sniffs which are compatible with the PHP_CodeSniffer from the PEAR project. Understand this package as a sniff pool which contains all needed custom sniffs for the TYPO3v4, FLOW3/TYPO3v5 CGL. Additionally you must install the specific pear package for your prefered CGL.</description>
+	<lead>
+		<name>Stefano Kowalke</name>
+		<user>sok</user>
+		<email>blueduck@gmx.net</email>
+		<active>yes</active>
+	</lead>
+	<lead>
+		<name>Andy Grunwald</name>
+		<user>sermerlie</user>
+		<email>andy_grunwald@arcor.de</email>
+		<active>yes</active>
+	</lead>
+	<developer>
+		<name>Laura Thewalt</name>
+		<user>edcbylt</user>
+		<email>laura.thewalt@wmdb.de</email>
+		<active>yes</active>
+	</developer>
+	<date>2010-10-04</date>
+	<time>09:10:33</time>
+	<version>
+		<release>0.0.1</release>
+		<api>0.0.1</api>
+	</version>
+	<stability>
+		<release>alpha</release>
+		<api>alpha</api>
+	</stability>
+	<license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+	<notes>Initial release</notes>
+	<contents>
+ 		<dir name="/">
+			<dir name="Sniffs">
+				<dir name="Classes">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercaseClassKeywordsSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Commenting">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClassDocCommentSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DoubleSlashCommentsInNewLineSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="SpaceAfterDoubleSlashSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentIndentSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentLineLengthSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="ControlStructures">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlignedBreakStatementSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowElseIfConstructSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidBreakStatementsInSwitchesSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidDefaultStatementsInSwitchesSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Debug">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DebugCodeSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Files">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="EncodingUtf8Sniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="IncludingFileSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercasedFilenameSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneClassPerFileSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneInterfacePerFileSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="NamingConventions">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidFunctionNameSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidVariableNameSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="PHP">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterAfterPHPClosingTagSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterBeforePHPOpeningTagSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClosingPHPTagSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowMultiplePHPTagsSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Scope">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="WhiteSpace">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AssignmentArithmeticAndComparisonSpaceSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AsteriksWhitespacesSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowSpaceIndentSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="WhitespaceAfterCommentSignsSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+			</dir>
+			<dir name="Tests">
+				<dir name="Classes">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercaseClassKeywordsUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercaseClassKeywordsUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Commenting">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClassDocCommentUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClassDocCommentUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DoubleSlashCommentsInNewLineUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DoubleSlashCommentsInNewLineUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="SpaceAfterDoubleSlashUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="SpaceAfterDoubleSlashUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentIndentUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentIndentUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentLineLengthUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidCommentLineLengthUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="ControlStructures">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlignedBreakStatementUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlignedBreakStatementUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowElseIfConstructUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowElseIfConstructUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidBreakStatementsInSwitchesUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidBreakStatementsInSwitchesUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidDefaultStatementsInSwitchesUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidDefaultStatementsInSwitchesUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Debug">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DebugCodeUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DebugCodeUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Files">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="IncludingFileUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="IncludingFileUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercasedFilenameUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="LowercasedFilenameUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneClassPerFileUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneClassPerFileUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneInterfacePerFileUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="OneInterfacePerFileUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="NamingConventions">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidFunctionNameUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidFunctionNameUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidVariableNameUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ValidVariableNameUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="PHP">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterAfterPHPClosingTagUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterAfterPHPClosingTagUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterBeforePHPOpeningTagUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="CharacterBeforePHPOpeningTagUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClosingPHPTagUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ClosingPHPTagUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowMultiplePHPTagsUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowMultiplePHPTagsUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Scope">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="WhiteSpace">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AssignmentArithmeticAndComparisonSpaceUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AssignmentArithmeticAndComparisonSpaceUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AsteriksWhitespacesUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AsteriksWhitespacesUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowSpaceIndentUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowSpaceIndentUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="WhitespaceAfterCommentSignsUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="WhitespaceAfterCommentSignsUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+			</dir>
+			<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="ruleset.xml" role="php" />
+		</dir>
+	</contents>
+	<dependencies>
+		<required>
+			<php>
+				<min>5</min>
+			</php>
+			<pearinstaller>
+				<min>1.4.0</min>
+			</pearinstaller>
+			<package>
+				<name>PHP_CodeSniffer</name>
+				<channel>pear.php.net</channel>
+				<min>1.3.0RC1</min>
+				<max>1.3.0RC1</max>
+			</package>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+		<release>
+			<version>
+				<release>0.0.1</release>
+				<api>0.0.1</api>
+			</version>
+			<stability>
+				<release>alpha</release>
+				<api>alpha</api>
+			</stability>
+			<date>2010-10-04</date>
+			<license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+			<notes>Initial release</notes>
+		</release>
+	</changelog>
+</package>
