@@ -235,6 +235,8 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
 			$newlineSpan = $comment->getNewlineAfter();
 			if ($newlineSpan !== 2) {
 				$error = 'There must be exactly one blank line before the tags in function comment';
+
+				$long = $comment->getLongComment();
 				if ($long !== '') {
 					$newlineCount += (substr_count($long, $phpcsFile->eolChar) - $newlineSpan + 1);
 				}
