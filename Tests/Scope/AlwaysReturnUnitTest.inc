@@ -28,4 +28,14 @@ class FooBarBaz {
 		return '';
 	}
 }
+
+function fooBarBaz($barParam) {
+	return 'FooBar';
+}
+
+if($foo === $bar) {
+	return 5;
+}
+
+return NULL;
 ?>

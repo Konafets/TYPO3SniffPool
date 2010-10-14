@@ -80,12 +80,12 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
 		$tokens = $phpcsFile->getTokens();
 		
 		$continue = $this->isReturnSurroundedByControllStructures($tokens, $stackPtr, $functionTokenKey);
-
-		if ($continue === FALSE){
+		$functionToken = $tokens[$functionTokenKey];
+		
+		if ($continue === FALSE || $functionToken['code'] !== T_FUNCTION){
 			return;
 		}
 		
-		$functionToken = $tokens[$functionTokenKey];
 		$start = $functionToken['scope_opener'];
 		$result = FALSE;
 		
