@@ -72,7 +72,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) ==
  * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     @package_version@
+ * @version     Release: @package_version@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff {

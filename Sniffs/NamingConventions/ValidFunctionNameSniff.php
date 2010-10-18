@@ -52,7 +52,7 @@
  * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright	Copyright (c) 2010, Laura Thewalt, Andy Grunwald
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     @package_version@
+ * @version     Release: @package_version@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff {

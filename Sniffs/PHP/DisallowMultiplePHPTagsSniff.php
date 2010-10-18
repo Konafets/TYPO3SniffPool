@@ -45,7 +45,7 @@
  * @author      Julian Kleinhans <kleinhans@bergisch-media.de>
  * @copyright	Copyright (c) 2010, Julian Kleinhans
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     @package_version@
+ * @version     Release: @package_version@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_PHP_DisallowMultiplePHPTagsSniff implements PHP_CodeSniffer_Sniff {

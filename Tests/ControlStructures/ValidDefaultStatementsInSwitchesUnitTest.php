@@ -48,7 +48,7 @@
  * @author      Stefano Kowalke <blueduck@gmx.net>
  * @copyright	Copyright (c) 2010, Stefano Kowalke
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		@package_version@
+ * @version		Release: @package_version@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Tests_ControlStructures_ValidDefaultStatementsInSwitchesUnitTest extends AbstractSniffUnitTest {
