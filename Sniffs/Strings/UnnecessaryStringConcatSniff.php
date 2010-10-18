@@ -1,16 +1,41 @@
 <?php
+/***************************************************************
+ * Copyright notice
+ *
+ * (c) 2010 Stefano Kowalke <blueduck@gmx.net>
+ * All rights reserved
+ *
+ * This script is part of the TYPO3 project. The TYPO3 project is
+ * free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * The GNU General Public License can be found at
+ * http://www.gnu.org/copyleft/gpl.html.
+ *
+ * This script is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 /**
  * TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff.
  *
  * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
+ * TYPO3 version 4
+ * 
+ * @category  Strings
+ * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id$
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @version	  SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 
 /**
@@ -19,13 +44,14 @@
  * Checks that two strings are not concatenated together; suggests
  * using one string instead.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
+ * @category  Strings
+ * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: @package_version@
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_CodeSniffer_Sniff
 {
@@ -102,6 +128,8 @@ class TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_CodeSniff
             return;
         }
 
+			// check if the concatenation operator its on the end of the line,
+			// otherwise we trow an error
 		if ($columnPrevToken > $columnCurrentToken) {
 			$error = 'Line concatenation operator must be at the end of the line';
 			$phpcsFile->addError($error, $stackPtr, 'Found');
