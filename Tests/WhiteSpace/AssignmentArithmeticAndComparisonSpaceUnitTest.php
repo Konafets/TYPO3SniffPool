@@ -34,7 +34,7 @@
  * @copyright	Copyright (c) 2010, Andy Grunwald
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version		SVN: $ID$
- * @link		http://pear.typo3.orgs
+ * @link		http://pear.typo3.org
  */
 
 /**
@@ -49,7 +49,7 @@
  * @copyright	Copyright (c) 2010, Andy Grunwald
  * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version		@package_version@
- * @link		http://pear.typo3.orgs
+ * @link		http://pear.typo3.org
  */
 class TYPO3_Tests_WhiteSpace_AssignmentArithmeticAndComparisonSpaceUnitTest extends AbstractSniffUnitTest {
 	/**
