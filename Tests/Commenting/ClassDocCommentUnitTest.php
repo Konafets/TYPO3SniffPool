@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * Unit test class for TYPO3_Sniffs_Commenting_ClassDocCommentSniff.
  *
@@ -36,7 +35,6 @@
  * @version		SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Unit test class for TYPO3_Sniffs_Commenting_ClassDocCommentSniff.
  *
@@ -51,40 +49,28 @@
  * @version		Release: @package_version@
  * @link		http://pear.typo3.org
  */
-class TYPO3_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSniffUnitTest{
-
-	/**
-	 * Returns the lines where errors should occur.
-	 *
-	 * The key of the array should represent the line number and the value
-	 * should represent the number of errors that should occur on that line.
-	 *
-	 * @return array(int => int)
-	 */
-	public function getErrorList() {
-		return array(
-			2 => 1,
-			10 => 1,
-			14 => 1,
-			17 => 1,
-			20 => 1,
-			35 => 1,
-			46 => 1,
-			53 => 1
-		);
-	}
-
-
-	/**
-	 * Returns the lines where warnings should occur.
-	 *
-	 * The key of the array should represent the line number and the value
-	 * should represent the number of warnings that should occur on that line.
-	 *
-	 * @return array(int => int)
-	 */
-	public function getWarningList() {
-		return array();
-	}
+class TYPO3_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSniffUnitTest {
+    /**
+     * Returns the lines where errors should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of errors that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+    public function getErrorList() {
+        return array(2 => 1, 10 => 1, 14 => 1, 17 => 1, 20 => 1, 35 => 1, 46 => 1, 53 => 1);
+    }
+    /**
+     * Returns the lines where warnings should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of warnings that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+    public function getWarningList() {
+        return array();
+    }
 }
 ?>

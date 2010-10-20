@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * Unit test class for the LowercaseClassKeywords sniff.
  *
@@ -36,7 +35,6 @@
  * @version     SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Unit test class for the LowercaseClassKeywords sniff.
  *
@@ -52,39 +50,27 @@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Tests_Classes_LowercaseClassKeywordsUnitTest extends AbstractSniffUnitTest {
-	/**
-	 * Returns the lines where errors should occur.
-	 *
-	 * The key of the array should represent the line number and the value
-	 * should represent the number of errors that should occur on that line.
-	 *
-	 * @return array(int => int)
-	 */
-	public function getErrorList() {
-		return array(
-			2 => 1,
-			3 => 1,
-			4 => 1,
-			5 => 1,
-			6 => 1,
-			7 => 1,
-			10 => 1,
-			14 => 1,
-			18 => 1,
-			22 => 1,
-			26 => 1,
-			);
-	}
-	/**
-	 * Returns the lines where warnings should occur.
-	 *
-	 * The key of the array should represent the line number and the value
-	 * should represent the number of warnings that should occur on that line.
-	 *
-	 * @return array(int => int)
-	 */
-	public function getWarningList() {
-		return array();
-	}
+    /**
+     * Returns the lines where errors should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of errors that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+    public function getErrorList() {
+        return array(2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1, 7 => 1, 10 => 1, 14 => 1, 18 => 1, 22 => 1, 26 => 1,);
+    }
+    /**
+     * Returns the lines where warnings should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of warnings that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+    public function getWarningList() {
+        return array();
+    }
 }
 ?>

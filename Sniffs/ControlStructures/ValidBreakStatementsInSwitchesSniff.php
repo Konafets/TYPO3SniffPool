@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * TYPO3_Sniffs_ControlStructures_ValidBreakStatementsInSwitchesSniff.
  *
@@ -37,7 +36,6 @@
  * @version     SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Checks that there is just one break per case
  *
@@ -51,39 +49,37 @@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_ControlStructures_ValidBreakStatementsInSwitchesSniff implements PHP_CodeSniffer_Sniff {
-	/**
-	 * A list of tokenizers this sniff supports
-	 *
-	 * @var array
-	 */
-	public $supportedTokenizes = array('PHP');
-	/**
-	 * Returns an array of tokens this test wants to listen for.
-	 *
-	 * @return array
-	 */
-	public function register() {
-		return array(T_BREAK);
-	}
-	/**
-	 * Processes this sniff, when one of its tokens is encountered.
-	 *
-	 * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-	 * @param int                  $stackPtr  The position of the current token in the stack passed in $tokens.
-	 *
-	 * @return void
-	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
-
-		if (array_key_exists('scope_condition', $tokens[$stackPtr]) === FALSE) {
-			$conditionPositions = array_keys($tokens[$stackPtr]['conditions']);
-
-				// proof that the parent node is a switch
-			if ($tokens[$conditionPositions[0]]['code'] === T_SWITCH) {
-				$phpcsFile->addError('Too many breaks! Expected one break per case; but found more than one break;', $stackPtr);
-			}
-		}
-	}
+    /**
+     * A list of tokenizers this sniff supports
+     *
+     * @var array
+     */
+    public $supportedTokenizes = array('PHP');
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register() {
+        return array(T_BREAK);
+    }
+    /**
+     * Processes this sniff, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in the stack passed in $tokens.
+     *
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
+        if (array_key_exists('scope_condition', $tokens[$stackPtr]) === FALSE) {
+            $conditionPositions = array_keys($tokens[$stackPtr]['conditions']);
+            // proof that the parent node is a switch
+            if ($tokens[$conditionPositions[0]]['code'] === T_SWITCH) {
+                $phpcsFile->addError('Too many breaks! Expected one break per case; but found more than one break;', $stackPtr);
+            }
+        }
+    }
 }
 ?>

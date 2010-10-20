@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * TYPO3_Sniffs_Classes_LowercaseClassKeywordsSniff.
  *
@@ -36,7 +35,6 @@
  * @version     SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Ensures all class keywords are lowercase.
  *
@@ -49,13 +47,13 @@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sniffs_Classes_LowercaseClassKeywordsSniff {
-	/**
-	 * Returns an array of tokens this test wants to listen for.
-	 *
-	 * @return array
-	 */
-	public function register() {
-		return array(T_CLASS, T_INTERFACE, T_EXTENDS, T_IMPLEMENTS, T_ABSTRACT, T_FINAL, T_VAR, T_CONST, T_PRIVATE, T_PUBLIC, T_PROTECTED);
-	}
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register() {
+        return array(T_CLASS, T_INTERFACE, T_EXTENDS, T_IMPLEMENTS, T_ABSTRACT, T_FINAL, T_VAR, T_CONST, T_PRIVATE, T_PUBLIC, T_PROTECTED);
+    }
 }
 ?>

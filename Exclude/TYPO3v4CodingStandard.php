@@ -22,7 +22,7 @@
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 if (class_exists('PHP_CodeSniffer_Standards_CodingStandard', TRUE) === FALSE) {
-	throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_CodingStandard not found');
+    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_CodingStandard not found');
 }
 /**
  * This class register the TYPO Coding Guideline as an standard for the
@@ -37,9 +37,9 @@ if (class_exists('PHP_CodeSniffer_Standards_CodingStandard', TRUE) === FALSE) {
  * @author Stefano Kowalke <blueduck@gmx.net>
  */
 class PHP_CodeSniffer_Standards_TYPO3_TYPO3CodingStandard extends PHP_CodeSniffer_Standards_CodingStandard {
-	public function getIncludedSniffs() {
-		return array('Generic/Sniffs/Files/LineEndingsSniff.php', 'Generic/Sniffs/PHP/DisallowShortOpenTagSniff.php',);
-	}
+    public function getIncludedSniffs() {
+        return array('Generic/Sniffs/Files/LineEndingsSniff.php', 'Generic/Sniffs/PHP/DisallowShortOpenTagSniff.php',);
+    }
 } //end class
 
 ?>

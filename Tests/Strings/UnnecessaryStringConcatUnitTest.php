@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * Unit test class for the UnnecessaryStringConcat sniff.
  *
@@ -37,7 +36,6 @@
  * @version	  SVN: $ID$
  * @link      http://pear.typo3.org
  */
-
 /**
  * Unit test class for the UnnecessaryStringConcat sniff.
  *
@@ -53,10 +51,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffUnitTest
-{
-
-
+class TYPO3_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffUnitTest {
     /**
      * Returns the lines where errors should occur.
      *
@@ -67,34 +62,20 @@ class TYPO3_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffU
      *
      * @return array(int => int)
      */
-    public function getErrorList($testFile='UnnecessaryStringConcatUnitTest.inc')
-    {
+    public function getErrorList($testFile = 'UnnecessaryStringConcatUnitTest.inc') {
         switch ($testFile) {
-        case 'UnnecessaryStringConcatUnitTest.inc':
-            return array(
-                    2  => 1,
-                    6  => 1,
-                    9  => 1,
-                    12 => 1,
-                    14 => 0,
-                    17 => 1,
-                   );
+            case 'UnnecessaryStringConcatUnitTest.inc':
+                return array(2 => 1, 6 => 1, 9 => 1, 12 => 1, 14 => 0, 17 => 1,);
             break;
-        case 'UnnecessaryStringConcatUnitTest.js':
-            return array(
-                    1  => 1,
-                    8  => 1,
-                    11 => 1,
-                   );
+            case 'UnnecessaryStringConcatUnitTest.js':
+                return array(1 => 1, 8 => 1, 11 => 1,);
             break;
-        default:
-            return array();
+            default:
+                return array();
             break;
         }
-
-    }//end getErrorList()
-
-
+    } //end getErrorList()
+    
     /**
      * Returns the lines where warnings should occur.
      *
@@ -103,13 +84,10 @@ class TYPO3_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffU
      *
      * @return array(int => int)
      */
-    public function getWarningList()
-    {
+    public function getWarningList() {
         return array();
-
-    }//end getWarningList()
-
-
-}//end class
+    } //end getWarningList()
+    
+} //end class
 
 ?>

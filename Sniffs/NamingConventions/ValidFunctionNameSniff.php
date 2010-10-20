@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff.
  *
@@ -37,10 +36,9 @@
  * @version     SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Checks that the functions named by lowerCamelCase
- * 
+ *
  * No Underscores are allowed
  * Correct: 	function testFunctionName ()
  * Incorrect: 	function Test_Function_name ()
@@ -56,92 +54,90 @@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff {
-	/**
-	 * A list of tokenizers this sniff supports
-	 *
-	 * @var array
-	 */
-	public $supportedTokenizes = array('PHP');
-
-	/**
-	 * Returns an array of tokens this test wants to listen for.
-	 *
-	 * @return array
-	 */
-	public function register() {
-		return array(T_FUNCTION);
-	}
-
-	/**
-	 * Processes this sniff, when one of its tokens is encountered.
-	 *
-	 * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-	 * @param int                  $stackPtr  The position of the current token in
-	 * 											the stack passed in $tokens.
-	 *
-	 * @return void
-	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$tokens = $phpcsFile->getTokens();
-		$functionName = $phpcsFile->findNext(array(T_STRING), $stackPtr);
-		if ($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === TRUE) {
-			return NULL;
-		}
-		$hasUnderscores = stripos($tokens[$functionName]['content'], '_');
-		$isLowerCamelCase = preg_match('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $tokens[$functionName]['content']);
-		$scope = $this->getCorrectScopeOfToken($tokens, $stackPtr);
-		if ($hasUnderscores !== FALSE) {
-			$error = 'Underscores are not allowed in ' . $scope . ' names "' . $tokens[$functionName]['content'] . '"; ';
-			$error .= 'use lowerCamelCase for ' . $scope . ' names instead';
-			$phpcsFile->addError($error, $stackPtr);
-		} elseif ($isLowerCamelCase === 0) {
-			$error = ucfirst($scope) . ' name "' . $tokens[$functionName]['content'] . '" must use lowerCamelCase';
-			$phpcsFile->addError($error, $stackPtr);
-		}
-	}
-	public function getCorrectScopeOfToken(array $tokens, $stackPtr) {
-		$scope = 'function';
-		if (!is_array($tokens[$stackPtr]['conditions'])) {
-			return $scope;
-		}
-		foreach ($tokens[$stackPtr]['conditions'] as $tokenNumber => $tokenType) {
-			if ($tokenType == T_CLASS) {
-				$scope = 'method';
-				break;
-			}
-		}
-		return $scope;
-	}
-	/**
-	 * Returns TRUE if the called function / method is a magic method of php
-	 *
-	 * @see http://php.net/manual/en/language.oop5.magic.php
-	 *
-	 * @param string $name
-	 * @return boolean
-	 */
-	public function isFunctionAMagicFunction($name) {
-		$result = FALSE;
-		switch ($name) {
-			case '__construct':
-			case '__destruct':
-			case '__call':
-			case '__callStatic':
-			case '__get':
-			case '__set':
-			case '__isset':
-			case '__unset':
-			case '__sleep':
-			case '__wakeup':
-			case '__toString':
-			case '__invoke':
-			case '__set_state':
-			case '__clone':
-			case '__autoload':
-				$result = TRUE;
-				break;
-		}
-		return $result;
-	}
+    /**
+     * A list of tokenizers this sniff supports
+     *
+     * @var array
+     */
+    public $supportedTokenizes = array('PHP');
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register() {
+        return array(T_FUNCTION);
+    }
+    /**
+     * Processes this sniff, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     * 											the stack passed in $tokens.
+     *
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $tokens = $phpcsFile->getTokens();
+        $functionName = $phpcsFile->findNext(array(T_STRING), $stackPtr);
+        if ($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === TRUE) {
+            return NULL;
+        }
+        $hasUnderscores = stripos($tokens[$functionName]['content'], '_');
+        $isLowerCamelCase = preg_match('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $tokens[$functionName]['content']);
+        $scope = $this->getCorrectScopeOfToken($tokens, $stackPtr);
+        if ($hasUnderscores !== FALSE) {
+            $error = 'Underscores are not allowed in ' . $scope . ' names "' . $tokens[$functionName]['content'] . '"; ';
+            $error.= 'use lowerCamelCase for ' . $scope . ' names instead';
+            $phpcsFile->addError($error, $stackPtr);
+        } elseif ($isLowerCamelCase === 0) {
+            $error = ucfirst($scope) . ' name "' . $tokens[$functionName]['content'] . '" must use lowerCamelCase';
+            $phpcsFile->addError($error, $stackPtr);
+        }
+    }
+    public function getCorrectScopeOfToken(array $tokens, $stackPtr) {
+        $scope = 'function';
+        if (!is_array($tokens[$stackPtr]['conditions'])) {
+            return $scope;
+        }
+        foreach ($tokens[$stackPtr]['conditions'] as $tokenNumber => $tokenType) {
+            if ($tokenType == T_CLASS) {
+                $scope = 'method';
+                break;
+            }
+        }
+        return $scope;
+    }
+    /**
+     * Returns TRUE if the called function / method is a magic method of php
+     *
+     * @see http://php.net/manual/en/language.oop5.magic.php
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public function isFunctionAMagicFunction($name) {
+        $result = FALSE;
+        switch ($name) {
+            case '__construct':
+            case '__destruct':
+            case '__call':
+            case '__callStatic':
+            case '__get':
+            case '__set':
+            case '__isset':
+            case '__unset':
+            case '__sleep':
+            case '__wakeup':
+            case '__toString':
+            case '__invoke':
+            case '__set_state':
+            case '__clone':
+            case '__autoload':
+                $result = TRUE;
+            break;
+        }
+        return $result;
+    }
 }
 ?>

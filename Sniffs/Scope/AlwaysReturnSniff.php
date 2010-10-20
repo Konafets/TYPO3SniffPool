@@ -21,7 +21,6 @@
  *
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
  * TYPO3_Sniffs_Scope_AlwaysReturnSniff.
  *
@@ -36,7 +35,6 @@
  * @version     SVN: $ID$
  * @link		http://pear.typo3.org
  */
-
 /**
  * Checks that a function / method always have a return value if it return something.
  *
@@ -49,77 +47,64 @@
  * @link		http://pear.typo3.org
  */
 class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
-
-	/**
-	 * A list of tokenizers this sniff supports
-	 *
-	 * @var array
-	 */
-	public $supportedTokenizes = array('PHP');
-
-	/**
-	 * Returns an array of tokens this test wants to listen for.
-	 *
-	 * @return array
-	 */
-	public function register() {
-		return array(T_RETURN);
-	}
-
-	/**
-	 * Processes this sniff, when one of its tokens is encountered.
-	 *
-	 * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-	 * @param int                  $stackPtr  The position of the current token in
-	 *                                        the stack passed in $tokens.
-	 *
-	 * @return void
-	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-		$functionTokenKey = 0;
-		$tokens = $phpcsFile->getTokens();
-		
-		$continue = $this->isReturnSurroundedByControllStructures($tokens, $stackPtr, $functionTokenKey);
-		$functionToken = $tokens[$functionTokenKey];
-		
-		if ($continue === FALSE || $functionToken['code'] !== T_FUNCTION){
-			return;
-		}
-		
-		$start = $functionToken['scope_opener'];
-		$result = FALSE;
-		
-		do {
-			$next = $phpcsFile->findNext($this->register(), $start, $functionToken['scope_closer']);
-			if($next !== FALSE && $next != $stackPtr && $this->isReturnSurroundedByControllStructures($tokens, $next) === FALSE){
-				$result = TRUE;
-				$next = FALSE;
-				
-			} else {
-				$start = ($next + 1);
-			}
-		}while($next !== FALSE);
-		
-		if ($result === FALSE) {
-			$error = 'This function must always have a return value';
-			$phpcsFile->addError($error, $functionTokenKey);
-		}
-	}
-	
-	protected function isReturnSurroundedByControllStructures(array $tokens, $stackPtr, &$functionToken = 0){
-		$result = FALSE;
-		
-		foreach ($tokens[$stackPtr]['conditions'] as $key => $val){
-			if ($tokens[$key]['code'] == T_FUNCTION) {
-				$functionToken = $key;
-			}
-			
-			if ($tokens[$key]['code'] != T_CLASS && $tokens[$key]['code'] != T_FUNCTION) {
-				$result = TRUE;
-			}
-		}
-		
-		return $result;
-	}
+    /**
+     * A list of tokenizers this sniff supports
+     *
+     * @var array
+     */
+    public $supportedTokenizes = array('PHP');
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
+    public function register() {
+        return array(T_RETURN);
+    }
+    /**
+     * Processes this sniff, when one of its tokens is encountered.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return void
+     */
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        $functionTokenKey = 0;
+        $tokens = $phpcsFile->getTokens();
+        $continue = $this->isReturnSurroundedByControllStructures($tokens, $stackPtr, $functionTokenKey);
+        $functionToken = $tokens[$functionTokenKey];
+        if ($continue === FALSE || $functionToken['code'] !== T_FUNCTION) {
+            return;
+        }
+        $start = $functionToken['scope_opener'];
+        $result = FALSE;
+        do {
+            $next = $phpcsFile->findNext($this->register(), $start, $functionToken['scope_closer']);
+            if ($next !== FALSE && $next != $stackPtr && $this->isReturnSurroundedByControllStructures($tokens, $next) === FALSE) {
+                $result = TRUE;
+                $next = FALSE;
+            } else {
+                $start = ($next + 1);
+            }
+        } while ($next !== FALSE);
+        if ($result === FALSE) {
+            $error = 'This function must always have a return value';
+            $phpcsFile->addError($error, $functionTokenKey);
+        }
+    }
+    protected function isReturnSurroundedByControllStructures(array $tokens, $stackPtr, &$functionToken = 0) {
+        $result = FALSE;
+        foreach ($tokens[$stackPtr]['conditions'] as $key => $val) {
+            if ($tokens[$key]['code'] == T_FUNCTION) {
+                $functionToken = $key;
+            }
+            if ($tokens[$key]['code'] != T_CLASS && $tokens[$key]['code'] != T_FUNCTION) {
+                $result = TRUE;
+            }
+        }
+        return $result;
+    }
 }
 ?>
