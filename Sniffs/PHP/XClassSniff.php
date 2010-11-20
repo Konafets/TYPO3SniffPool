@@ -66,13 +66,23 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
      * @return void
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-        $filePath = $phpcsFile->getFilename();
+        $filePath           = $phpcsFile->getFilename();
+        $relExtPath         = stristr($filePath, 'ext');
+        $extKey             = $this->getExtensionNamefromPath($relExtPath);
+        $pathToExtension    = $this->getPathToExtensionRoot($filePath, $extKey);
+        $isXClassExcluded   = $this->excludeXClassCheck($filePath, $pathToExtension, $extKey);
+
             // XClass declarations are only needed in extensions, so we have to check
             // if the current file is part of a sys- or user extension
         if (!preg_match('/sysext|ext/', $filePath)) {
             return;
         }
 
+            // if no xclass declaration needed, we exit here
+        if ($isXClassExcluded === TRUE) {
+            return;
+        }
+        
         $tokens = $phpcsFile->getTokens();
         $closingBracket = $tokens[$stackPtr]['scope_closer'];
 
@@ -90,25 +100,17 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
             return;
         }
 
-        $XClass = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $closingBracket, NULL, FALSE, "'XCLASS'");
-
-        
-
 //		echo "\n" . 'ClassName: ' . preg_match('/^ux_/', $className) . "\n";
 //		echo "\n" . 'FilenNameEscaped: ' . $fileNameEscaped . "\n";
 
             // Do a first simple check for the string 'XCLASS' before we digg deeper
+        $XClass = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, $closingBracket, NULL, FALSE, "'XCLASS'");
+
         if (($tokens[$XClass]['content'] !== "'XCLASS'")) {
             $error = 'The XCLASS declaration must follow the PHP class, but I didn\'t found one or its wrong.';
             $code  = 'WrongOrNotFound';
         } else {
             $reg = array();
-
-            $relExtPath = stristr($filePath, 'ext');
-            echo $relExtPath;
-            $extName = $this->getExtensionNamefromPath($relExtPath);
-            $pathToExtension = $this->getPathToExtensionRoot($filePath, $extName);
-            #echo $extName;
             $content = file_get_contents($filePath);
             $stackPtr = $XClass;
 
@@ -163,31 +165,75 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
      * Extract the extension name form a given path
      *
      * @param string $path The complete path; starting from ext/
-     * @return mixed $extName The name of the extension or FALSE if no found
+     * @return mixed $extKey The name of the extension or FALSE if no found
      */
     protected function getExtensionNamefromPath($path) {
-        $extName = explode('/', $path);
-        if (isset($extName) && $extName[0] === 'ext') {
-            $extName = $extName[1];
+        $extKey = explode('/', $path);
+        if (isset($extKey) && $extKey[0] === 'ext') {
+            $extKey = $extKey[1];
         } else {
-            $extName = FALSE;
+            $extKey = FALSE;
         }
         
-        return $extName;
+        return $extKey;
     }
 
-    protected function getPathToExtensionRoot($path, $extname) {
+    /**
+     * Get the path to extension root
+     *
+     * @param  string  $path               The file path
+     * @param  string  $extKey            The name of the extension
+     *
+     * @return string $absPathToExtension  The path to the extension root
+     */
+    protected function getPathToExtensionRoot($path, $extKey) {
         $pathLenght = strlen($path);
-        $extLenght  = strlen($extname);
-        $extNamePos = strpos($path, $extname);
+        $extLenght  = strlen($extKey);
+        $extKeyPos = strpos($path, $extKey);
 
-        $absPathToExtension = substr($path, 0, $extNamePos + $extLenght);
+        $absPathToExtension = substr($path, 0, $extKeyPos + $extLenght);
         echo '$pathLenght: ' . $pathLenght . "\n";
         echo '$extLenght: ' . $extLenght . "\n";
         echo '$absPathToExtension: ' . $absPathToExtension . "\n";
-        #echo $extNamePos;
+        #echo $extKeyPos;
 
         return $absPathToExtension;
+    }
+
+    /**
+     *
+     * @param string $filePath
+     * @param string $pathToExtension
+     * @param string $extKey
+     * @return boolean
+     */
+    protected function excludeXClassCheck($filePath, $pathToExtension, $extKey) {
+        $extconfFile = $pathToExtension . '/ext_emconf.php';
+
+        if (@is_file($extconfFile)) {
+            $_EXTKEY = $extKey;
+			$EM_CONF = array();
+			include($extconfFile);
+            if (array_key_exists('excludeXclassCheck', $EM_CONF[$extKey])) {
+                foreach ($EM_CONF[$extKey]['excludeXclassCheck'] as $path) {
+                    if (stristr($filePath, $path) !== FALSE) {
+                        $result = TRUE;
+                    } else {
+                        $result = FALSE;
+                    }
+                }
+            } else {
+                    // There is no array key "excludeXclassCheck", so we
+                    // assume that is an old extension. We check this extension for
+                    // XClass declaration.
+                $result = FALSE;
+            }
+        } else {
+            $result = 'ERROR: No emconf.php file: ' . $extconfFile;
+        }
+
+        return $result;
+
     }
 } //end class
 
