@@ -239,4 +239,25 @@ class MyClass {
 	 */
 	abstract final protected function myFunction();
 }
+
+class YourClass {
+
+    /**
+	 * Params are commented, but not passed to the function
+     * Params are indented with spaces, which is not allowed, but should
+     * be ignored for those commeted params who superfluous ($superfluous, Comment, ..)
+	 *
+	 * @param int $threeSpaces Comment
+	 * @param int $superfluous
+	 * @param int Comment
+	 * @param int
+	 * @param missing
+	 * @param
+     *
+     * @return void
+	 */
+	public function missingDescriptionOfParameters($threeSpaces) {
+
+	}
+}
 ?>

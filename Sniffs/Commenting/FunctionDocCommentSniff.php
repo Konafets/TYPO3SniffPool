@@ -298,21 +298,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             foreach ($params as $param) {
                 $paramComment = trim($param->getComment());
                 $errorPos = ($param->getLine() + $commentStart);
-                // Make sure that there are only tabs used to intend the var type.
-                if ($this->isWhitespaceUsedToIntend($param->getWhitespaceBeforeType())) {
-                    $error = 'Tabs must be used to indent the variable type; spaces are not allowed';
-                    $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamType');
-                }
-                // Make sure that there are only tabs used to intend the var type.
-                if ($this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeComment())) {
-                    $error = 'Tabs must be used to indent the variable comment; spaces are not allowed';
-                    $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamComment');
-                }
-                // Make sure that there are only tabs used to intend the var type.
-                if ($param->getVarName() && $this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeVarName())) {
-                    $error = 'Tabs must be used to indent the variable name; spaces are not allowed';
-                    $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamName');
-                }
+                
                 // Make sure they are in the correct order,
                 // and have the correct name.
                 $pos = $param->getPosition();
@@ -320,6 +306,22 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                 // Make sure the names of the parameter comment matches the
                 // actual parameter.
                 if (isset($realParams[($pos - 1) ]) === TRUE) {
+                    // Make sure that there are only tabs used to intend the var type.
+                    if ($this->isWhitespaceUsedToIntend($param->getWhitespaceBeforeType())) {
+                        $error = 'Tabs must be used to indent the variable type; spaces are not allowed';
+                        $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamType');
+                    }
+                    // Make sure that there are only tabs used to intend the var type.
+                    if ($this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeComment())) {
+                        $error = 'Tabs must be used to indent the variable comment; spaces are not allowed';
+                        $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamComment');
+                    }
+                    // Make sure that there are only tabs used to intend the var type.
+                    if ($param->getVarName() && $this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeVarName())) {
+                        $error = 'Tabs must be used to indent the variable name; spaces are not allowed';
+                        $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamName');
+                    }
+
                     $realName = $realParams[($pos - 1) ]['name'];
                     $foundParams[] = $realName;
                     // Append ampersand to name if passing by reference.
@@ -338,9 +340,9 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                         $this->currentFile->addError($error, $errorPos, $code, $data);
                     }
                 } else {
-                    // We must have an extra parameter comment.
-                    $error = 'Superfluous doc comment at position ' . $pos;
-                    $this->currentFile->addError($error, $errorPos, 'ExtraParamComment');
+                    // Throw an error if we found a parameter in comment but not in the parameter list of the function
+                    $error = 'The paramter "' . $paramName . '" at position ' . $pos . ' is superfluous, because this parameter was not found in parameter list.';
+                    $this->currentFile->addError($error, $errorPos, 'SuperFluous.ParamComment');
                 }
                 if ($param->getVarName() === '') {
                     $error = 'Missing parameter name at position ' . $pos;
@@ -350,11 +352,11 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                     $error = 'Missing type at position ' . $pos;
                     $this->currentFile->addError($error, $errorPos, 'MissingParamType');
                 }
-                if ($paramComment === '') {
-                    $error = 'Missing comment for param "%s" at position %s';
-                    $data = array($paramName, $pos,);
-                    $this->currentFile->addError($error, $errorPos, 'MissingParamComment', $data);
-                }
+//                if ($paramComment === '') {
+//                    $error = 'Missing comment for param "%s" at position %s';
+//                    $data = array($paramName, $pos,);
+//                    $this->currentFile->addError($error, $errorPos, 'MissingParamComment', $data);
+//                }
                 $previousParam = $param;
             }
         }
