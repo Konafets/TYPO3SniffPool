@@ -56,6 +56,13 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FA
  */
 class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
     /**
+     * Contains this variables which is allowed to contain underscored in name
+     * 
+     * @var array $allowedVarsWithUnderscores
+     */
+    protected $allowedVarsWithUnderscores = array('EM_CONF', '_EXTKEY',);
+
+    /**
      * Processes class member variables.
      *
      * @param PHP_CodeSniffer_File	$phpcsFile	The file being scanned.
@@ -65,6 +72,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $memberProps = $phpcsFile->getMemberProperties($stackPtr);
+        #print_r($memberProps);
         if (empty($memberProps) === TRUE) {
             return;
         }
@@ -79,6 +87,9 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * @return void
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+         $tokens = $phpcsFile->getTokens();
+        $variableName = ltrim($tokens[$stackPtr]['content'], '$');
+        #echo $variableName . "\n";
         $this->processVariableNameCheck($phpcsFile, $stackPtr);
     }
     /**
@@ -104,12 +115,18 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
     protected function processVariableNameCheck(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $scope = '') {
         $tokens = $phpcsFile->getTokens();
         $variableName = ltrim($tokens[$stackPtr]['content'], '$');
+        #echo $variableName . "\n";
         if ($variableName === 'GLOBALS') {
             return;
         } else {
             $hasUnderscores = stripos($variableName, '_');
             $isLowerCamelCase = preg_match_all('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $variableName, $matches);
             if ($hasUnderscores !== FALSE) {
+                    // There are some historic vars which must have underscore.
+                    // if we found such vars, we leave the sniff here.
+                if (in_array($variableName, $this->allowedVarsWithUnderscores)) {
+                    return;
+                }
                 $error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
                 $error.= 'use lowerCamelCase for identifier instead';
                 $phpcsFile->addError($error, $stackPtr);

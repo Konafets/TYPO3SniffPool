@@ -59,7 +59,16 @@ class TYPO3_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(3 => 1, 4 => 1, 5 => 1, 9 => 1, 10 => 1, 15 => 1, 17 => 1,);
+        return array(
+                3 => 1,
+                4 => 1,
+                5 => 1,
+                9 => 0,
+                12 => 1,
+                13 => 1,
+                19 => 1,
+                20 => 1,
+               );
     }
     /**
      * Returns the lines where warnings should occur.
