@@ -70,6 +70,11 @@ class TYPO3_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_Sniff {
         $tokenCode = $tokens[$stackPtr]['type'];
         switch ($tokenCode) {
             case 'T_INCLUDE_ONCE':
+                    // Here we are looking if the found include_once keyword is
+                    // part of an XClass declaration where this is allowed.
+                if ($tokens[$stackPtr + 7]['content'] == "'XCLASS'" ) {
+                    return;
+                }
                 $error = 'Including files with "' . $keyword . '" is not allowed; ';
                 $error.= 'use "require_once" instead';
                 $phpcsFile->addError($error, $stackPtr);
