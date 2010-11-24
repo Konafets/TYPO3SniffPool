@@ -27,24 +27,24 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Files
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Files
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Checks the file encoding for UTF-8.
  *
- * @category    Files
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Files
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_Files_EncodingUtf8Sniff implements PHP_CodeSniffer_Sniff {
     /**

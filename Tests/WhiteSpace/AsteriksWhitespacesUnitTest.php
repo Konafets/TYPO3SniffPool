@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Whitespace
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Whitespace
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the AsteriksWhitespaces sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    Whitespace
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Whitespace
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends AbstractSniffUnitTest {
     /**
@@ -59,7 +59,11 @@ class TYPO3_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends AbstractSniffUn
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(4 => 0, 5 => 1, 10 => 0);
+        return array(
+                    4 => 0,
+                    5 => 1,
+                    10 => 0,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

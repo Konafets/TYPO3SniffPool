@@ -27,31 +27,31 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt, Andy Grunwald
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Checks that the functions named by lowerCamelCase
  *
  * No Underscores are allowed
- * Correct: 	function testFunctionName ()
- * Incorrect: 	function Test_Function_name ()
- * 				function TestFunctionname ()
+ * Correct:   function testFunctionName ()
+ * Incorrect: function Test_Function_name ()
+ * 			  function TestFunctionname ()
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt, Andy Grunwald
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff {
     /**
@@ -113,7 +113,7 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
      *
      * @see http://php.net/manual/en/language.oop5.magic.php
      *
-     * @param string $name
+     * @param  string  $name
      * @return boolean
      */
     public function isFunctionAMagicFunction($name) {

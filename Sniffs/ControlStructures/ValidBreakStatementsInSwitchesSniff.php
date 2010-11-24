@@ -27,26 +27,26 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Checks that there is just one break per case
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_ControlStructures_ValidBreakStatementsInSwitchesSniff implements PHP_CodeSniffer_Sniff {
     /**

@@ -27,15 +27,15 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    PHP
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  PHP
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the CharacterAfterPHPClosingTag sniff.
@@ -43,15 +43,15 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    PHP
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  PHP
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_PHP_CharacterAfterPHPClosingTagUnitTest extends AbstractSniffUnitTest {
     /**
@@ -63,7 +63,10 @@ class TYPO3_Tests_PHP_CharacterAfterPHPClosingTagUnitTest extends AbstractSniffU
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(3 => 1, 6 => 1,);
+        return array(
+                    3 => 1,
+                    6 => 1,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

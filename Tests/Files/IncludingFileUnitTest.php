@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Files
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Files
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the IncludingFile sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    Files
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Files
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_Files_IncludingFileUnitTest extends AbstractSniffUnitTest {
     /**
@@ -59,7 +59,11 @@ class TYPO3_Tests_Files_IncludingFileUnitTest extends AbstractSniffUnitTest {
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(2 => 1, 3 => 1, 4 => 1,);
+        return array(
+                    2 => 1,
+                    3 => 1,
+                    4 => 1,
+                );
     } //end getErrorList()
     
     /**

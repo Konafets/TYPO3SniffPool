@@ -164,8 +164,9 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
     /**
      * Extract the extension name form a given path
      *
-     * @param string $path The complete path; starting from ext/
-     * @return mixed $extKey The name of the extension or FALSE if no found
+     * @param  string $path   The complete path; starting from ext/
+     * 
+     * @return mixed  $extKey The name of the extension or FALSE if no found
      */
     protected function getExtensionNamefromPath($path) {
         $extKey = explode('/', $path);
@@ -181,10 +182,10 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
     /**
      * Get the path to extension root
      *
-     * @param  string  $path               The file path
-     * @param  string  $extKey            The name of the extension
+     * @param  string  $path                The file path
+     * @param  string  $extKey              The name of the extension
      *
-     * @return string $absPathToExtension  The path to the extension root
+     * @return string  $absPathToExtension  The path to the extension root
      */
     protected function getPathToExtensionRoot($path, $extKey) {
         $pathLenght = strlen($path);
@@ -204,9 +205,10 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
      * This function checks if the current file should check for 
      * XClass declaration
      *
-     * @param string $filePath
-     * @param string $pathToExtension
-     * @param string $extKey
+     * @param  string  $filePath
+     * @param  string  $pathToExtension
+     * @param  string  $extKey
+     * 
      * @return boolean
      */
     protected function excludeXClassCheck($filePath, $pathToExtension, $extKey) {

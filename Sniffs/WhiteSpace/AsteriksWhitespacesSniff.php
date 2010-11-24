@@ -27,28 +27,28 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Whitespace
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Whitespace
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Checks that one whitespace is after an asteriks charakter in comments
  *
- * Correct: 	* @author Laura Thewalt
- * Incorrect: 	*@author Laura Thewalt
+ * Correct:   * @author Laura Thewalt
+ * Incorrect: *@author Laura Thewalt
  * TYPO3v4
  *
- * @category    Whitespace
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Whitespace
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_WhiteSpace_AsteriksWhitespacesSniff implements PHP_CodeSniffer_Sniff {
     /**

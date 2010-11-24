@@ -65,10 +65,21 @@ class TYPO3_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffU
     public function getErrorList($testFile = 'UnnecessaryStringConcatUnitTest.inc') {
         switch ($testFile) {
             case 'UnnecessaryStringConcatUnitTest.inc':
-                return array(2 => 1, 6 => 1, 9 => 1, 12 => 1, 14 => 0, 17 => 1,);
+                return array(
+                            2 => 1,
+                            6 => 1,
+                            9 => 1,
+                            12 => 1,
+                            14 => 0,
+                            17 => 1,
+                        );
             break;
             case 'UnnecessaryStringConcatUnitTest.js':
-                return array(1 => 1, 8 => 1, 11 => 1,);
+                return array(
+                            1 => 1,
+                            8 => 1,
+                            11 => 1,
+                        );
             break;
             default:
                 return array();

@@ -27,15 +27,15 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version		SVN: $ID$
- * @link		pear.typo3.org
+ * @category  Commenting
+ * @package	  TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license	  http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @version	  SVN: $ID$
+ * @link      pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', TRUE) === FALSE) {
     $error = 'Class PHP_CodeSniffer_CommentParser_ClassCommentParser not found';
@@ -58,15 +58,15 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', TRUE) === F
  *  <li>There is a blank newline between the long description and tags.</li>
  * </ul>
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version		Release: @package_version@
- * @link		pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license	  http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @version	  Release: @package_version@
+ * @link      pear.typo3.org
  */
 class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff {
     /**

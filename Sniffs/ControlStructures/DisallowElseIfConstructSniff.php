@@ -27,24 +27,24 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Checks that the include_once is used in all cases.
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_ControlStructures_DisallowElseIfConstructSniff implements PHP_CodeSniffer_Sniff {
     /**
@@ -65,8 +65,8 @@ class TYPO3_Sniffs_ControlStructures_DisallowElseIfConstructSniff implements PHP
      * Processes this test, when one of its tokens is encountered.
      *
      * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
-     * @param int $stackPtr The position of the current token in
-     * the stack passed in $tokens.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
      *
      * @return void
      */

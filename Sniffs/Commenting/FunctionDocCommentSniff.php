@@ -311,12 +311,12 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                         $error = 'Tabs must be used to indent the variable type; spaces are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamType');
                     }
-                    // Make sure that there are only tabs used to intend the var type.
+                    // Make sure that there are only tabs used to intend the var comment.
                     if ($this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeComment())) {
                         $error = 'Tabs must be used to indent the variable comment; spaces are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamComment');
                     }
-                    // Make sure that there are only tabs used to intend the var type.
+                    // Make sure that there are only tabs used to intend the var name.
                     if ($param->getVarName() && $this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeVarName())) {
                         $error = 'Tabs must be used to indent the variable name; spaces are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamName');

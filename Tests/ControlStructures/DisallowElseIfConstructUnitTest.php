@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the DisallowElseIfConstruct sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @copyright	Copyright (c) 2010, Stefano Kowalke
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright Copyright (c) 2010, Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_ControlStructures_DisallowElseIfConstructUnitTest extends AbstractSniffUnitTest {
     /**

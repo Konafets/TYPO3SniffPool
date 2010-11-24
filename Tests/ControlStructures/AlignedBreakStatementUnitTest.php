@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the AlignedBreakStatement sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    ControlStructures
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  ControlStructures
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_ControlStructures_AlignedBreakStatementUnitTest extends AbstractSniffUnitTest {
     /**
@@ -59,7 +59,12 @@ class TYPO3_Tests_ControlStructures_AlignedBreakStatementUnitTest extends Abstra
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(6 => 1, 27 => 1, 40 => 1, 48 => 1,);
+        return array(
+                    6 => 1,
+                    27 => 1,
+                    40 => 1,
+                    48 => 1,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

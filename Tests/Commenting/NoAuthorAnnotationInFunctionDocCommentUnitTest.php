@@ -27,24 +27,24 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for NoAuthorAnnotationInFunctionDocCommentSniff.
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnitTest extends AbstractSniffUnitTest {
     /**
@@ -56,7 +56,11 @@ class TYPO3_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnitTest exte
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(9 => 1, 10 => 1, 40 => 1,);
+        return array(
+                9 => 1,
+                10 => 1,
+                40 => 1,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

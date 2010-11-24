@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Commenting
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the SpaceAfterDoubleSlash sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    Commenting
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_Commenting_ValidCommentIndentUnitTest extends AbstractSniffUnitTest {
     /**
@@ -59,7 +59,15 @@ class TYPO3_Tests_Commenting_ValidCommentIndentUnitTest extends AbstractSniffUni
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(4 => 1, 8 => 0, 16 => 1, 20 => 0, 21 => 0, 25 => 1, 29 => 1,);
+        return array(
+                4 => 1,
+                8 => 0,
+                16 => 1,
+                20 => 0,
+                21 => 0,
+                25 => 1,
+                29 => 1,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

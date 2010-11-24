@@ -27,13 +27,13 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 /**
  * Unit test class for the ValidFunctionName sniff.
@@ -41,13 +41,13 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Laura Thewalt <laura.thewalt@wmdb.de>
- * @copyright	Copyright (c) 2010, Laura Thewalt
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version		Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @copyright Copyright (c) 2010, Laura Thewalt
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_NamingConventions_ValidFunctionNameUnitTest extends AbstractSniffUnitTest {
     /**
@@ -59,7 +59,20 @@ class TYPO3_Tests_NamingConventions_ValidFunctionNameUnitTest extends AbstractSn
      * @return array(int => int)
      */
     public function getErrorList() {
-        return array(2 => 1, 5 => 1, 8 => 1, 11 => 1, 14 => 1, 17 => 1, 27 => 1, 31 => 1, 35 => 1, 39 => 1, 43 => 1, 47 => 1,);
+        return array(
+                    2 => 1,
+                    5 => 1,
+                    8 => 1,
+                    11 => 1,
+                    14 => 1,
+                    17 => 1,
+                    27 => 1,
+                    31 => 1,
+                    35 => 1,
+                    39 => 1,
+                    43 => 1,
+                    47 => 1,
+                );
     }
     /**
      * Returns the lines where warnings should occur.

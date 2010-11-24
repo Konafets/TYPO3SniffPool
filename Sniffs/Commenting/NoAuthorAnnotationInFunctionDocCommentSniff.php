@@ -27,15 +27,15 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) === FALSE) {
     throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_FunctionCommentParser not found');
@@ -48,15 +48,15 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) ==
  * from PEAR_Sniffs_Commenting_FunctionCommentSniff.
  * Thanks for this guys!
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSniff implements PHP_CodeSniffer_Sniff {
     /**
