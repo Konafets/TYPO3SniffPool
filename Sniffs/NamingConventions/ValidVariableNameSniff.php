@@ -27,14 +27,14 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Stefano Kowalke, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Stefano Kowalke, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FALSE) {
     $error = 'Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found';
@@ -45,14 +45,14 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FA
  * All identifiers must use camelCase and start with a lower case letter.
  * Underscore characters are not allowed.
  *
- * @category    NamingConventions
- * @package     TYPO3_PHPCS_Pool
- * @author      Stefano Kowalke <blueduck@gmx.net>
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Stefano Kowalke, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  NamingConventions
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Stefano Kowalke, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
     /**
@@ -82,7 +82,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * Processes normal variables.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int $stackPtr The position where the token was found.
+     * @param int                  $stackPtr  The position where the token was found.
      *
      * @return void
      */
@@ -96,7 +96,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * Processes variables in double quoted strings.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int $stackPtr The position where the token was found.
+     * @param int                  $stackPtr  The position where the token was found.
      *
      * @return void
      */
@@ -109,8 +109,8 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * Checks if the variable name has underscores or is written in lowerCamelCase.
      *
      * @param PHP_CodeSniffer_File $phpcsFile
-     * @param int $stackPtr The position where the token was found.
-     * @param string $scope The variable scope. For example "member" if variable is a class property.
+     * @param int                  $stackPtr  The position where the token was found.
+     * @param string               $scope     The variable scope. For example "member" if variable is a class property.
      */
     protected function processVariableNameCheck(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $scope = '') {
         $tokens = $phpcsFile->getTokens();
