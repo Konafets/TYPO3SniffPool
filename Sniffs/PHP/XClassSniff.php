@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -55,7 +55,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
     public function register() {
         return array(T_CLASS);
     } //end register()
-    
+
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
@@ -82,7 +82,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
         if ($isXClassExcluded === TRUE) {
             return;
         }
-        
+
         $tokens = $phpcsFile->getTokens();
         $closingBracket = $tokens[$stackPtr]['scope_closer'];
 
@@ -120,7 +120,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
                 // Match $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS'] with single or doublequotes
             $XclassSearch = '\$TYPO3_CONF_VARS\[TYPO3_MODE\]\[[\'"]XCLASS[\'"]\]';
             $XclassParts = preg_split('/if \(defined\([\'"]TYPO3_MODE[\'"]\) && ' . $XclassSearch . '/', $content, 2);
-            
+
             if (count($XclassParts) !== 2) {
                     // Match $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS'] with single or doublequotes
                 $XclassSearch = '\$GLOBALS\[[\'"]TYPO3_CONF_VARS[\'"]\]\[TYPO3_MODE\]\[[\'"]XCLASS[\'"]\]';
@@ -157,7 +157,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
                 $code  = 'WrongOrNotFound';
             }
         }
-        
+
         $phpcsFile->addError($error, $stackPtr, $code);
     } //end process()
 
@@ -165,7 +165,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
      * Extract the extension name form a given path
      *
      * @param  string $path   The complete path; starting from ext/
-     * 
+     *
      * @return mixed  $extKey The name of the extension or FALSE if no found
      */
     protected function getExtensionNamefromPath($path) {
@@ -175,7 +175,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
         } else {
             $extKey = FALSE;
         }
-        
+
         return $extKey;
     }
 
@@ -202,13 +202,13 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
     }
 
     /**
-     * This function checks if the current file should check for 
+     * This function checks if the current file should check for
      * XClass declaration
      *
      * @param  string  $filePath
      * @param  string  $pathToExtension
      * @param  string  $extKey
-     * 
+     *
      * @return boolean
      */
     protected function excludeXClassCheck($filePath, $pathToExtension, $extKey) {

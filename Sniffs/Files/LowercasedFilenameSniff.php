@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -42,7 +42,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */

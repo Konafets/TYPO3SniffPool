@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -42,7 +42,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
@@ -55,7 +55,7 @@ class TYPO3_Sniffs_PHP_CharacterAfterPHPClosingTagSniff implements PHP_CodeSniff
     public function register() {
         return array(T_CLOSE_TAG);
     } //end register()
-    
+
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
@@ -81,7 +81,7 @@ class TYPO3_Sniffs_PHP_CharacterAfterPHPClosingTagSniff implements PHP_CodeSniff
             }
         }
     } //end process()
-    
+
 } //end class
 
 ?>

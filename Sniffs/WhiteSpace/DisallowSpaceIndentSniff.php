@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -42,7 +42,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
@@ -64,9 +64,9 @@ class TYPO3_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_CodeSniffe
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File	$phpcsFile	All the tokens found in the document.
-     * @param int					$stackPtr	The position of the current token in
-     * 											the stack passed in $tokens.
+     * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
      *
      * @return void
      */

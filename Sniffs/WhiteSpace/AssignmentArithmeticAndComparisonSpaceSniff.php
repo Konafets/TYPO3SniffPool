@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -45,7 +45,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
@@ -71,7 +71,7 @@ class TYPO3_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSniff implem
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in
-     * 											the stack passed in $tokens.
+     *                                        the stack passed in $tokens.
      *
      * @return void
      */

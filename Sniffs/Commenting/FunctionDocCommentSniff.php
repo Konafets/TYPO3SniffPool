@@ -27,15 +27,15 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) === FALSE) {
     throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_FunctionCommentParser not found');
@@ -62,59 +62,62 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) ==
  *  <li>Any throw tag must have an exception class.</li>
  * </ul>
  *
- * @category	Commenting
- * @package		TYPO3_PHPCS_Pool
- * @author		Greg Sherwood <gsherwood@squiz.net>
- * @author		Marc McIntyre <mmcintyre@squiz.net>
- * @author		Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Commenting
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff {
+
     /**
      * The name of the method that we are currently processing.
      *
      * @var string
      */
     private $_methodName = '';
+
     /**
      * The position in the stack where the fucntion token was found.
      *
      * @var int
      */
     private $_functionToken = null;
+
     /**
      * The position in the stack where the class token was found.
      *
      * @var int
      */
     private $_classToken = null;
+
     /**
      * The function comment parser for the current method.
      *
      * @var PHP_CodeSniffer_Comment_Parser_FunctionCommentParser
      */
     protected $commentParser = null;
+
     /**
      * The current PHP_CodeSniffer_File object we are processing.
      *
      * @var PHP_CodeSniffer_File
      */
     protected $currentFile = null;
+
     /**
      * Returns an array of tokens this test wants to listen for.
-     *
-     * foo foof oo
-     *
-     * ssss
      *
      * @return array
      */
     public function register() {
         return array(T_FUNCTION);
     }
+    
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -298,7 +301,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             foreach ($params as $param) {
                 $paramComment = trim($param->getComment());
                 $errorPos = ($param->getLine() + $commentStart);
-                
+
                 // Make sure they are in the correct order,
                 // and have the correct name.
                 $pos = $param->getPosition();

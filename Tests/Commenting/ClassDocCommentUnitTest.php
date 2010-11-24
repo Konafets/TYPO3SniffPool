@@ -28,11 +28,11 @@
  * TYPO3 version 4
  *
  * @category  Commenting
- * @package	  TYPO3_PHPCS_Pool
+ * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version	  SVN: $ID$
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
 /**
@@ -42,11 +42,11 @@
  * Thanks for this guys!
  *
  * @category  Commenting
- * @package	  TYPO3_PHPCS_Pool
- * @author	  Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version	  Release: @package_version@
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
 class TYPO3_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSniffUnitTest {

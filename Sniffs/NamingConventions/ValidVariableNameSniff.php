@@ -57,7 +57,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FA
 class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
     /**
      * Contains this variables which is allowed to contain underscored in name
-     * 
+     *
      * @var array $allowedVarsWithUnderscores
      */
     protected $allowedVarsWithUnderscores = array('EM_CONF', '_EXTKEY',);
@@ -65,8 +65,8 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
     /**
      * Processes class member variables.
      *
-     * @param PHP_CodeSniffer_File	$phpcsFile	The file being scanned.
-     * @param int					$stackPtr	The position of the current token in the stack passed in $tokens.
+     * @param PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
+     * @param int                   $stackPtr   The position of the current token in the stack passed in $tokens.
      *
      * @return void
      */

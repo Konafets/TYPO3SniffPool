@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -40,13 +40,12 @@
  *
  * Correct:   * @author Laura Thewalt
  * Incorrect: *@author Laura Thewalt
- * TYPO3v4
  *
  * @category  Whitespace
  * @package   TYPO3_PHPCS_Pool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
@@ -70,7 +69,7 @@ class TYPO3_Sniffs_WhiteSpace_AsteriksWhitespacesSniff implements PHP_CodeSniffe
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in
-     * 											the stack passed in $tokens.
+     *                                        the stack passed in $tokens.
      *
      * @return void
      */

@@ -31,7 +31,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -45,7 +45,7 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */

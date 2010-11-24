@@ -32,7 +32,7 @@
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   SVN: $ID$
  * @link      http://pear.typo3.org
  */
@@ -42,14 +42,14 @@
  * No Underscores are allowed
  * Correct:   function testFunctionName ()
  * Incorrect: function Test_Function_name ()
- * 			  function TestFunctionname ()
+ *            function TestFunctionname ()
  *
  * @category  NamingConventions
  * @package   TYPO3_PHPCS_Pool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt, Andy Grunwald
- * @license	  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
@@ -73,7 +73,7 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in
-     * 											the stack passed in $tokens.
+     *                                        the stack passed in $tokens.
      *
      * @return void
      */
