@@ -74,7 +74,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
 
             // XClass declarations are only needed in extensions, so we have to check
             // if the current file is part of a sys- or user extension
-        if (!preg_match('/sysext|ext/', $filePath)) {
+        if (!preg_match('/\/sysext\/|\/ext\//', $filePath)) {
             return;
         }
 
@@ -192,15 +192,17 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
         $extKeyPos = strpos($path, $extKey);
 
         $absPathToExtension = substr($path, 0, $extKeyPos + $extLenght);
-        echo '$pathLenght: ' . $pathLenght . "\n";
-        echo '$extLenght: ' . $extLenght . "\n";
-        echo '$absPathToExtension: ' . $absPathToExtension . "\n";
+        #echo '$pathLenght: ' . $pathLenght . "\n";
+        #echo '$extLenght: ' . $extLenght . "\n";
+        #echo '$absPathToExtension: ' . $absPathToExtension . "\n";
         #echo $extKeyPos;
 
         return $absPathToExtension;
     }
 
     /**
+     * This function checks if the current file should check for 
+     * XClass declaration
      *
      * @param string $filePath
      * @param string $pathToExtension
