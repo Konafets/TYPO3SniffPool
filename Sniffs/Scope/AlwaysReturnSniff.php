@@ -27,24 +27,27 @@
  * PHP version 5
  * TYPO3 version 4
  *
- * @category    Scope
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     SVN: $ID$
- * @link		http://pear.typo3.org
+ * @category  Scope
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   SVN: $ID$
+ * @link      http://pear.typo3.org
  */
+if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) === FALSE) {
+    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_FunctionCommentParser not found');
+}
 /**
  * Checks that a function / method always have a return value if it return something.
  *
- * @category    Scope
- * @package     TYPO3_PHPCS_Pool
- * @author      Andy Grunwald <andreas.grunwald@wmdb.de>
- * @copyright	Copyright (c) 2010, Andy Grunwald
- * @license		http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version     Release: @package_version@
- * @link		http://pear.typo3.org
+ * @category  Scope
+ * @package   TYPO3_PHPCS_Pool
+ * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @copyright Copyright (c) 2010, Andy Grunwald
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version   Release: @package_version@
+ * @link      http://pear.typo3.org
  */
 class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
     /**
@@ -53,6 +56,21 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
      * @var array
      */
     public $supportedTokenizes = array('PHP');
+
+    /**
+     * The function comment parser for the current method.
+     *
+     * @var PHP_CodeSniffer_Comment_Parser_FunctionCommentParser
+     */
+    protected $commentParser = NULL;
+
+    /**
+     * The current PHP_CodeSniffer_File object we are processing.
+     *
+     * @var PHP_CodeSniffer_File
+     */
+    protected $currentFile = NULL;
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -61,6 +79,7 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
     public function register() {
         return array(T_RETURN);
     }
+
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
@@ -71,6 +90,16 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
      * @return void
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+        // Von Stefano
+        $find = array(T_COMMENT, T_DOC_COMMENT, T_CLASS, T_FUNCTION, T_OPEN_TAG,);
+        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1));
+        if ($commentEnd === FALSE) {
+            return;
+        }
+
+        $this->currentFile = $phpcsFile;
+
+        // Von Andy
         $functionTokenKey = 0;
         $tokens = $phpcsFile->getTokens();
         $continue = $this->isReturnSurroundedByControllStructures($tokens, $stackPtr, $functionTokenKey);
@@ -94,6 +123,16 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff {
             $phpcsFile->addError($error, $functionTokenKey);
         }
     }
+
+    /**
+     *
+     * 
+     * @param array $tokens
+     * @param int   $stackPtr
+     * @param int   $functionToken
+     * 
+     * @return boolean
+     */
     protected function isReturnSurroundedByControllStructures(array $tokens, $stackPtr, &$functionToken = 0) {
         $result = FALSE;
         foreach ($tokens[$stackPtr]['conditions'] as $key => $val) {
