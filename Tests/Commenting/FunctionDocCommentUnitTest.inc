@@ -6,9 +6,9 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	 *
 	 * long desc here
 	 *
-	 * @param	int		$stackPt	The position in @ @unknown the stack of the token that opened the scope
-	 * @param	int		$detph		How many scope levels down we are.
-	 * @param	int		$index		The index
+	 * @param int $stackPt  The position in @ @unknown the stack of the token that opened the scope
+	 * @param int $detph    How many scope levels down we are.
+	 * @param int $index    The index
 	 * @return
 	 * @throws
 	 */
@@ -107,11 +107,11 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	 * Param not immediate
 	 *
 	 * @return
-	 * @param	int		$threeSpaces	Comment
-	 * @param	int		$superfluous
-	 * @param	int		Comment
-	 * @param	int
-	 * @param	missing
+	 * @param int $threeSpaces Comment
+	 * @param int $superfluous
+	 * @param int Comment
+	 * @param int
+	 * @param missing
 	 * @param
 	 */
 	public function missingDescriptionOfParameters($threeSpaces) {
@@ -124,10 +124,10 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	 *
 	 * @param   int			$one	comment
 	 * @param	int         $two	comment
-	 * @param	string		$three  comment
-	 * @param   array       $four   comment
+	 * @param	string		$three	comment
+	 * @param	array		$four	comment
 	 * @param	array		$five	comment
-	 * @return void
+	 * @return	void
 	 */
 	public function paramsIntendStyle($one, $two, $three, $four, $five) {
 
@@ -138,7 +138,7 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 /**
  * A simple function comment
  *
- * @param	string	$str	The string passed in by reference
+ * @param string $str The string passed in by reference
  *
  * @return void
  */
@@ -173,7 +173,7 @@ function noReturnOutsideClass() {
 /**
  * Missing param comment
  *
- * @param	int		$one	comment
+ * @param int $one comment
  *
  * @return void
  * @fine  Unknown tag
@@ -194,7 +194,7 @@ function emptyFunctionDocComment() {
 /**
  * Test function.
  *
- * @param	string	$arg1	An argument
+ * @param string $arg1 An argument
  *
  * @access public
  * @return bool
@@ -244,19 +244,19 @@ class YourClass {
 
     /**
 	 * Params are commented, but not passed to the function
-     * Params are indented with spaces, which is not allowed, but should
+     * Params are indented with tabs, which is not allowed, but should
      * be ignored for those commeted params who superfluous ($superfluous, Comment, ..)
 	 *
-	 * @param int $threeSpaces Comment
-	 * @param int $superfluous
-	 * @param int Comment
-	 * @param int
-	 * @param missing
+	 * @param	int	$threeTabs	Comment
+	 * @param	int	$superfluous
+	 * @param	int	Comment
+	 * @param	int
+	 * @param	missing
 	 * @param
      *
      * @return void
 	 */
-	public function missingDescriptionOfParameters($threeSpaces) {
+	public function missingDescriptionOfParameters($threeTabs) {
 
 	}
 }

@@ -117,7 +117,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
     public function register() {
         return array(T_FUNCTION);
     }
-    
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -310,18 +310,18 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                 // actual parameter.
                 if (isset($realParams[($pos - 1) ]) === TRUE) {
                     // Make sure that there are only tabs used to intend the var type.
-                    if ($this->isWhitespaceUsedToIntend($param->getWhitespaceBeforeType())) {
-                        $error = 'Tabs must be used to indent the variable type; spaces are not allowed';
+                    if ($this->isTabUsedToIntend($param->getWhitespaceBeforeType())) {
+                        $error = 'Spaces must be used to indent the variable type; tabs are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamType');
                     }
                     // Make sure that there are only tabs used to intend the var comment.
-                    if ($this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeComment())) {
-                        $error = 'Tabs must be used to indent the variable comment; spaces are not allowed';
+                    if ($this->isTabUsedToIntend($param->getWhiteSpaceBeforeComment())) {
+                        $error = 'Spaces must be used to indent the variable comment; tabs are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamComment');
                     }
                     // Make sure that there are only tabs used to intend the var name.
-                    if ($param->getVarName() && $this->isWhitespaceUsedToIntend($param->getWhiteSpaceBeforeVarName())) {
-                        $error = 'Tabs must be used to indent the variable name; spaces are not allowed';
+                    if ($param->getVarName() && $this->isTabUsedToIntend($param->getWhiteSpaceBeforeVarName())) {
+                        $error = 'Spaces must be used to indent the variable name; tabs are not allowed';
                         $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParamName');
                     }
 
@@ -380,9 +380,16 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             $this->currentFile->addError($error, $errorPos, 'MissingParamTag', $data);
         }
     }
-    protected function isWhitespaceUsedToIntend($content) {
-        // is a space char in the indention?
-        return preg_match('/[^\t]/', $content) ? TRUE : FALSE;
+
+    /**
+     * Checks if the parameter contain a tab char
+     *
+     * @param  string  $content The whitespace part inside the comment
+     * @return boolean
+     */
+    protected function isTabUsedToIntend($content) {
+        // is a tab char in the indention?
+        return preg_match('/[\t]/', $content) ? TRUE : FALSE;
     }
 }
 ?>
