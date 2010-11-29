@@ -59,14 +59,14 @@ class TYPO3_Tests_PHP_XClassUnitTest extends AbstractSniffUnitTest {
      *
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
-     * 
+     *
      * @param string $testFile The name of the file being tested.
-     * 
+     *
      * @return array(int => int)
      */
-    public function getErrorList($testFile = 'ext/phpcs/') {
+    public function getErrorList($testFile = 'ext/phpcs/XClassUnitTest.inc') {
         return array(
-                6 => 0,
+                6 => 1,
                 11 => 1,
                 );
     }

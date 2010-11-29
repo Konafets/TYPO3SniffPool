@@ -74,7 +74,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
 
             // XClass declarations are only needed in extensions, so we have to check
             // if the current file is part of a sys- or user extension
-        if (!preg_match('/\/sysext\/|\/ext\//', $filePath)) {
+        if (!preg_match('/\/Tests\/PHP\/|\/sysext\/|\/ext\//', $filePath)) {
             return;
         }
 
@@ -124,7 +124,7 @@ class TYPO3_Sniffs_PHP_XClassSniff implements PHP_CodeSniffer_Sniff {
             if (count($XclassParts) !== 2) {
                     // Match $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS'] with single or doublequotes
                 $XclassSearch = '\$GLOBALS\[[\'"]TYPO3_CONF_VARS[\'"]\]\[TYPO3_MODE\]\[[\'"]XCLASS[\'"]\]';
-                $XclassParts = preg_split('/if \(defined\([\'"]TYPO3_MODE[\'"]\) && ' . $XclassSearch . '/', $content, 2);
+                $XclassParts = preg_split('/if \(defined\([\'"]TYPO3_MODE[\'"]\) && (isset\()?' . $XclassSearch . '/', $content, 2);
                 $error = 'The XCLASS declaration must follow the PHP class, but I didn\'t found one or its wrong.';
                 $code  = 'NotFoundy';
             }
