@@ -68,6 +68,7 @@ class TYPO3_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
                 13 => 1,
                 19 => 1,
                 20 => 1,
+                21 => 1,
                );
     }
     /**
