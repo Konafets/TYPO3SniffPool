@@ -25,18 +25,32 @@
 		<email>laura.thewalt@wmdb.de</email>
 		<active>yes</active>
 	</developer>
-	<date>2010-10-04</date>
-	<time>09:10:33</time>
+	<date>2010-12-14</date>
+	<time>21:20:42</time>
 	<version>
-		<release>0.0.1</release>
-		<api>0.0.1</api>
+		<release>0.0.2</release>
+		<api>0.0.2</api>
 	</version>
 	<stability>
 		<release>alpha</release>
 		<api>alpha</api>
 	</stability>
 	<license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
-	<notes>Initial release</notes>
+	<notes>
+	- Resolve feature #11170 Improve the error message of the sniff
+	- Resolve feature #10122 Sniff: PHPDoc: Notice the use of void when function does not return a value.
+	- Resolve feature #10119 Add a proper check for function / method doc block comments
+	- Resolve bug #11132 Use whitespaces to indent params in comments in FunctionDocCommentSniff
+	- Resolve bug #11032 Allow include_once if it part of XClass declaration
+	- Resolve bug #10304 Allow underscores in historic variables like $EM_CONF $_EXTKEY
+	- Resolve bug #10246 Notice: Undefined index: scope_opener
+	- Resolve bug #10245 Notice: Undefined variable: long
+	- Resolve bug #10071 Spelling mistake in ValidVariableNameSniff
+	- Add a sniff which checks for @author annotation in function doc comments
+	- Add a sniff which checks for UTF-8 encoding in all PHP files
+	- Add a sniff which checks for XClass declaration
+	- Add a sniff which checks for unnecessary string concatenation
+	</notes>
 	<contents>
  		<dir name="/">
 			<dir name="Sniffs">
@@ -53,6 +67,9 @@
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="NoAuthorAnnotationInFunctionDocCommentSniff.php" role="php">
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="SpaceAfterDoubleSlashSniff.php" role="php">
@@ -122,9 +139,17 @@
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="DisallowMultiplePHPTagsSniff.php" role="php">
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="XClassSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
 				</dir>
 				<dir name="Scope">
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnSniff.php" role="php">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Strings">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="UnnecessaryStringConcatSniff.php" role="php">
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
 				</dir>
@@ -161,6 +186,10 @@
 					</file>
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentUnitTest.inc" role="test" />
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="FunctionDocCommentUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="NoAuthorAnnotationInFunctionDocCommentUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="NoAuthorAnnotationInFunctionDocCommentUnitTest.php" role="test">
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="SpaceAfterDoubleSlashUnitTest.inc" role="test" />
@@ -249,6 +278,13 @@
 				<dir name="Scope">
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnUnitTest.inc" role="test" />
 					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="AlwaysReturnUnitTest.php" role="test">
+						<tasks:replace from="@package_version@" to="version" type="package-info" />
+					</file>
+				</dir>
+				<dir name="Strings">
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="UnnecessaryStringConcatUnitTest.inc" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="UnnecessaryStringConcatUnitTest.js" role="test" />
+					<file baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="UnnecessaryStringConcatUnitTest.php" role="test">
 						<tasks:replace from="@package_version@" to="version" type="package-info" />
 					</file>
 				</dir>
