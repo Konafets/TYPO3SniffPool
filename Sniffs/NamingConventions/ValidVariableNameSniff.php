@@ -72,7 +72,6 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      */
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $memberProps = $phpcsFile->getMemberProperties($stackPtr);
-        #print_r($memberProps);
         if (empty($memberProps) === TRUE) {
             return;
         }
