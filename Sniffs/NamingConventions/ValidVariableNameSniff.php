@@ -56,13 +56,46 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FA
  */
 class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff {
     /**
-     * Contains this variables which is allowed to contain underscored in name
+     * Contains built-in TYPO3 variables which we don't check
      *
-     * @var array $allowedVarsWithUnderscores
+     * @var array $allowedTypo3InbuiltVariableNames
      */
-    protected $allowedVarsWithUnderscores = array('EM_CONF', '_EXTKEY',);
+	protected $allowedTypo3InbuiltVariableNames = array(
+													'GLOBALS',
+													'TYPO3_CONF_VARS',
+													'TYPO3_LOADED_EXT',
+													'TYPO3_DB',
+													'EXEC_TIME',
+													'SIM_EXEC_TIME',
+													'TYPO_VERSION',
+													'CLIENT',
+													'PARSETIME_START',
+													'PAGES_TYPES',
+													'ICON_TYPES',
+													'LANG_GENERAL_LABELS',
+													'TCA',
+													'TBE_MODULES',
+													'TBE_STYLES',
+													'T3_SERVICES',
+													'T3_VAR',
+													'FILEICONS',
+													'WEBMOUNTS',
+													'FILEMOUNTS',
+													'BE_USER',
+													'TBE_MODULES_EXT',
+													'TCA_DESCR',
+													'_EXTKEY',
+													'EM_CONF',
+													'LANG',
+													'BACK_PATH',
+													'_REQUEST',
+													'_SERVER',
+													'_REQUEST',
+													'_COOKIE',
+													'_FILES'
+												);
 
-    /**
+	/**
      * Processes class member variables.
      *
      * @param PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
@@ -86,9 +119,8 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * @return void
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-         $tokens = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
         $variableName = ltrim($tokens[$stackPtr]['content'], '$');
-        #echo $variableName . "\n";
         $this->processVariableNameCheck($phpcsFile, $stackPtr);
     }
     /**
@@ -114,31 +146,26 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
     protected function processVariableNameCheck(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $scope = '') {
         $tokens = $phpcsFile->getTokens();
         $variableName = ltrim($tokens[$stackPtr]['content'], '$');
-        #echo $variableName . "\n";
-        if ($variableName === 'GLOBALS') {
-            return;
-        } else {
-            $hasUnderscores = stripos($variableName, '_');
-            //$isLowerCamelCase = preg_match_all('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $variableName, $matches);
-			$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
-            if ($hasUnderscores !== FALSE) {
-                    // There are some historic vars which must have underscore.
-                    // if we found such vars, we leave the sniff here.
-                if (in_array($variableName, $this->allowedVarsWithUnderscores)) {
-                    return;
-                }
-                $error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
-                $error.= 'use lowerCamelCase for identifier instead';
-                $phpcsFile->addError($error, $stackPtr);
-            } elseif ($isLowerCamelCase === FALSE) {
-                $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
-                $replace = "ucfirst(strtolower('\\1'))";
-                $variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
-                $error = ucfirst($scope) . 'variablename must be lowerCamelCase; expect "$' .
-                    $variableNameLowerCamelCased . '" but found "$' . $variableName . '"';
-                $phpcsFile->addError($error, $stackPtr);
-            }
-        }
-    }
+			// There are some historic builtin TYPO3 vars we don't care here.
+			// if we found such vars, we leave the sniff here.
+		if (in_array($variableName, $this->allowedTypo3InbuiltVariableNames)) {
+			return;
+		}
+
+		$hasUnderscores = stripos($variableName, '_');
+		$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
+		if ($hasUnderscores !== FALSE) {
+			$error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
+			$error.= 'use lowerCamelCase for identifier instead';
+			$phpcsFile->addError($error, $stackPtr);
+		} elseif ($isLowerCamelCase === FALSE) {
+			$pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
+			$replace = "ucfirst(strtolower('\\1'))";
+			$variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
+			$error = ucfirst($scope) . 'variablename must be lowerCamelCase; expect "$' .
+			$variableNameLowerCamelCased . '" but found "$' . $variableName . '"';
+			$phpcsFile->addError($error, $stackPtr);
+		}
+	}
 }
 ?>
