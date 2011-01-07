@@ -72,6 +72,8 @@ class TYPO3_Tests_NamingConventions_ValidFunctionNameUnitTest extends AbstractSn
                     39 => 1,
                     43 => 1,
                     47 => 1,
+					112 => 0,
+					120 => 0,
                 );
     }
     /**

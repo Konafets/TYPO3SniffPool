@@ -103,5 +103,21 @@ class foo {
 	public function __clone() {
 		$var;
 	}
+
+	/**
+	 * Finds out the answer to life, the universe and everything.
+	 *
+	 * @return void
+	 */
+	public function get42() {
+	}
+
+	/**
+	 * Converts the universe to UTF-8.
+	 *
+	 * @return void
+	 */
+	public function convertToUtf8String() {
+	}
 }
 ?>

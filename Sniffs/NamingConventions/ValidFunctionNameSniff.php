@@ -84,13 +84,13 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
             return NULL;
         }
         $hasUnderscores = stripos($tokens[$functionName]['content'], '_');
-        $isLowerCamelCase = preg_match('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $tokens[$functionName]['content']);
+        $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($tokens[$functionName]['content'], FALSE, TRUE, TRUE);
         $scope = $this->getCorrectScopeOfToken($tokens, $stackPtr);
         if ($hasUnderscores !== FALSE) {
             $error = 'Underscores are not allowed in ' . $scope . ' names "' . $tokens[$functionName]['content'] . '"; ';
             $error.= 'use lowerCamelCase for ' . $scope . ' names instead';
             $phpcsFile->addError($error, $stackPtr);
-        } elseif ($isLowerCamelCase === 0) {
+        } elseif ($isLowerCamelCase === FALSE) {
             $error = ucfirst($scope) . ' name "' . $tokens[$functionName]['content'] . '" must use lowerCamelCase';
             $phpcsFile->addError($error, $stackPtr);
         }
