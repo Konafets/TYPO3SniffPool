@@ -19,6 +19,8 @@ class foo {
 $BAD_Name = 4;
 $BaD_NAmE = 6;
 $someNiceHTMLCode;
+$TYPO3ReservedFields;
+$sectionID;
 
 // Good names
 $goodName = 5;

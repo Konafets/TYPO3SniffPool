@@ -130,7 +130,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                 $error.= 'use lowerCamelCase for identifier instead';
                 $phpcsFile->addError($error, $stackPtr);
             } elseif ($isLowerCamelCase === 0) {
-                $pattern = '/([A-Z]{2,}(?=[A-Z]))/e';
+                $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
                 $replace = "ucfirst(strtolower('\\1'))";
                 $variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
                 $error = ucfirst($scope) . 'variablename must be lowerCamelCase; expect "$' .
