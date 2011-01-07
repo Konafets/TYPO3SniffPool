@@ -119,7 +119,8 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
             return;
         } else {
             $hasUnderscores = stripos($variableName, '_');
-            $isLowerCamelCase = preg_match_all('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $variableName, $matches);
+            //$isLowerCamelCase = preg_match_all('/(\b[a-z]{1,})\b|(\b[a-z]{1,})([A-Z]{1}[a-z]{1,}){1,}\b/', $variableName, $matches);
+			$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
             if ($hasUnderscores !== FALSE) {
                     // There are some historic vars which must have underscore.
                     // if we found such vars, we leave the sniff here.
@@ -129,7 +130,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                 $error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
                 $error.= 'use lowerCamelCase for identifier instead';
                 $phpcsFile->addError($error, $stackPtr);
-            } elseif ($isLowerCamelCase === 0) {
+            } elseif ($isLowerCamelCase === FALSE) {
                 $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
                 $replace = "ucfirst(strtolower('\\1'))";
                 $variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);

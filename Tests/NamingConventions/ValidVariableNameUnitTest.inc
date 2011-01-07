@@ -28,4 +28,6 @@ $GLOBALS = 'bar';
 $_EXTKEY = 'tt_sok';
 $EM_CONF = array();
 $someNiceHtmlCode;
+$uid1 = 42;
+$utf8String = 'Hello world!';
 ?>
