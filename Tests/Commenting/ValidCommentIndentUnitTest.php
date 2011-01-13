@@ -29,6 +29,7 @@
  *
  * @category  Commenting
  * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -43,6 +44,7 @@
  *
  * @category  Commenting
  * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright Copyright (c) 2010, Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -61,12 +63,11 @@ class TYPO3_Tests_Commenting_ValidCommentIndentUnitTest extends AbstractSniffUni
     public function getErrorList() {
         return array(
                 4 => 1,
-                8 => 0,
-                16 => 1,
-                20 => 0,
-                21 => 0,
+                12 => 1,
+                16 => 0,
+                17 => 0,
+                21 => 1,
                 25 => 1,
-                29 => 1,
                 );
     }
     /**

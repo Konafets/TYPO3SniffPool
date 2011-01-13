@@ -1,11 +1,7 @@
-<?php 
+<?php
 
-/****** False ******/
+/** The comment has to be indent one more tab **/
 // The answer of life, the universe and everything
-$foo = 42;
-
-/****** Correct ******/
-	// The answer of life, the universe and everything
 $foo = 42;
 
 if ($foo == $bar) {
