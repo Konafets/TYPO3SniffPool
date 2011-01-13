@@ -34,7 +34,7 @@
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright Copyright (c) 2010, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   SVN: $ID$
+ * @version   SVN: $Id$
  * @link      http://pear.typo3.org
  */
 /**

@@ -32,7 +32,7 @@
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright Copyright (c) 2010, Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   SVN: $ID$
+ * @version   SVN: $Id$
  * @link      http://pear.typo3.org
  */
 /**
