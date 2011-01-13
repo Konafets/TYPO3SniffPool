@@ -48,7 +48,7 @@
 	- Resolve bug #10071 Spelling mistake in ValidVariableNameSniff
 	- Add a sniff which checks for @author annotation in function doc comments
 	- Add a sniff which checks for UTF-8 encoding in all PHP files
-	- Add a sniff which checks for XClass declaration
+	- Add feature #10580: Create sniff for XClass declaration
 	- Add a sniff which checks for unnecessary string concatenation
 	</notes>
 	<contents>
