@@ -25,11 +25,11 @@
 		<email>laura.thewalt@wmdb.de</email>
 		<active>yes</active>
 	</developer>
-	<date>2010-12-14</date>
-	<time>21:20:42</time>
+	<date>2011-01-14</date>
+	<time>22:55:42</time>
 	<version>
-		<release>0.0.2</release>
-		<api>0.0.2</api>
+		<release>0.0.3</release>
+		<api>0.0.3</api>
 	</version>
 	<stability>
 		<release>alpha</release>
@@ -37,19 +37,15 @@
 	</stability>
 	<license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
 	<notes>
-	- Resolve feature #11170 Improve the error message of the sniff
-	- Resolve feature #10122 Sniff: PHPDoc: Notice the use of void when function does not return a value.
-	- Resolve feature #10119 Add a proper check for function / method doc block comments
-	- Resolve bug #11132 Use whitespaces to indent params in comments in FunctionDocCommentSniff
-	- Resolve bug #11032 Allow include_once if it part of XClass declaration
-	- Resolve bug #10304 Allow underscores in historic variables like $EM_CONF $_EXTKEY
-	- Resolve bug #10246 Notice: Undefined index: scope_opener
-	- Resolve bug #10245 Notice: Undefined variable: long
-	- Resolve bug #10071 Spelling mistake in ValidVariableNameSniff
-	- Add a sniff which checks for @author annotation in function doc comments
-	- Add a sniff which checks for UTF-8 encoding in all PHP files
-	- Add feature #10580: Create sniff for XClass declaration
-	- Add a sniff which checks for unnecessary string concatenation
+		- Resolve bug #11377: Add an array with all reserved TYPO3 in-build variables. (Thanks to Timo Webler)
+		- Resolve bug #11903: ValidVariableNameSniff should also recognize numbers in variable names (Thanks to Timo Webler)
+		- Resolve bug #11598: PHP Notice: Undefined offset: 7139708045 in /usr/share/php/PHP/CodeSniffer/Standards/TYPO3/Sniffs/Commenting/ValidCommentIndentSniff.php on line 77
+		- Resolve bug #12206: Remove max version for PHP_CodeSniffer in package.xml
+		- Finish task  #9105: Activate svn:ignore for Eclipse-Files
+		- Finish task #12196: Change SVN keyword from $ID$ to $Id$
+		- Finish task #12197: Add missing SVN keywords
+		- Finish task  #9622: Are multiple whitespaces allowed?
+		- Finish task #12205: Enable auto_detect_line_endings
 	</notes>
 	<contents>
  		<dir name="/">
@@ -327,6 +323,33 @@
 	</dependencies>
 	<phprelease />
 	<changelog>
+		<release>
+			<version>
+				<release>0.0.2</release>
+				<api>0.0.2</api>
+			</version>
+			<stability>
+				<release>alpha</release>
+				<api>alpha</api>
+			</stability>
+			<date>2010-12-14</date>
+			<license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+			<notes>
+				- Resolve feature #11170 Improve the error message of the sniff
+				- Resolve feature #10122 Sniff: PHPDoc: Notice the use of void when function does not return a value.
+				- Resolve feature #10119 Add a proper check for function / method doc block comments
+				- Resolve bug #11132 Use whitespaces to indent params in comments in FunctionDocCommentSniff
+				- Resolve bug #11032 Allow include_once if it part of XClass declaration
+				- Resolve bug #10304 Allow underscores in historic variables like $EM_CONF $_EXTKEY
+				- Resolve bug #10246 Notice: Undefined index: scope_opener
+				- Resolve bug #10245 Notice: Undefined variable: long
+				- Resolve bug #10071 Spelling mistake in ValidVariableNameSniff
+				- Add a sniff which checks for @author annotation in function doc comments
+				- Add a sniff which checks for UTF-8 encoding in all PHP files
+				- Add feature #10580: Create sniff for XClass declaration
+				- Add a sniff which checks for unnecessary string concatenation
+			</notes>
+		</release>
 		<release>
 			<version>
 				<release>0.0.1</release>
