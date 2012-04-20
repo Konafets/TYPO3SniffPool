@@ -80,7 +80,8 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
         $functionName = $phpcsFile->findNext(array(T_STRING), $stackPtr);
-        if ($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === TRUE) {
+        if ($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === TRUE
+            || $this->isFunctionAPiBaseFunction($tokens[$functionName]['content']) === TRUE) {
             return NULL;
         }
         $hasUnderscores = stripos($tokens[$functionName]['content'], '_');
@@ -95,6 +96,7 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
             $phpcsFile->addError($error, $stackPtr);
         }
     }
+
     public function getCorrectScopeOfToken(array $tokens, $stackPtr) {
         $scope = 'function';
         if (!is_array($tokens[$stackPtr]['conditions'])) {
@@ -108,6 +110,7 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
         }
         return $scope;
     }
+
     /**
      * Returns TRUE if the called function / method is a magic method of php
      *
@@ -137,6 +140,66 @@ class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeS
                 $result = TRUE;
             break;
         }
+        return $result;
+    }
+
+    /**
+     * Returns TRUE if called function / method is a pi_-based method
+     * of TYPO3.
+     * If you create a frontend plugin for TYPO3 on piBase and overwrite
+     * an existing method from tslib_pibase which starts with "pi_"
+     * the codesniffer will mark this as an error.
+     *
+     * This method contains a full list of methods who starts with "pi_"
+     * and are from tslib_pibase (TYPO3 4.5.15 LTS).
+     *
+     * @see http://forge.typo3.org/issues/28170
+     *
+     * @param  string  $name
+     * @return boolean
+     */
+    protected function isFunctionAPiBaseFunction($name) {
+        $result = FALSE;
+
+        switch ($name) {
+            case 'pi_autoCache':
+            case 'pi_classParam':
+            case 'pi_exec_query':
+            case 'pi_getCategoryTableContents':
+            case 'pi_getClassName':
+            case 'pi_getEditIcon':
+            case 'pi_getEditPanel':
+            case 'pi_getFFvalue':
+            case 'pi_getFFvalueFromSheetArray':
+            case 'pi_getLL':
+            case 'pi_getPageLink':
+            case 'pi_getPidList':
+            case 'pi_getRecord':
+            case 'pi_initPIflexForm':
+            case 'pi_isOnlyFields':
+            case 'pi_linkToPage':
+            case 'pi_linkTP':
+            case 'pi_linkTP_keepPIvars':
+            case 'pi_linkTP_keepPIvars_url':
+            case 'pi_list_browseresults':
+            case 'pi_list_header':
+            case 'pi_list_linkSingle':
+            case 'pi_list_makelist':
+            case 'pi_list_modeSelector':
+            case 'pi_list_query':
+            case 'pi_list_row':
+            case 'pi_list_searchBox':
+            case 'pi_loadLL':
+            case 'pi_openAtagHrefInJSwindow':
+            case 'pi_prependFieldsWithTable':
+            case 'pi_RTEcssText':
+            case 'pi_setClassStyle':
+            case 'pi_setPiVarDefaults':
+            case 'pi_wrapInBaseClass':
+                $result = TRUE;
+            break;
+        }
+
         return $result;
     }
 }
