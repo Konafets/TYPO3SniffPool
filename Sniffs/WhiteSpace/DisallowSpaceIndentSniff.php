@@ -115,7 +115,7 @@ class TYPO3_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_CodeSniffe
         $indentionPart = '';
         if ($hasIndention) {
             if ($tokenIsDocComment) {
-                $indentionPart = strstr($lineContent, ' *', TRUE);
+                $indentionPart = (string) substr($lineContent, 0, strpos($lineContent, ' *'));
             } else {
                 // get the intention part of the line
                 // (is stored in $matches)
