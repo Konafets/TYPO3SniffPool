@@ -81,23 +81,25 @@ class TYPO3_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_CodeSniffe
         $currentLineContent = '';
         $currentLine = 1;
         $tokenIsDocComment = TRUE;
+        $tokenIsString = TRUE;
         foreach ($tokens as $token) {
             $tokenCount++;
             if ($token['line'] === $currentLine) {
                 $currentLineContent.= $token['content'];
             } else {
                 $currentLineContent = trim($currentLineContent, $phpcsFile->eolChar);
-                $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, $tokenIsDocComment);
+                $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, $tokenIsDocComment, $tokenIsString);
                 $currentLineContent = $token['content'];
                 // We have to check if the current token is a comment.
                 // We are looking for doc comments and normal comments
                 // but by the architecture comments like ...
                 // "// comment" will be ignored
                 $tokenIsDocComment = preg_match('/^T_(DOC_)?COMMENT$/', $token['type']) ? TRUE : FALSE;
+                $tokenIsString = preg_match('/^T_CONSTANT_ENCAPSED_STRING$/', $token['type']) ? TRUE : FALSE;
                 $currentLine++;
             }
         }
-        $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, $tokenIsDocComment);
+        $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, $tokenIsDocComment, $tokenIsString);
         return;
     }
     /**
@@ -109,11 +111,16 @@ class TYPO3_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_CodeSniffe
      *
      * @return void
      */
-    protected function ifSpaceIndent(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $lineContent, $tokenIsDocComment) {
+    protected function ifSpaceIndent(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $lineContent, $tokenIsDocComment, $tokenIsString) {
         // is the line intent by something?
         $hasIndention = preg_match('/(^\S)|(^\s\*)|(^$)/', $lineContent) ? FALSE : TRUE;
         $indentionPart = '';
         if ($hasIndention) {
+             // spaces in strings at line start are allowed, so we don't care about
+            if ($tokenIsString) {
+                return;
+            }
+
             if ($tokenIsDocComment) {
                 $indentionPart = (string) substr($lineContent, 0, strpos($lineContent, ' *'));
             } else {
