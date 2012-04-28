@@ -63,10 +63,8 @@ class TYPO3_Tests_Commenting_ValidCommentLineLengthUnitTest extends AbstractSnif
                 2 => 0,
                 3 => 0,
                 4 => 0,
-                5 => 1,
                 6 => 0,
                 8 => 0,
-                9 => 1,
                 );
     }
     /**
@@ -78,7 +76,10 @@ class TYPO3_Tests_Commenting_ValidCommentLineLengthUnitTest extends AbstractSnif
      * @return array(int => int)
      */
     public function getWarningList() {
-        return array();
+        return array(
+            5 => 1,
+            9 => 1,
+        );
     }
 }
 ?>
