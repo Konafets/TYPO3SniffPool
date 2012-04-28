@@ -119,8 +119,6 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
      * @return void
      */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-        $tokens = $phpcsFile->getTokens();
-        $variableName = ltrim($tokens[$stackPtr]['content'], '$');
         $this->processVariableNameCheck($phpcsFile, $stackPtr);
     }
     /**
@@ -156,7 +154,16 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
 		$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
 		if ($hasUnderscores !== FALSE) {
 			$error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
-			$error.= 'use lowerCamelCase for identifier instead';
+
+			switch($variableName) {
+				case '_POST':
+				case '_GET':
+					$error = 'Direct access to "$' . $variableName . '" is not allowed; Please use t3lib_div::' . $variableName . ' or t3lib_div::_GP instead';
+					break;
+				default:
+					$error.= 'use lowerCamelCase for identifier instead';
+			}
+
 			$phpcsFile->addError($error, $stackPtr);
 		} elseif ($isLowerCamelCase === FALSE) {
 			$pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
