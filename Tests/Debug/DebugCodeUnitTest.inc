@@ -28,4 +28,12 @@ class debug {
 		$foo = 'bar';
 	}
 }
+
+t3lib_utility_Debug::debug();
+
+final class t3lib_utility_Debug {
+	public static function debug($var = '', $header = '', $group = 'Debug') {
+
+	}
+}
 ?>

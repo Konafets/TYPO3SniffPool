@@ -78,8 +78,9 @@ class TYPO3_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff {
                 if ($currentToken === 'debug') {
                     $previousToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), NULL, TRUE);
                     if ($tokens[$previousToken]['content'] === '::') {
-                        $error = 'Call to debug function t3lib_div::debug() must be removed';
-                        $phpcsFile->addError($error, $stackPtr);
+                        $errorData = array($tokens[$previousToken - 1]['content']);
+                        $error = 'Call to debug function %s::debug() must be removed';
+                        $phpcsFile->addError($error, $stackPtr, 'StaticDebugCall', $errorData);
                     } elseif (($tokens[$previousToken]['content'] === '->') || ($tokens[$previousToken]['content'] === 'class') || ($tokens[$previousToken]['content'] === 'function')) {
                         // We don't care about code like:
                         // if ($this->debug) {...}
@@ -87,12 +88,14 @@ class TYPO3_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff {
                         // function debug () {...}
                         return;
                     } else {
-                        $error = 'Call to debug function ' . $currentToken . '() must be removed';
-                        $phpcsFile->addError($error, $stackPtr);
+                        $errorData = array($currentToken);
+                        $error = 'Call to debug function %s() must be removed';
+                        $phpcsFile->addError($error, $stackPtr, 'DebugFunctionCall', $errorData);
                     }
                 } elseif ($currentToken === 'print_r' || $currentToken === 'var_dump' || $currentToken === 'xdebug') {
-                    $error = 'Call to debug function ' . $currentToken . '() must be removed';
-                    $phpcsFile->addError($error, $stackPtr);
+                    $errorData = array($currentToken);
+                    $error = 'Call to debug function %s() must be removed';
+                    $phpcsFile->addError($error, $stackPtr, 'NativDebugFunction', $errorData);
                 }
             break;
             case 'T_COMMENT':
@@ -101,7 +104,7 @@ class TYPO3_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Sniff {
                 if ($ifDebugInComment === 1) {
                     $error = 'Its not enough to comment out debug functions calls; ';
                     $error.= 'they must be removed from code.';
-                    $phpcsFile->addError($error, $stackPtr);
+                    $phpcsFile->addError($error, $stackPtr, 'CommentOutDebugCall');
                 }
             break;
             default:

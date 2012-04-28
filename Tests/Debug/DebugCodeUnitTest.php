@@ -82,9 +82,12 @@ class TYPO3_Tests_Debug_DebugCodeUnitTest extends AbstractSniffUnitTest {
                     22 => 0,
                     26 => 0,
                     27 => 0,
+                    32 => 1,
+                    34 => 0,
+                    35 => 0,
                 );
     } //end getErrorList()
-    
+
     /**
      * Returns the lines where warnings should occur.
      *
@@ -96,7 +99,7 @@ class TYPO3_Tests_Debug_DebugCodeUnitTest extends AbstractSniffUnitTest {
     public function getWarningList() {
         return array();
     } //end getWarningList()
-    
+
 } //end class
 
 ?>
