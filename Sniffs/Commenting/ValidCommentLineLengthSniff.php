@@ -82,7 +82,7 @@ class TYPO3_Sniffs_Commenting_ValidCommentLineLengthSniff implements PHP_CodeSni
         $tokens = $phpcsFile->getTokens();
         $commentLength = strlen(trim($tokens[$stackPtr]['content']));
         if ($commentLength > $this->maxCommentLength) {
-            $phpcsFile->addError('Comment lines should be kept within a limit of about ' . $this->maxCommentLength . ' characters but this comment has ' . $commentLength . ' character!', $stackPtr);
+            $phpcsFile->addWarning('Comment lines should be kept within a limit of about ' . $this->maxCommentLength . ' characters but this comment has ' . $commentLength . ' character!', $stackPtr);
         }
     }
 }
