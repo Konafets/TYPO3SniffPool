@@ -63,4 +63,8 @@ $_SERVER = 'bar';
 $_REQUEST = 'bar';
 $_COOKIE = 'bar';
 $_FILES  = 'bar';
+$_GET = 'bar';
+$_GET['foo'] = 'bar';
+$_POST = 'bar';
+$_POST['foo'] = 'bar';
 ?>

@@ -71,7 +71,11 @@ class TYPO3_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
                 21 => 1,
                 22 => 1,
                 23 => 1,
-			);
+                66 => 1,
+                67 => 1,
+                68 => 1,
+                69 => 1,
+            );
     }
     /**
      * Returns the lines where warnings should occur.
