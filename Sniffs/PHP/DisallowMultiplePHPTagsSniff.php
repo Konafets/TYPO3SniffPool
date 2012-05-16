@@ -32,7 +32,6 @@
  * @author    Julian Kleinhans <kleinhans@bergisch-media.de>
  * @copyright Copyright (c) 2010, Julian Kleinhans
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   SVN: $Id$
  * @link      http://pear.typo3.org
  */
 /**

@@ -33,7 +33,6 @@
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright Copyright (c) 2010, Stefano Kowalke, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   SVN: $Id$
  * @link      http://pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', TRUE) === FALSE) {

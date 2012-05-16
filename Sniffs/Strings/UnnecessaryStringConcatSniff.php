@@ -33,7 +33,6 @@
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   SVN: $Id$
  * @link      http://pear.typo3.org
  */
 /**

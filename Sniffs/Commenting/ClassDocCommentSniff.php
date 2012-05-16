@@ -34,7 +34,6 @@
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   SVN: $Id$
  * @link      pear.typo3.org
  */
 if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', TRUE) === FALSE) {
