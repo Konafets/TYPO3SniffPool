@@ -45,8 +45,6 @@
  * @category  Scope
  * @package   TYPO3_PHPCS_Pool
  * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright Copyright (c) 2010, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
@@ -65,6 +63,13 @@ class TYPO3_Tests_Scope_AlwaysReturnUnitTest extends AbstractSniffUnitTest {
         return array(
                     2 => 1,
                     17 => 1,
+                    51 => 0,
+                    55 => 1,
+                    69 => 1,
+                    83 => 1,
+                    95 => 0,
+                    103 => 0,
+                    118 => 0,
                 );
     }
     /**
