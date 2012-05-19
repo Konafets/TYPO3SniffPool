@@ -155,4 +155,30 @@ $foo = $bar *-1;
 function foo($bar){
 	return -5;
 }
+
+	// Multiple Whitespace section :)
+$foo   = $bar;
+$foo  += $bar;
+$foo -=  $bar;
+$foo .=  $bar;
+$foo   &= $bar;
+$foo %=  $bar;
+$foo   *=   $bar;
+$foo    /= $bar;
+$foo =  ($bar    == $baz);
+$foo = ($bar ===    $baz);
+$foo = ($bar  !=   $baz);
+$foo = ($bar   !== $baz);
+$foo = ($bar <  $baz);
+$foo = ($bar   > $baz);
+$foo = ($bar  <=  $baz);
+$foo = ($bar    >=       $baz);
+$foo = 1   + 2;
+$foo = 1 -   2;
+$foo = 1   *   2;
+$foo = 1  /  2;
+$foo    =    1 %   2;
+$foo = (1 + 2) * (5  %   3);
+$foo    ^=   $bar;
+$foo = array('foo'    =>   'bar');
 ?>
