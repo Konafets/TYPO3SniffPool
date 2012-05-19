@@ -70,7 +70,6 @@ class TYPO3_Sniffs_Files_EncodingUtf8Sniff implements PHP_CodeSniffer_Sniff {
      * @return void
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
-        $tokens = $phpcsFile->getTokens();
         // Make sure this is the first PHP open tag so we don't process
         // the same file twice.
         $prevOpenTag = $phpcsFile->findPrevious(T_OPEN_TAG, ($stackPtr - 1));
@@ -80,8 +79,8 @@ class TYPO3_Sniffs_Files_EncodingUtf8Sniff implements PHP_CodeSniffer_Sniff {
         $fileContent = file_get_contents($phpcsFile->getFilename());
         $encoding = mb_detect_encoding($fileContent, 'UTF-8, ASCII, ISO-8859-1');
         if ($encoding !== 'UTF-8') {
-            $error = 'TYPO3 PHP files use UTF-8 character set; but ' . $encoding . ' found.';
-            $phpcsFile->addError($error, $stackPtr);
+            $error = 'TYPO3 PHP files use UTF-8 character set; but %s found.';
+            $phpcsFile->addError($error, $stackPtr, 'FileIsNotUTF8Encoded', array($encoding));
         }
     }
 }
