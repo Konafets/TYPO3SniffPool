@@ -70,6 +70,11 @@ class TYPO3_Tests_Scope_AlwaysReturnUnitTest extends AbstractSniffUnitTest {
                     95 => 0,
                     103 => 0,
                     118 => 0,
+                    131 => 0,
+                    145 => 0,
+                    160 => 0,
+                    176 => 1,
+                    192 => 1,
                 );
     }
     /**

@@ -118,4 +118,86 @@ interface fileList_editIconHook {
 	public function manipulateEditIcons(&$cells, &$parentObject);
 
 }
+
+/**
+ * A class used for testing the AlwaysReturnSniff.
+ */
+class Foo {
+	/**
+	 * Some function.
+	 *
+	 * @return void
+	 */
+	public function process() {
+		$foo = 8;
+		if ($foo < 10) {
+			return;
+		}
+
+		$bar = 4;
+	}
+
+	/**
+	 * Some other function.
+	 *
+	 * @return void
+	 */
+	public function processMeTwice() {
+		$foo = 8;
+		if ($foo < 10) {
+			return
+				;
+		}
+
+		$bar = 4;
+	}
+
+	/**
+	 * Some other fancy (!) function.
+	 *
+	 * @return void
+	 */
+	public function thisProcessIsVeryFancy() {
+		$foo = 8;
+		if ($foo < 10) {
+			return;
+		}
+
+		return;
+
+		$bar = 4;
+	}
+
+	/**
+	 * Some other fancy (!) function.
+	 *
+	 * @return void
+	 */
+	public function thisProcessThrowsAnError() {
+		$foo = 8;
+		if ($foo < 10) {
+			return;
+		}
+
+		return $foo;
+
+		$bar = 4;
+	}
+
+	/**
+	 * Some function.
+	 *
+	 * @return integer
+	 */
+	public function processAnother() {
+		$foo = 8;
+		if ($foo < 10) {
+			return;
+		}
+
+		$bar = 4;
+
+		return $bar;
+	}
+}
 ?>

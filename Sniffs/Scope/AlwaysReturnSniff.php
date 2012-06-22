@@ -145,9 +145,18 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff
         if ($docComment !== null) {
             $returnContent = $this->getValueOfReturnTag();
 
-            if (strtolower($returnContent) === 'void' && $phpcsFile->findNext(array(T_RETURN), $start, $end) !== false) {
-                $error = 'This function must not be a return value, because "@return void" is defined in doc comment';
+            // If there is "@return void" defined in doc block comment
+            // and there is a non empty return statement (e.g. return 5;)
+            if (strtolower($returnContent) === 'void' && $this->checkAvailableReturnStatement($tokens, $start, $end) === true) {
+                $error = 'This function must not have a return value because "@return void" is defined in doc comment.';
                 $phpcsFile->addError($error, $stackPtr, 'ReturnStatementInVoidFunction');
+
+            // If there is "@return int" or something like this defined in doc block comment
+            // and there is a empty return statement
+            } elseif ($returnContent !== null && strtolower($returnContent) !== 'void' && $this->checkAvailableReturnStatement($tokens, $start, $end, false) === true) {
+                $error = 'This function must not have a empty return value because "@return %s" is defined in doc comment.';
+                $errorData = array($returnContent);
+                $phpcsFile->addError($error, $stackPtr, 'EmptyReturnStatementInNonVoidFunction', $errorData);
             }
 
             if (strtolower($returnContent) === 'void') {
@@ -167,11 +176,67 @@ class TYPO3_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_Sniff
         } while ($next !== false);
 
         if ($result === false) {
-            $error = 'This function must always have a return value';
+            $error = 'This function must always have a return value.';
             $phpcsFile->addError($error, $stackPtr, 'AlwaysReturnStatement');
         }
 
     }//end process()
+
+
+    /**
+     * This methods checks for return statements.
+     *
+     * If there is a doc comment like "@return void".
+     * A forbidden return statement is in this context all return statement expect "return;".
+     * Like "return $foo;", "return 5;", "return null;", ...
+     *
+     * If there is a doc comment like "@return int", "@return bool", ...
+     * A forbidden return statement is in this context "return;"
+     * Because in a method with defined @return statement there must not be empty return statements.
+     *
+     * @param array $tokens         Token array of file
+     * @param integer $tokenStart   Integer, token number where the checks will begin
+     * @param integer $tokenEnd     Integer, token number where the checks will end
+     * @param bool $nonEmpty        If true, function returns true if there is a non empty return statement like "return $foo;"
+     *                              If false, function returns true if there is a empty return statement like "return;"
+     * @return bool
+     */
+    protected function checkAvailableReturnStatement(array $tokens, $tokenStart, $tokenEnd, $nonEmpty = TRUE) {
+        $returnStatementResult = false;
+
+        do {
+            $returnResult = null;
+            $result = $this->currentFile->findNext(array(T_RETURN), $tokenStart, $tokenEnd);
+
+            // If there is a return statement in this function / method, try to find the next token, expect whitespaces
+            if ($result !== false) {
+                $returnResult = $this->currentFile->findNext(array(T_WHITESPACE), $result + 1, $tokenEnd, true, null, true);
+            }
+
+            // If there is no return-Statement between $tokenStart and $tokenEnd, stop here with the loop
+            if($result === false) {
+                $tokenStart = $tokenEnd;
+
+            // If there is a return-Statement between $tokenStart and $tokenEnd, check if the next relevant
+            // token is a T_SEMICOLON. If no, this is a normal return statement like "return $foo;".
+            } elseif ($nonEmpty === true && $result !== false && $returnResult !== false && $tokens[$returnResult]['code'] !== T_SEMICOLON) {
+                $returnStatementResult = true;
+                break;
+
+                // If there is a return-Statement between $tokenStart and $tokenEnd, check if the next relevant
+                // token is a T_SEMICOLON. If yes, this is a empty return statement like "return;".
+            } elseif ($nonEmpty === false && $result !== false && $returnResult !== false && $tokens[$returnResult]['code'] === T_SEMICOLON) {
+                $returnStatementResult = true;
+                break;
+
+            // If no case is affected, raise the pointer :)
+            } else {
+                $tokenStart = $result + 1;
+            }
+        }while($tokenStart < $tokenEnd);
+
+        return $returnStatementResult;
+    }// end checkAvailableReturnStatement()
 
 
     /**
