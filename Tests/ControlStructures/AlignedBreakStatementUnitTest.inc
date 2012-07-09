@@ -42,7 +42,7 @@ switch($foo) {
 
 do {
 	doSomething();
-	
+
 	if ($i == $j) {
 		doSomethingElse();
 			break;
@@ -56,4 +56,34 @@ for ($i=10; $i>0; $i--) {
 	break;
 }
 
+while ($uid != 0 && $loopCheck) {
+	$loopCheck--;
+	$row = self::getPageForRootline($uid, $clause, $workspaceOL);
+	if (is_array($row)) {
+		$uid = $row['pid'];
+		$theRowArray[] = $row;
+	} else {
+		break;
+	}
+}
+
+while ($uid != 0 && $loopCheck) {
+	$loopCheck--;
+	$row = self::getPageForRootline($uid, $clause, $workspaceOL);
+	if (is_array($row)) {
+		$uid = $row['pid'];
+		$theRowArray[] = $row;
+	} else {
+	break;
+	}
+}
+
+while ($uid != 0 && $loopCheck) {
+	if (is_array($row)) {
+		break;
+	} else {
+		$uid = $row['pid'];
+		$theRowArray[] = $row;
+	}
+}
 ?>

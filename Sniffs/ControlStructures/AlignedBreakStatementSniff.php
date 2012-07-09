@@ -71,13 +71,19 @@ class TYPO3_Sniffs_ControlStructures_AlignedBreakStatementSniff implements PHP_C
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
+
         if (isset($tokens[$stackPtr]['scope_condition'])) {
             $checkTokenIndex = $tokens[$stackPtr]['scope_condition'];
         } else {
             $scopeToken = array_keys($tokens[$stackPtr]['conditions']);
             $checkTokenIndex = $scopeToken[count($scopeToken) - 1];
         }
-        if ($tokens[$stackPtr]['column'] != ($tokens[$checkTokenIndex]['column'] + 1)) {
+
+        if ($tokens[$checkTokenIndex]['type'] == 'T_ELSE') {
+            if ($tokens[$stackPtr]['column'] != ($tokens[$checkTokenIndex]['column'] - 1)) {
+                $phpcsFile->addError('Break Statement must have the same indent than the scope.', $stackPtr);
+            }
+        } elseif ($tokens[$stackPtr]['column'] != ($tokens[$checkTokenIndex]['column'] + 1)) {
             $phpcsFile->addError('Break Statement must have the same indent than the scope.', $stackPtr);
         }
     }

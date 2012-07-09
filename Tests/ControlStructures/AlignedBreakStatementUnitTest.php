@@ -63,6 +63,7 @@ class TYPO3_Tests_ControlStructures_AlignedBreakStatementUnitTest extends Abstra
                     27 => 1,
                     40 => 1,
                     48 => 1,
+                    77 => 1,
                 );
     }
     /**
