@@ -152,26 +152,78 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
 		$hasUnderscores = stripos($variableName, '_');
 		$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
 		if ($hasUnderscores !== FALSE) {
-			$error = 'Underscores are not allowed in the ' . $scope . 'variablename "$' . $variableName . '"; ';
+			$messageData = array($scope, $variableName);
+			$error = 'Underscores are not allowed in the %svariablename "$%s". ';
 
 			switch($variableName) {
 				case '_POST':
 				case '_GET':
-					$error = 'Direct access to "$' . $variableName . '" is not allowed; Please use t3lib_div::' . $variableName . ' or t3lib_div::_GP instead';
+					$messageData = array($variableName, $variableName);
+					$error = 'Direct access to "$%s" is not allowed; Please use t3lib_div::%s or t3lib_div::_GP instead';
 					break;
 				default:
-					$error.= 'use lowerCamelCase for identifier instead';
+					$messageData[] = $this->buildExampleVariableName($variableName);
+					$error.= 'Use lowerCamelCase for identifier instead e.g. "$%s"';
 			}
 
-			$phpcsFile->addError($error, $stackPtr);
+			$phpcsFile->addError($error, $stackPtr, 'VariableContainsUnderscores', $messageData);
+
 		} elseif ($isLowerCamelCase === FALSE) {
 			$pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
 			$replace = "ucfirst(strtolower('\\1'))";
 			$variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
-			$error = ucfirst($scope) . 'variablename must be lowerCamelCase; expect "$' .
-			$variableNameLowerCamelCased . '" but found "$' . $variableName . '"';
-			$phpcsFile->addError($error, $stackPtr);
+
+			$messageData = array(ucfirst($scope), $variableNameLowerCamelCased, $variableName);
+			$error = '%svariablename must be lowerCamelCase; expect "$%s" but found "$%s"';
+			$phpcsFile->addError($error, $stackPtr, 'VariableIsNotLowerCamelCased', $messageData);
 		}
+	}
+
+	protected function buildExampleVariableName($variableName) {
+		$newName = '';
+		$nameParts = $this->trimExplode('_', $variableName, TRUE);
+		$newName = $this->strToLowerStringIfNecessary(array_shift($nameParts));
+		foreach($nameParts as $part) {
+			$newName .= ucfirst(strtolower($part));
+		}
+
+		return $newName;
+	}
+
+	protected function strToLowerStringIfNecessary($namePart) {
+		if(PHP_CodeSniffer::isCamelCaps($namePart, FALSE, TRUE, TRUE) === FALSE) {
+			$namePart = strtolower($namePart);
+		}
+
+		return $namePart;
+	}
+
+	protected function trimExplode($delim, $string, $removeEmptyValues = FALSE, $limit = 0) {
+		$explodedValues = explode($delim, $string);
+
+		$result = array_map('trim', $explodedValues);
+
+		if ($removeEmptyValues) {
+			$temp = array();
+			foreach ($result as $value) {
+				if ($value !== '') {
+					$temp[] = $value;
+				}
+			}
+			$result = $temp;
+		}
+
+		if ($limit != 0) {
+			if ($limit < 0) {
+				$result = array_slice($result, 0, $limit);
+			} elseif (count($result) > $limit) {
+				$lastElements = array_slice($result, $limit - 1);
+				$result = array_slice($result, 0, $limit - 1);
+				$result[] = implode($delim, $lastElements);
+			}
+		}
+
+		return $result;
 	}
 }
 ?>
