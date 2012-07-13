@@ -60,10 +60,18 @@ class TYPO3_Tests_ControlStructures_AlignedBreakStatementUnitTest extends Abstra
     public function getErrorList() {
         return array(
                     6 => 1,
-                    27 => 1,
-                    40 => 1,
-                    48 => 1,
-                    77 => 1,
+                    9 => 0,
+                    16 => 0,
+                    19 => 1,
+                    22 => 0,
+                    28 => 0,
+                    30 => 1,
+                    38 => 1,
+                    42 => 0,
+                    46 => 0,
+                    56 => 0,
+                    67 => 1,
+                    73 => 0,
                 );
     }
     /**

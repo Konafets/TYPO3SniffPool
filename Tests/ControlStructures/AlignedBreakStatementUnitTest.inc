@@ -10,14 +10,6 @@ switch($foo) {
 	default:
 }
 
-
-
-if ($foo) {
-	$var = $int;
-		// huselpusel
-	break;
-}
-
 while ($i < $j) {
 	if ($foo == $bar) {
 		doSomething();
@@ -29,8 +21,6 @@ while ($i < $j) {
 	}
 	break;
 }
-
-
 
 switch($foo) {
 	case 1:
