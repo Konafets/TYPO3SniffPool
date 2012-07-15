@@ -153,7 +153,7 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
 		$isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, FALSE, TRUE, TRUE);
 		if ($hasUnderscores !== FALSE) {
 			$messageData = array($scope, $variableName);
-			$error = 'Underscores are not allowed in the %svariablename "$%s". ';
+			$error = 'Underscores are not allowed in the %svariablename "$%s".';
 
 			switch($variableName) {
 				case '_POST':
@@ -166,14 +166,14 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
 					$error.= 'Use lowerCamelCase for identifier instead e.g. "$%s"';
 			}
 
-			$phpcsFile->addError($error, $stackPtr, 'VariableContainsUnderscores', $messageData);
+			$phpcsFile->addError($error, $stackPtr, 'VariableNameHasUnderscoresNotLowerCamelCased', $messageData);
 
 		} elseif ($isLowerCamelCase === FALSE) {
 			$pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
 			$replace = "ucfirst(strtolower('\\1'))";
 			$variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
 
-			$messageData = array(ucfirst($scope), $variableNameLowerCamelCased, $variableName);
+			$messageData = array(ucfirst($scope), lcfirst($variableNameLowerCamelCased), $variableName);
 			$error = '%svariablename must be lowerCamelCase; expect "$%s" but found "$%s"';
 			$phpcsFile->addError($error, $stackPtr, 'VariableIsNotLowerCamelCased', $messageData);
 		}
