@@ -70,7 +70,10 @@ class TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                                                     '_SERVER',
                                                     '_REQUEST',
                                                     '_COOKIE',
-                                                    '_FILES'
+                                                    '_FILES',
+                                                    'MCONF',
+                                                    'MLANG',
+                                                    'SOBE',
                                                 );
 
     /**
