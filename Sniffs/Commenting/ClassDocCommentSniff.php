@@ -1,26 +1,4 @@
 <?php
-/***************************************************************
- * Copyright notice
- *
- * (c) 2010 Andy Grunwald <andreas.grunwald@wmdb.de>
- * All rights reserved
- *
- * This script is part of the TYPO3 project. The TYPO3 project is
- * free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- *
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 /**
  * TYPO3_Sniffs_Commenting_ClassDocCommentSniff.
  *
@@ -31,12 +9,12 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      pear.typo3.org
  */
-if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', TRUE) === FALSE) {
+if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === false) {
     $error = 'Class PHP_CodeSniffer_CommentParser_ClassCommentParser not found';
     throw new PHP_CodeSniffer_Exception($error);
 }
@@ -61,19 +39,21 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', TRUE) === F
  * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: @package_version@
  * @link      pear.typo3.org
  */
-class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff {
+class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff
+{
     /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array(T_CLASS, T_INTERFACE,);
     }
     /**
@@ -85,37 +65,38 @@ class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sn
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $this->currentFile = $phpcsFile;
         $tokens = $phpcsFile->getTokens();
         $type = strtolower($tokens[$stackPtr]['content']);
         $errorData = array($type);
         $find = array(T_ABSTRACT, T_WHITESPACE, T_FINAL,);
         // Extract the class comment docblock.
-        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), NULL, TRUE);
-        if ($commentEnd !== FALSE && $tokens[$commentEnd]['code'] === T_COMMENT) {
+        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+        if ($commentEnd !== false && $tokens[$commentEnd]['code'] === T_COMMENT) {
             $error = 'You must use "/**" style comments for a %s comment';
             $phpcsFile->addError($error, $stackPtr, 'WrongStyle', $errorData);
             return;
-        } elseif ($commentEnd === FALSE || $tokens[$commentEnd]['code'] !== T_DOC_COMMENT) {
+        } elseif ($commentEnd === false || $tokens[$commentEnd]['code'] !== T_DOC_COMMENT) {
             $phpcsFile->addError('Missing %s doc comment', $stackPtr, 'Missing', $errorData);
             return;
         }
-        $commentStart = ($phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), NULL, TRUE) + 1);
-        $commentNext = $phpcsFile->findPrevious(T_WHITESPACE, ($commentEnd + 1), $stackPtr, FALSE, $phpcsFile->eolChar);
+        $commentStart = ($phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), null, true) + 1);
+        $commentNext = $phpcsFile->findPrevious(T_WHITESPACE, ($commentEnd + 1), $stackPtr, false, $phpcsFile->eolChar);
         // Distinguish file and class comment.
         $prevClassToken = $phpcsFile->findPrevious(T_CLASS, ($stackPtr - 1));
-        if ($prevClassToken === FALSE) {
+        if ($prevClassToken === false) {
             // This is the first class token in this file, need extra checks.
-            $prevNonComment = $phpcsFile->findPrevious(T_DOC_COMMENT, ($commentStart - 1), NULL, TRUE);
-            if ($prevNonComment !== FALSE) {
+            $prevNonComment = $phpcsFile->findPrevious(T_DOC_COMMENT, ($commentStart - 1), null, true);
+            if ($prevNonComment !== false) {
                 $prevComment = $phpcsFile->findPrevious(T_DOC_COMMENT, ($prevNonComment - 1));
-                if ($prevComment === FALSE) {
+                if ($prevComment === false) {
                     // There is only 1 doc comment between open tag and class token.
-                    $newlineToken = $phpcsFile->findNext(T_WHITESPACE, ($commentEnd + 1), $stackPtr, FALSE, $phpcsFile->eolChar);
-                    if ($newlineToken !== FALSE) {
-                        $newlineToken = $phpcsFile->findNext(T_WHITESPACE, ($newlineToken + 1), $stackPtr, FALSE, $phpcsFile->eolChar);
-                        if ($newlineToken !== FALSE) {
+                    $newlineToken = $phpcsFile->findNext(T_WHITESPACE, ($commentEnd + 1), $stackPtr, false, $phpcsFile->eolChar);
+                    if ($newlineToken !== false) {
+                        $newlineToken = $phpcsFile->findNext(T_WHITESPACE, ($newlineToken + 1), $stackPtr, false, $phpcsFile->eolChar);
+                        if ($newlineToken !== false) {
                             // Blank line between the class and the doc block.
                             // The doc block is most likely a file comment.
                             $error = 'Missing %s doc comment';
@@ -138,7 +119,7 @@ class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sn
             return;
         }
         $comment = $this->commentParser->getComment();
-        if (is_null($comment) === TRUE) {
+        if (is_null($comment) === true) {
             $error = 'Doc comment is empty for %s';
             $phpcsFile->addError($error, $commentStart, 'Empty', $errorData);
             return;
@@ -154,7 +135,7 @@ class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sn
         $newlineCount = (substr_count($short, $phpcsFile->eolChar) + 1);
         // Exactly one blank line between short and long description.
         $long = $comment->getLongComment();
-        if (empty($long) === FALSE) {
+        if (empty($long) === false) {
             $between = $comment->getWhiteSpaceBetween();
             $newlineBetween = substr_count($between, $phpcsFile->eolChar);
             if ($newlineBetween !== 2) {

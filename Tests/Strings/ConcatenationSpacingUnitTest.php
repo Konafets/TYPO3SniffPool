@@ -31,8 +31,6 @@
  */
 class TYPO3_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
 {
-
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -51,8 +49,7 @@ class TYPO3_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnit
                 7 => 1,
                );
 
-    }//end getErrorList()
-
+    }
 
     /**
      * Returns the lines where warnings should occur.
@@ -66,9 +63,6 @@ class TYPO3_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnit
     {
         return array();
 
-    }//end getWarningList()
-
-
-}//end class
-
+    }
+}
 ?>

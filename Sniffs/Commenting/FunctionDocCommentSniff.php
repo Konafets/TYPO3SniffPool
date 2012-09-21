@@ -1,26 +1,4 @@
 <?php
-/***************************************************************
- * Copyright notice
- *
- * (c) 2010 Andy Grunwald <andreas.grunwald@wmdb.de>
- * All rights reserved
- *
- * This script is part of the TYPO3 project. The TYPO3 project is
- * free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- *
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 /**
  * TYPO3_Sniffs_Commenting_FunctionDocCommentSniff
  *
@@ -31,12 +9,12 @@
  * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      http://pear.typo3.org
  */
-if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) === FALSE) {
+if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', true) === false) {
     throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_FunctionCommentParser not found');
 }
 /**
@@ -65,13 +43,14 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', TRUE) ==
  * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @author    Andy Grunwald <andreas.grunwald@wmdb.de>
+ * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff {
+class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff
+{
 
     /**
      * The name of the method that we are currently processing.
@@ -113,7 +92,8 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return array(T_FUNCTION);
     }
 
@@ -126,10 +106,11 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $find = array(T_COMMENT, T_DOC_COMMENT, T_CLASS, T_FUNCTION, T_OPEN_TAG,);
         $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1));
-        if ($commentEnd === FALSE) {
+        if ($commentEnd === false) {
             return;
         }
         $this->currentFile = $phpcsFile;
@@ -152,13 +133,13 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
         $ignore[] = T_WHITESPACE;
         $ignore[] = T_ABSTRACT;
         $ignore[] = T_FINAL;
-        $prevToken = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), NULL, TRUE);
+        $prevToken = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);
         if ($prevToken !== $commentEnd) {
             $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
             return;
         }
         $this->_functionToken = $stackPtr;
-        $this->_classToken = NULL;
+        $this->_classToken = null;
         foreach ($tokens[$stackPtr]['conditions'] as $condPtr => $condition) {
             if ($condition === T_CLASS || $condition === T_INTERFACE) {
                 $this->_classToken = $condPtr;
@@ -167,11 +148,11 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
         }
         // If the first T_OPEN_TAG is right before the comment, it is probably
         // a file comment.
-        $commentStart = ($phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), NULL, TRUE) + 1);
-        $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($commentStart - 1), NULL, TRUE);
+        $commentStart = ($phpcsFile->findPrevious(T_DOC_COMMENT, ($commentEnd - 1), null, true) + 1);
+        $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($commentStart - 1), null, true);
         if ($tokens[$prevToken]['code'] === T_OPEN_TAG) {
             // Is this the first open tag?
-            if ($stackPtr === 0 || $phpcsFile->findPrevious(T_OPEN_TAG, ($prevToken - 1)) === FALSE) {
+            if ($stackPtr === 0 || $phpcsFile->findPrevious(T_OPEN_TAG, ($prevToken - 1)) === false) {
                 $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
                 return;
             }
@@ -188,7 +169,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             return;
         }
         $comment = $this->commentParser->getComment();
-        if (is_null($comment) === TRUE) {
+        if (is_null($comment) === true) {
             $error = 'Function doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
             return;
@@ -219,8 +200,9 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                 $short = rtrim($short, $phpcsFile->eolChar . ' ');
             }
         }
-        return NULL;
+        return null;
     }
+
     /**
      * Process any throw tags that this function comment has.
      *
@@ -229,7 +211,8 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
      *
      * @return void
      */
-    protected function processThrows($commentStart) {
+    protected function processThrows($commentStart)
+    {
         if (count($this->commentParser->getThrows()) === 0) {
             return;
         }
@@ -242,6 +225,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             }
         }
     }
+
     /**
      * Process the return comment of this function comment.
      *
@@ -250,18 +234,19 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
      *
      * @return void
      */
-    protected function processReturn($commentStart, $commentEnd) {
+    protected function processReturn($commentStart, $commentEnd)
+    {
         // Skip constructor and destructor.
         $className = '';
-        if ($this->_classToken !== NULL) {
+        if ($this->_classToken !== null) {
             $className = $this->currentFile->getDeclarationName($this->_classToken);
             $className = strtolower(ltrim($className, '_'));
         }
         $methodName = strtolower(ltrim($this->_methodName, '_'));
         $isSpecialMethod = ($this->_methodName === '__construct' || $this->_methodName === '__destruct');
-        if ($isSpecialMethod === FALSE && $methodName !== $className) {
+        if ($isSpecialMethod === false && $methodName !== $className) {
             // Report missing return tag.
-            if ($this->commentParser->getReturn() === NULL) {
+            if ($this->commentParser->getReturn() === null) {
                 $error = 'Missing @return tag in function comment';
                 $this->currentFile->addError($error, $commentEnd, 'MissingReturn');
             } elseif (trim($this->commentParser->getReturn()->getRawContent()) === '') {
@@ -271,6 +256,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
             }
         }
     }
+
     /**
      * Process the function parameter comments.
      *
@@ -279,11 +265,12 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
      *
      * @return void
      */
-    protected function processParams($commentStart) {
+    protected function processParams($commentStart)
+    {
         $realParams = $this->currentFile->getMethodParameters($this->_functionToken);
         $params = $this->commentParser->getParams();
         $foundParams = array();
-        if (empty($params) === FALSE) {
+        if (empty($params) === false) {
             $lastParm = (count($params) - 1);
             if (substr_count($params[$lastParm]->getWhitespaceAfter(), $this->currentFile->eolChar) !== 1) {
                 $error = 'Last parameter comment must not a blank newline after it';
@@ -296,9 +283,8 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                 $errorPos = ($params[0]->getLine() + $commentStart);
                 $this->currentFile->addError($error, $errorPos, 'SpacingBeforeParams');
             }
-            $previousParam = NULL;
+            $previousParam = null;
             foreach ($params as $param) {
-                $paramComment = trim($param->getComment());
                 $errorPos = ($param->getLine() + $commentStart);
 
                 // Make sure they are in the correct order,
@@ -307,7 +293,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                 $paramName = ($param->getVarName() !== '') ? $param->getVarName() : '[ UNKNOWN ]';
                 // Make sure the names of the parameter comment matches the
                 // actual parameter.
-                if (isset($realParams[($pos - 1) ]) === TRUE) {
+                if (isset($realParams[($pos - 1) ]) === true) {
                     // Make sure that there are only tabs used to intend the var type.
                     if ($this->isTabUsedToIntend($param->getWhitespaceBeforeType())) {
                         $error = 'Spaces must be used to indent the variable type; tabs are not allowed';
@@ -327,7 +313,7 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                     $realName = $realParams[($pos - 1) ]['name'];
                     $foundParams[] = $realName;
                     // Append ampersand to name if passing by reference.
-                    if ($realParams[($pos - 1) ]['pass_by_reference'] === TRUE) {
+                    if ($realParams[($pos - 1) ]['pass_by_reference'] === true) {
                         $realName = '&' . $realName;
                     }
                     if ($realName !== $paramName) {
@@ -354,12 +340,6 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
                     $error = 'Missing type at position ' . $pos;
                     $this->currentFile->addError($error, $errorPos, 'MissingParamType');
                 }
-//                if ($paramComment === '') {
-//                    $error = 'Missing comment for param "%s" at position %s';
-//                    $data = array($paramName, $pos,);
-//                    $this->currentFile->addError($error, $errorPos, 'MissingParamComment', $data);
-//                }
-                $previousParam = $param;
             }
         }
         $realNames = array();
@@ -383,12 +363,14 @@ class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer
     /**
      * Checks if the parameter contain a tab char
      *
-     * @param  string  $content The whitespace part inside the comment
+     * @param string $content The whitespace part inside the comment
+     *
      * @return boolean
      */
-    protected function isTabUsedToIntend($content) {
+    protected function isTabUsedToIntend($content)
+    {
         // is a tab char in the indention?
-        return preg_match('/[\t]/', $content) ? TRUE : FALSE;
+        return preg_match('/[\t]/', $content) ? true : false;
     }
 }
 ?>
