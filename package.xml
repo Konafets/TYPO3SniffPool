@@ -27,11 +27,11 @@ Additionally you must install the specific pear package for your preferred CGL.<
   <email>laura.thewalt@wmdb.de</email>
   <active>no</active>
  </developer>
- <date>2012-09-21</date>
- <time>22:04:24</time>
+ <date>2012-09-22</date>
+ <time>19:05:10</time>
  <version>
-  <release>0.0.4</release>
-  <api>0.0.4</api>
+  <release>0.0.5</release>
+  <api>0.0.5</api>
  </version>
  <stability>
   <release>stable</release>
@@ -39,36 +39,7 @@ Additionally you must install the specific pear package for your preferred CGL.<
  </stability>
  <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
  <notes>
-- #38945: [BUGFIX] Remove non valid code from ControlStructures_AlignedBreakStatementUnitTest.inc
-- #38822: [BUGFIX] Break statement in else is not checked correctly
-- #37454: [BUGFIX] Wrong message in TYPO3.NamingConventions.ValidVariableName
-- #37336: [BUGFIX] AlwaysReturnSniff complains about empty return for @return void
-- #10468: [BUGFIX] Scope/AlwaysReturnSniff complains about missing return value
-- #28170: [BUGFIX] Overriding pi_*-based function leads to error
-- #27696: [BUGFIX] Use substr instead of strstr in DisallowSpaceIndentSniff (Thanks to Christian Opitz)
-- #12203: [BUGFIX] Extend TYPO3.Debug.DebugCode-Sniff for more cases
-- #11908: [BUGFIX] AssignmentArithmeticAndComparisonSpaceSniff does not recognize unary minus after ? operator
-- #39063: [BUGFIX] Exclude variables $MCONF, $MLANG and $SOBE
-- #10535: [FEATURE] Improve error messages in TYPO3.NamingConventions.ValidVariableName
-- #12434: [BUGFIX] Add some NON_lower_camel_case variables to whitelist
-- #12357: [BUGFIX] Error message doesn&apos;t calculates lowerCamelCase correct
-- #12264: [BUGFIX] Use PHP_CodeSniffer_Tokens::$emptyTokens
-- #41164: [BUGFIX] TravisCI includes *.inc files
-- #12240: [FEATURE] Allow more than one whitespace in Assignment...SpaceSniff
-- #37452: [FEATURE] Improve error messages of ValidVariableName-Sniff
-- #26154: [FEATURE] Comment line sniff should throw a warning
-- #38297: [TASK] Relative sniff inclusion to use TYPO3/FLOW3 standards without symlinking
-- #41159: [TASK] Add support for Travis-CI
-- #41160: [TASK] Add README.md for description and information
-- #38751: [TASK] Exclude files for system extension &quot;em&quot;
-- #38529: [TASK] Add exclude pattern from ci.typo3.org to ruleset.xml
-- #38360: [TASK] Exclude typo3/sysext/adodb/adodb/ from checking
-- #40728: [TASK] Remove Exclude-Folder
-- #38685: [TASK] Remove XClass-Sniff from TYPO3-Package
-- #13382: [TASK] Create README.TXT in the standard folders
-- #13294: [TASK] Remove SVN keywords
-- #13249: [TASK] Move build artifacts into build/
-- #37296: [TASK] Automate PEAR package build process
+- #41260: [BUGFIX] Standards was installed in wrong dir
  </notes>
  <contents>
   <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="/">
@@ -110,7 +81,7 @@ Additionally you must install the specific pear package for your preferred CGL.<
      <file name="CharacterAfterPHPClosingTagSniff.php" role="php" />
      <file name="CharacterBeforePHPOpeningTagSniff.php" role="php" />
      <file name="ClosingPHPTagSniff.php" role="php" />
-     <file name="Deprecated.xml" role="data" />
+     <file name="Deprecated.xml" role="php" />
      <file name="DisallowMultiplePHPTagsSniff.php" role="php" />
     </dir> <!-- /Sniffs/PHP -->
     <dir name="Scope">
@@ -213,8 +184,8 @@ Additionally you must install the specific pear package for your preferred CGL.<
      <file name="WhitespaceAfterCommentSignsUnitTest.php" role="test" />
     </dir> <!-- /Tests/WhiteSpace -->
    </dir> <!-- /Tests -->
-   <file name="README.rst" role="data" />
-   <file name="ruleset.xml" role="data" />
+   <file name="README.rst" role="php" />
+   <file name="ruleset.xml" role="php" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -234,6 +205,21 @@ Additionally you must install the specific pear package for your preferred CGL.<
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>0.0.5</release>
+    <api>0.0.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-09-22</date>
+   <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+   <notes>
+- #41260: [BUGFIX] Standards was installed in wrong dir
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.0.4</release>
