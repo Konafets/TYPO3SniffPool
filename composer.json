@@ -23,7 +23,7 @@
 	"require": {
 		"php": ">=5.2.1",
 		"squizlabs/php_codesniffer": "*",
-		"Konafets/php_codesniffer_standard-installer": "*"
+		"composer/installers": "dev-phpcsStandardInstaller"
 	},
 
 	"support": {
