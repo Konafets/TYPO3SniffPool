@@ -1,5 +1,5 @@
 {
-	"name": "typo3/typo3",
+	"name": "typo3-qa/typo3pool",
 	"type": "phpcodesniffer-standard",
 	"description": "This repository contains custom sniffs which are compatible with the PHP_CodeSniffer. Understand this package as a sniff pool which contains all needed custom sniffs for the various TYPO3 projects.",
 	"homepage": "http://forge.typo3.org/projects/show/team-php_codesniffer",
