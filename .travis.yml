@@ -1,0 +1,18 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+
+before_script:
+ - cd ..
+ - git clone https://github.com/squizlabs/PHP_CodeSniffer.git
+ - PWD=`pwd`
+ - ln -s $PWD/TYPO3-CodeSniffer/TYPO3 $PWD/PHP_CodeSniffer/CodeSniffer/Standards/TYPO3
+ - ln -s $PWD/TYPO3-CodeSniffer/TYPO3v4 $PWD/PHP_CodeSniffer/CodeSniffer/Standards/TYPO3v4
+ - ln -s $PWD/TYPO3-CodeSniffer/FLOW3 $PWD/PHP_CodeSniffer/CodeSniffer/Standards/FLOW3
+ - pyrus install pear/PHP_CodeSniffer
+ - phpenv rehash
+
+script:
+ - phpunit -v PHP_CodeSniffer/tests/AllTests.php
+ - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3-CodeSniffer/TYPO3
