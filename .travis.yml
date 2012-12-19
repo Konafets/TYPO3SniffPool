@@ -14,4 +14,4 @@ before_script:
 
 script:
  - phpunit -v PHP_CodeSniffer/tests/AllTests.php
- - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3-CodeSniffer/TYPO3
+ - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3
