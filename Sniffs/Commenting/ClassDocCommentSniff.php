@@ -45,7 +45,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
  * @version   Release: @package_version@
  * @link      pear.typo3.org
  */
-class TYPO3_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff
+class TYPO3SniffPool_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

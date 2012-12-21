@@ -23,7 +23,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sniffs_Classes_LowercaseClassKeywordsSniff
+class TYPO3SniffPool_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sniffs_Classes_LowercaseClassKeywordsSniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

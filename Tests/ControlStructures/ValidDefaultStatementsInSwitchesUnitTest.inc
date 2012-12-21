@@ -14,7 +14,7 @@ switch($foo){
     default:
 }
 
-class TYPO3_Sniffs_Files_IncludingFileSniffUniTest {
+class TYPO3SniffPool_Sniffs_Files_IncludingFileSniffUniTest {
 
 	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();

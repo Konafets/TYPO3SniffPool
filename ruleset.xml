@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="TYPO3">
+<ruleset name="TYPO3SniffPool">
 	<description>The coding standard for the TYPO3 project. Have a look at http://forge.typo3.org/projects/team-forge/wiki/The_sniffs_with_code_examples</description>
 </ruleset>

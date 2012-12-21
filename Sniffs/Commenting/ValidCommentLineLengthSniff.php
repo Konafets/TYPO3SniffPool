@@ -25,7 +25,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_Commenting_ValidCommentLineLengthSniff implements PHP_CodeSniffer_Sniff
+class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Max character length of comments

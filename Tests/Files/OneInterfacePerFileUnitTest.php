@@ -26,7 +26,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Tests_Files_OneInterfacePerFileUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_Files_OneInterfacePerFileUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
