@@ -4,7 +4,8 @@ The TYPO3 PHP_CodeSniffer Sniff Pool
 
 Travis Status
 =============
-..image:: https://travis-ci.org/typo3-ci/TYPO3SniffPool.png?branch=master
+.. image:: https://travis-ci.org/typo3-ci/TYPO3SniffPool.png?branch=master
+	:target: https://travis-ci.org/typo3-ci/TYPO3SniffPool
 
 Description
 ===========
