@@ -30,7 +30,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff
+class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports

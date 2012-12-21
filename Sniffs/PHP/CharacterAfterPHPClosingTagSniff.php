@@ -23,7 +23,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_PHP_CharacterAfterPHPClosingTagSniff implements PHP_CodeSniffer_Sniff
+class TYPO3SniffPool_Sniffs_PHP_CharacterAfterPHPClosingTagSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

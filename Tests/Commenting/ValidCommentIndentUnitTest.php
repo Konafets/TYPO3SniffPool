@@ -28,7 +28,7 @@
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Tests_Commenting_ValidCommentIndentUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_Commenting_ValidCommentIndentUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

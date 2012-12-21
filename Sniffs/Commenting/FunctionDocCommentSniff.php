@@ -49,7 +49,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', true) ==
  * @version   Release: @package_version@
  * @link      http://pear.typo3.org
  */
-class TYPO3_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff
+class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
     /**

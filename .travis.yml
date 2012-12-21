@@ -8,10 +8,10 @@ before_script:
  - cd ..
  - git clone --branch=master --depth=100 --quiet https://github.com/squizlabs/PHP_CodeSniffer.git
  - PWD=`pwd`
- - ln -s $PWD/TYPO3 $PWD/PHP_CodeSniffer/CodeSniffer/Standards/TYPO3
+ - ln -s $PWD/TYPO3 $PWD/PHP_CodeSniffer/CodeSniffer/Standards/TYPO3SniffPool
  - pyrus install pear/PHP_CodeSniffer
  - phpenv rehash
 
 script:
  - phpunit -v PHP_CodeSniffer/tests/AllTests.php
- - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3
+ - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3SniffPool
