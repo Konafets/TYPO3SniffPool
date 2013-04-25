@@ -3,12 +3,12 @@
     http://pear.php.net/dtd/tasks-1.0.xsd
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
- <name>PHPCS_TYPO3_SniffPool</name>
+ <name>TYPO3SniffPool</name>
  <channel>pear.typo3.org</channel>
- <summary>TYPO3 Coding Standard Pool</summary>
- <description>This package contains custom sniffs which are compatible with the PHP_CodeSniffer from the PEAR project.
-Understand this package as a sniff pool which contains all needed custom sniffs for the TYPO3v4, FLOW3/TYPO3v5 CGL.
-Additionally you must install the specific pear package for your preferred CGL.</description>
+ <summary>PHP_CodeSniffer sniff pool of the TYPO3 Project</summary>
+ <description>This package contains custom sniffs which are compatible with the PHP_CodeSniffer.
+Understand this package as a sniff pool which contains all needed custom sniffs for the TYPO3CMS and TYPO3Flow Coding Guidelines.
+Additionally you must install the specific pear package for your preferred Coding Guidelines.</description>
  <lead>
   <name>Stefano Kowalke</name>
   <user>sok</user>
@@ -34,8 +34,8 @@ Additionally you must install the specific pear package for your preferred CGL.<
   <api>0.0.5</api>
  </version>
  <stability>
-  <release>stable</release>
-  <api>stable</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
  <notes>
@@ -45,147 +45,339 @@ Additionally you must install the specific pear package for your preferred CGL.<
   <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="/">
    <dir name="Sniffs">
     <dir name="Classes">
-     <file name="LowercaseClassKeywordsSniff.php" role="php" />
+     <file name="LowercaseClassKeywordsSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Classes -->
     <dir name="Commenting">
-     <file name="ClassDocCommentSniff.php" role="php" />
-     <file name="DoubleSlashCommentsInNewLineSniff.php" role="php" />
-     <file name="FunctionDocCommentSniff.php" role="php" />
-     <file name="NoAuthorAnnotationInFunctionDocCommentSniff.php" role="php" />
-     <file name="SpaceAfterDoubleSlashSniff.php" role="php" />
-     <file name="ValidCommentIndentSniff.php" role="php" />
-     <file name="ValidCommentLineLengthSniff.php" role="php" />
+     <file name="ClassDocCommentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DoubleSlashCommentsInNewLineSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FunctionDocCommentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="NoAuthorAnnotationInFunctionDocCommentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SpaceAfterDoubleSlashSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentIndentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentLineLengthSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Commenting -->
     <dir name="ControlStructures">
-     <file name="AlignedBreakStatementSniff.php" role="php" />
-     <file name="DisallowEachInLoopConditionSniff.php" role="php" />
-     <file name="DisallowElseIfConstructSniff.php" role="php" />
-     <file name="ValidBreakStatementsInSwitchesSniff.php" role="php" />
-     <file name="ValidDefaultStatementsInSwitchesSniff.php" role="php" />
+     <file name="AlignedBreakStatementSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowEachInLoopConditionSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowElseIfConstructSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidBreakStatementsInSwitchesSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidDefaultStatementsInSwitchesSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/ControlStructures -->
     <dir name="Debug">
-     <file name="DebugCodeSniff.php" role="php" />
+     <file name="DebugCodeSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Debug -->
     <dir name="Files">
-     <file name="EncodingUtf8Sniff.php" role="php" />
-     <file name="IncludingFileSniff.php" role="php" />
-     <file name="LowercasedFilenameSniff.php" role="php" />
-     <file name="OneClassPerFileSniff.php" role="php" />
-     <file name="OneInterfacePerFileSniff.php" role="php" />
+     <file name="EncodingUtf8Sniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="IncludingFileSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="LowercasedFilenameSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneClassPerFileSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneInterfacePerFileSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Files -->
     <dir name="NamingConventions">
-     <file name="ValidFunctionNameSniff.php" role="php" />
-     <file name="ValidVariableNameSniff.php" role="php" />
+     <file name="ValidFunctionNameSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidVariableNameSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/NamingConventions -->
     <dir name="PHP">
-     <file name="CharacterAfterPHPClosingTagSniff.php" role="php" />
-     <file name="CharacterBeforePHPOpeningTagSniff.php" role="php" />
-     <file name="ClosingPHPTagSniff.php" role="php" />
-     <file name="Deprecated.xml" role="php" />
-     <file name="DisallowMultiplePHPTagsSniff.php" role="php" />
+     <file name="CharacterAfterPHPClosingTagSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="CharacterBeforePHPOpeningTagSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ClosingPHPTagSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowMultiplePHPTagsSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/PHP -->
     <dir name="Scope">
-     <file name="AlwaysReturnSniff.php" role="php" />
-     <file name="AlwaysReturnSniff.php.orig" role="data" />
+     <file name="AlwaysReturnSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Scope -->
     <dir name="Strings">
-     <file name="ConcatenationSpacingSniff.php" role="php" />
-     <file name="UnnecessaryStringConcatSniff.php" role="php" />
+     <file name="ConcatenationSpacingSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnnecessaryStringConcatSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/Strings -->
     <dir name="WhiteSpace">
-     <file name="AssignmentArithmeticAndComparisonSpaceSniff.php" role="php" />
-     <file name="AsteriksWhitespacesSniff.php" role="php" />
-     <file name="DisallowSpaceIndentSniff.php" role="php" />
-     <file name="WhitespaceAfterCommentSignsSniff.php" role="php" />
+     <file name="AssignmentArithmeticAndComparisonSpaceSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AsteriksWhitespacesSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowSpaceIndentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="WhitespaceAfterCommentSignsSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Sniffs/WhiteSpace -->
    </dir> <!-- /Sniffs -->
    <dir name="Tests">
     <dir name="Classes">
-     <file name="LowercaseClassKeywordsUnitTest.inc" role="test" />
-     <file name="LowercaseClassKeywordsUnitTest.php" role="test" />
+     <file name="LowercaseClassKeywordsUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="LowercaseClassKeywordsUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Classes -->
     <dir name="Commenting">
-     <file name="ClassDocCommentUnitTest.inc" role="test" />
-     <file name="ClassDocCommentUnitTest.php" role="test" />
-     <file name="DoubleSlashCommentsInNewLineUnitTest.inc" role="test" />
-     <file name="DoubleSlashCommentsInNewLineUnitTest.php" role="test" />
-     <file name="FunctionDocCommentUnitTest.inc" role="test" />
-     <file name="FunctionDocCommentUnitTest.php" role="test" />
-     <file name="NoAuthorAnnotationInFunctionDocCommentUnitTest.inc" role="test" />
-     <file name="NoAuthorAnnotationInFunctionDocCommentUnitTest.php" role="test" />
-     <file name="SpaceAfterDoubleSlashUnitTest.inc" role="test" />
-     <file name="SpaceAfterDoubleSlashUnitTest.php" role="test" />
-     <file name="ValidCommentIndentUnitTest.inc" role="test" />
-     <file name="ValidCommentIndentUnitTest.php" role="test" />
-     <file name="ValidCommentLineLengthUnitTest.inc" role="test" />
-     <file name="ValidCommentLineLengthUnitTest.php" role="test" />
+     <file name="ClassDocCommentUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ClassDocCommentUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DoubleSlashCommentsInNewLineUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DoubleSlashCommentsInNewLineUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FunctionDocCommentUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FunctionDocCommentUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="NoAuthorAnnotationInFunctionDocCommentUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="NoAuthorAnnotationInFunctionDocCommentUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SpaceAfterDoubleSlashUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SpaceAfterDoubleSlashUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentIndentUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentIndentUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentLineLengthUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidCommentLineLengthUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Commenting -->
     <dir name="ControlStructures">
-     <file name="AlignedBreakStatementUnitTest.inc" role="test" />
-     <file name="AlignedBreakStatementUnitTest.php" role="test" />
-     <file name="DisallowEachInLoopConditionUnitTest.inc" role="test" />
-     <file name="DisallowEachInLoopConditionUnitTest.php" role="test" />
-     <file name="DisallowElseIfConstructUnitTest.inc" role="test" />
-     <file name="DisallowElseIfConstructUnitTest.php" role="test" />
-     <file name="ValidBreakStatementsInSwitchesUnitTest.inc" role="test" />
-     <file name="ValidBreakStatementsInSwitchesUnitTest.php" role="test" />
-     <file name="ValidDefaultStatementsInSwitchesUnitTest.inc" role="test" />
-     <file name="ValidDefaultStatementsInSwitchesUnitTest.php" role="test" />
+     <file name="AlignedBreakStatementUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AlignedBreakStatementUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowEachInLoopConditionUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowEachInLoopConditionUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowElseIfConstructUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowElseIfConstructUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidBreakStatementsInSwitchesUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidBreakStatementsInSwitchesUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidDefaultStatementsInSwitchesUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidDefaultStatementsInSwitchesUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/ControlStructures -->
     <dir name="Debug">
-     <file name="DebugCodeUnitTest.inc" role="test" />
-     <file name="DebugCodeUnitTest.php" role="test" />
+     <file name="DebugCodeUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DebugCodeUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Debug -->
     <dir name="Files">
-     <file name="IncludingFileUnitTest.inc" role="test" />
-     <file name="IncludingFileUnitTest.php" role="test" />
-     <file name="LowercasedFilenameUnitTest.inc" role="test" />
-     <file name="LowercasedFilenameUnitTest.php" role="test" />
-     <file name="OneClassPerFileUnitTest.inc" role="test" />
-     <file name="OneClassPerFileUnitTest.php" role="test" />
-     <file name="OneInterfacePerFileUnitTest.inc" role="test" />
-     <file name="OneInterfacePerFileUnitTest.php" role="test" />
+     <file name="IncludingFileUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="IncludingFileUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="LowercasedFilenameUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="LowercasedFilenameUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneClassPerFileUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneClassPerFileUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneInterfacePerFileUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="OneInterfacePerFileUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Files -->
     <dir name="NamingConventions">
-     <file name="ValidFunctionNameUnitTest.inc" role="test" />
-     <file name="ValidFunctionNameUnitTest.php" role="test" />
-     <file name="ValidVariableNameUnitTest.inc" role="test" />
-     <file name="ValidVariableNameUnitTest.php" role="test" />
+     <file name="ValidFunctionNameUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidFunctionNameUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidVariableNameUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ValidVariableNameUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/NamingConventions -->
     <dir name="PHP">
-     <file name="CharacterAfterPHPClosingTagUnitTest.inc" role="test" />
-     <file name="CharacterAfterPHPClosingTagUnitTest.php" role="test" />
-     <file name="CharacterBeforePHPOpeningTagUnitTest.inc" role="test" />
-     <file name="CharacterBeforePHPOpeningTagUnitTest.php" role="test" />
-     <file name="ClosingPHPTagUnitTest.inc" role="test" />
-     <file name="ClosingPHPTagUnitTest.php" role="test" />
-     <file name="DisallowMultiplePHPTagsUnitTest.inc" role="test" />
-     <file name="DisallowMultiplePHPTagsUnitTest.php" role="test" />
+     <file name="CharacterAfterPHPClosingTagUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="CharacterAfterPHPClosingTagUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="CharacterBeforePHPOpeningTagUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="CharacterBeforePHPOpeningTagUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ClosingPHPTagUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ClosingPHPTagUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowMultiplePHPTagsUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowMultiplePHPTagsUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/PHP -->
     <dir name="Scope">
-     <file name="AlwaysReturnUnitTest.inc" role="test" />
-     <file name="AlwaysReturnUnitTest.php" role="test" />
+     <file name="AlwaysReturnUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AlwaysReturnUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Scope -->
     <dir name="Strings">
-     <file name="ConcatenationSpacingUnitTest.inc" role="test" />
-     <file name="ConcatenationSpacingUnitTest.php" role="test" />
-     <file name="UnnecessaryStringConcatUnitTest.inc" role="test" />
-     <file name="UnnecessaryStringConcatUnitTest.js" role="test" />
-     <file name="UnnecessaryStringConcatUnitTest.php" role="test" />
+     <file name="ConcatenationSpacingUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ConcatenationSpacingUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnnecessaryStringConcatUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnnecessaryStringConcatUnitTest.js" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnnecessaryStringConcatUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/Strings -->
     <dir name="WhiteSpace">
-     <file name="AssignmentArithmeticAndComparisonSpaceUnitTest.inc" role="test" />
-     <file name="AssignmentArithmeticAndComparisonSpaceUnitTest.php" role="test" />
-     <file name="AsteriksWhitespacesUnitTest.inc" role="test" />
-     <file name="AsteriksWhitespacesUnitTest.php" role="test" />
-     <file name="DisallowSpaceIndentUnitTest.inc" role="test" />
-     <file name="DisallowSpaceIndentUnitTest.php" role="test" />
-     <file name="WhitespaceAfterCommentSignsUnitTest.inc" role="test" />
-     <file name="WhitespaceAfterCommentSignsUnitTest.php" role="test" />
+     <file name="AssignmentArithmeticAndComparisonSpaceUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AssignmentArithmeticAndComparisonSpaceUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AsteriksWhitespacesUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="AsteriksWhitespacesUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowSpaceIndentUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="DisallowSpaceIndentUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="WhitespaceAfterCommentSignsUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="WhitespaceAfterCommentSignsUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
     </dir> <!-- /Tests/WhiteSpace -->
    </dir> <!-- /Tests -->
-   <file name="README.rst" role="php" />
-   <file name="ruleset.xml" role="php" />
+   <file name="README.rst" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file name="ruleset.xml" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -211,12 +403,12 @@ Additionally you must install the specific pear package for your preferred CGL.<
     <api>0.0.5</api>
    </version>
    <stability>
-    <release>stable</release>
-    <api>stable</api>
+    <release>beta</release>
+    <api>beta</api>
    </stability>
-   <date>2012-09-22</date>
    <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
    <notes>
+   <date>2012-09-22</date>
 - #41260: [BUGFIX] Standards was installed in wrong dir
    </notes>
   </release>
