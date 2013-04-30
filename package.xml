@@ -42,7 +42,7 @@ Additionally you must install the specific pear package for your preferred Codin
 - #41260: [BUGFIX] Standards was installed in wrong dir
  </notes>
  <contents>
-  <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3" name="/">
+  <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3SniffPool" name="/">
    <dir name="Sniffs">
     <dir name="Classes">
      <file name="LowercaseClassKeywordsSniff.php" role="php">
