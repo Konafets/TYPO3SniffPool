@@ -1,25 +1,23 @@
 {
-	"name": "typo3-qa/typo3pool",
+	"name": "typo3-ci/typo3sniffpool",
 	"type": "phpcodesniffer-standard",
-	"description": "This repository contains custom sniffs which are compatible with the PHP_CodeSniffer. Understand this package as a sniff pool which contains all needed custom sniffs for the various TYPO3 projects.",
+	"description": "This repository contains custom sniffs which are compatible with the PHP_CodeSniffer. Understand this package as a sniff pool. It contains all custom sniffs for the TYPO3 project.",
 	"homepage": "http://forge.typo3.org/projects/show/team-php_codesniffer",
-	"keywords": ["typo3","standard","guidelines","codesniffer"],
+	"keywords": ["typo3", "phpcs", "standards", "coding guidelines", "codesniffer", "quality assurance"],
 	"license": "GPL-2.0",
 	"authors": [
-		{
-			"name": "Andy Grundwald",
-			"email": "andy.grundwald@gmail.com",
-			"role": "lead"
-		},
 		{
 			"name": "Stefano Kowalke",
 			"email": "blueduck@gmx.net",
 			"role": "lead"
+		},
+		{
+			"name": "Andy Grundwald",
+			"email": "andy.grundwald@gmail.com",
+			"role": "lead"
 		}
 	],
 
-	"version": "dev-master",
-	
 	"repositories": [
                 {
                         "type": "vcs",
@@ -29,8 +27,13 @@
 
 	"require": {
 		"php": ">=5.2.1",
-		"squizlabs/php_codesniffer": "*",
+		"squizlabs/php_codesniffer": "1.*",
 		"composer/installers": "dev-phpcsStandardInstaller"
+	},
+
+	"suggests": {
+		"typo3-ci/typo3cms": "*",
+		"typo3-ci/typo3flow": "*"
 	},
 
 	"support": {
