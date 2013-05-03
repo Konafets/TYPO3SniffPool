@@ -36,10 +36,14 @@
 		"typo3-ci/typo3flow": "*"
 	},
 
+	"replace": {
+		"typo3/codesniffer": "*"
+	},
+
 	"support": {
 		"issues": "http://forge.typo3.org/projects/team-php_codesniffer/issues",
 		"wiki": "http://forge.typo3.org/projects/team-php_codesniffer/wiki",
-		"source": "https://github.com/typo3-ci/PHPCS_TYPO3_SniffPool.git"
+		"source": "https://github.com/typo3-ci/TYPO3SniffPool.git"
 	}
 
 }
