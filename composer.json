@@ -31,7 +31,7 @@
 		"composer/installers": "dev-phpcsStandardInstaller"
 	},
 
-	"suggests": {
+	"suggest": {
 		"typo3-ci/typo3cms": "*",
 		"typo3-ci/typo3flow": "*"
 	},
