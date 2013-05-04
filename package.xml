@@ -27,11 +27,11 @@ Additionally you must install the specific pear package for your preferred Codin
   <email>laura.thewalt@wmdb.de</email>
   <active>no</active>
  </developer>
- <date>2012-09-22</date>
- <time>19:05:10</time>
+ <date>2013-05-04</date>
+ <time>17:30:02</time>
  <version>
-  <release>0.0.5</release>
-  <api>0.0.5</api>
+  <release>0.0.6</release>
+  <api>0.0.6</api>
  </version>
  <stability>
   <release>beta</release>
@@ -39,7 +39,16 @@ Additionally you must install the specific pear package for your preferred Codin
  </stability>
  <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
  <notes>
-- #41260: [BUGFIX] Standards was installed in wrong dir
+- #9544: [FEATURE] Make UTF-8-Sniff-Error-Message configurable
+- #41255: [FEATURE] Add composer support
+- #41339: [TASK] Remove the sniff for checking indention of inline comments
+- #42019: [TASK] Replace &quot;TYPO3.Files.OneClassPerFile&quot; with &quot;Generic.Files.OneClassPerFile&quot;
+- #42020: [TASK] Replace &quot;TYPO3.Files.OneInterfacePerFile&quot; with &quot;Generic.Files.OneInterfacePerFile&quot;
+- #42022: [TASK] Replace &quot;TYPO3.PHP.ClosingPHPTag&quot; with &quot;Generic.PHP.ClosingPHPTag&quot;
+- #42023: [TASK] Replace &quot;TYPO3.PHP.CharacterBeforePHPOpeningTag&quot; with &quot;Generic.PHP.CharacterBeforePHPOpeningTag&quot;
+- #42312: [TASK] Deactivate and remove &quot;TYPO3.Files.EncodingUtf8&quot;-Sniff in both standards
+- #42975: [TASK] Create PHP_CodeSniffer custom installer for Composer
+- #42976: [TASK] Split repositories and move to github
  </notes>
  <contents>
   <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3SniffPool" name="/">
@@ -63,9 +72,6 @@ Additionally you must install the specific pear package for your preferred Codin
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="SpaceAfterDoubleSlashSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="ValidCommentIndentSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="ValidCommentLineLengthSniff.php" role="php">
@@ -95,19 +101,10 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Sniffs/Debug -->
     <dir name="Files">
-     <file name="EncodingUtf8Sniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
      <file name="IncludingFileSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="LowercasedFilenameSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="OneClassPerFileSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="OneInterfacePerFileSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /Sniffs/Files -->
@@ -121,12 +118,6 @@ Additionally you must install the specific pear package for your preferred Codin
     </dir> <!-- /Sniffs/NamingConventions -->
     <dir name="PHP">
      <file name="CharacterAfterPHPClosingTagSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="CharacterBeforePHPOpeningTagSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="ClosingPHPTagSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="DisallowMultiplePHPTagsSniff.php" role="php">
@@ -201,12 +192,6 @@ Additionally you must install the specific pear package for your preferred Codin
      <file name="SpaceAfterDoubleSlashUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
-     <file name="ValidCommentIndentUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="ValidCommentIndentUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
      <file name="ValidCommentLineLengthUnitTest.inc" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -267,18 +252,6 @@ Additionally you must install the specific pear package for your preferred Codin
      <file name="LowercasedFilenameUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
-     <file name="OneClassPerFileUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="OneClassPerFileUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="OneInterfacePerFileUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="OneInterfacePerFileUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
     </dir> <!-- /Tests/Files -->
     <dir name="NamingConventions">
      <file name="ValidFunctionNameUnitTest.inc" role="test">
@@ -299,18 +272,6 @@ Additionally you must install the specific pear package for your preferred Codin
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="CharacterAfterPHPClosingTagUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="CharacterBeforePHPOpeningTagUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="CharacterBeforePHPOpeningTagUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="ClosingPHPTagUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="ClosingPHPTagUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="DisallowMultiplePHPTagsUnitTest.inc" role="test">
@@ -391,12 +352,36 @@ Additionally you must install the specific pear package for your preferred Codin
    <package>
     <name>PHP_CodeSniffer</name>
     <channel>pear.php.net</channel>
-    <min>1.3.6</min>
+    <min>1.4.5</min>
    </package>
   </required>
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>0.0.6</release>
+    <api>0.0.6</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2013-05-04</date>
+   <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+   <notes>
+- #9544: [FEATURE] Make UTF-8-Sniff-Error-Message configurable
+- #41255: [FEATURE] Add composer support
+- #41339: [TASK] Remove the sniff for checking indention of inline comments
+- #42019: [TASK] Replace &quot;TYPO3.Files.OneClassPerFile&quot; with &quot;Generic.Files.OneClassPerFile&quot;
+- #42020: [TASK] Replace &quot;TYPO3.Files.OneInterfacePerFile&quot; with &quot;Generic.Files.OneInterfacePerFile&quot;
+- #42022: [TASK] Replace &quot;TYPO3.PHP.ClosingPHPTag&quot; with &quot;Generic.PHP.ClosingPHPTag&quot;
+- #42023: [TASK] Replace &quot;TYPO3.PHP.CharacterBeforePHPOpeningTag&quot; with &quot;Generic.PHP.CharacterBeforePHPOpeningTag&quot;
+- #42312: [TASK] Deactivate and remove &quot;TYPO3.Files.EncodingUtf8&quot;-Sniff in both standards
+- #42975: [TASK] Create PHP_CodeSniffer custom installer for Composer
+- #42976: [TASK] Split repositories and move to github
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.0.5</release>
@@ -408,9 +393,8 @@ Additionally you must install the specific pear package for your preferred Codin
    </stability>
    <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
    <notes>
-   <date>2012-09-22</date>
 - #41260: [BUGFIX] Standards was installed in wrong dir
-   </notes>
+  </notes>
   </release>
   <release>
    <version>
