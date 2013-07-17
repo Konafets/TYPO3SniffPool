@@ -84,7 +84,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_UnusedVariableInForEachLoopSniff i
             $message = 'The variable $_ is used in the foreach body. Please rename this variable to a more useful name.';
             $phpcsFile->addError($message, $stackPtr, 'ValueVariableWrongName');
 
-        // If the $value is NOT named $_, but no one will use this in the foreach body, this variable has to be renamed
+            // If the $value is NOT named $_, but no one will use this in the foreach body, this variable has to be renamed
         } elseif ($tokens[$valueToken]['content'] !== '$_' && $phpcsFile->findNext(T_VARIABLE, $scopeOpener, $scopeCloser, false, $tokens[$valueToken]['content']) === false) {
             $message = 'The variable %s is NOT used in the foreach body. Please rename this variable to $_.';
             $phpcsFile->addError($message, $stackPtr, 'ValueVariableNotUsed', array($tokens[$valueToken]['content']));
