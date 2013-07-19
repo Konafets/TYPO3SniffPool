@@ -108,6 +108,11 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
             $className = strtolower(ltrim($className, '_'));
         }
 
+        // Skip files without scope openers
+        if (!isset($tokens[$stackPtr]['scope_opener'])) {
+            return;
+        }
+
         $start = $tokens[$stackPtr]['scope_opener'];
         $end   = $tokens[$stackPtr]['scope_closer'];
 
