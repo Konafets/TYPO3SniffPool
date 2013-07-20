@@ -28,7 +28,7 @@
 	"require": {
 		"php": ">=5.2.1",
 		"squizlabs/php_codesniffer": "1.*",
-		"composer/installers": "dev-phpcsStandardInstaller"
+		"konafets/installers": "dev-phpcsStandardInstaller"
 	},
 
 	"suggest": {
