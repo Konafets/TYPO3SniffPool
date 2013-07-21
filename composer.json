@@ -48,7 +48,7 @@
 
 	"autoload": {
 		"classmap": [
-		"CodeSniffer/Standards/TYPO3SniffPool/Sniffs/"
+		"Sniffs/"
 		]
 	}
 
