@@ -1,0 +1,252 @@
+<documentation title="Assignment, arithmetic and comparison spacing">
+    <standard>
+    <![CDATA[
+    Assignment, arithmetic and comparison operators should be surrounded with spaces
+    ]]>
+    </standard>
+    <standard>
+    <![CDATA[
+    Assignment surrounded with spaces
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Space before and after assignment operator.">
+        <![CDATA[
+$foo<em> </em>=<em> </em>$bar;
+]]>
+        </code>
+        <code title="Invalid: No space before and after the assignment operator.">
+        <![CDATA[
+$foo<em></em>=<em></em>$bar;
+$foo<em></em>=<em> </em>$bar;
+$foo<em> </em>=<em></em>$bar;
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Arithmethic-Assignment operators surround with spaces
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Space before and after arithmetic-assignment.">
+        <![CDATA[
+$foo<em> </em>+=<em> </em>$bar;
+$foo<em> </em>-=<em> </em>$bar;
+$foo<em> </em>*=<em> </em>$bar;
+$foo<em> </em>/=<em> </em>$bar;
+$foo<em> </em>%=<em> </em>$bar;
+$foo<em> </em>&=<em> </em>$bar;
+$foo<em> </em>.=<em> </em>$bar;
+$foo<em> </em>^=<em> </em>$bar;
+]]>
+        </code>
+        <code title="Invalid: No space before and after the arithmetic-assignment.">
+        <![CDATA[
+$foo<em></em>+=<em></em>$bar;
+$foo<em></em>-=<em></em>$bar;
+$foo<em></em>*=<em></em>$bar;
+$foo<em></em>/=<em></em>$bar;
+$foo<em></em>%=<em></em>$bar;
+$foo<em></em>&=<em></em>$bar;
+$foo<em></em>.=<em></em>$bar;
+$foo<em></em>^=<em></em>$bar;
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Comparison operators surrounded by space
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Space before and after comparison.">
+        <![CDATA[
+$foo = ($bar<em> </em>==<em> </em>$baz);
+$foo = ($bar<em> </em>===<em> </em>$baz);
+
+$foo = ($bar<em> </em>!=<em> </em>$baz);
+$foo = ($bar<em> </em>!==<em> </em>$baz);
+
+$foo = ($bar<em> </em><<em> </em>$baz);
+$foo = ($bar<em> </em>><em> </em>$baz);
+
+$foo = ($bar<em> </em><=<em> </em>$baz);
+$foo = ($bar<em> </em>>=<em> </em>$baz);
+]]>
+        </code>
+        <code title="Invalid: No space before and after the comparison.">
+        <![CDATA[
+$foo = ($bar<em></em>==<em></em>$baz);
+$foo = ($bar<em></em>===<em></em>$baz);
+
+$foo = ($bar<em></em>!=<em></em>$baz);
+$foo = ($bar<em></em>!==<em></em>$baz);
+
+$foo = ($bar<em></em><<em></em>$baz);
+$foo = ($bar<em></em>><em></em>$baz);
+
+$foo = ($bar<em></em><=<em></em>$baz);
+$foo = ($bar<em></em>>=<em></em>$baz);
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Arithmetic operators surrounded by space
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Space before and after arithmetic operator.">
+        <![CDATA[
+$foo = 1<em> </em>+<em> </em>2;
+$foo = 1<em> </em>-<em> </em>2;
+$foo = 1<em> </em>*<em> </em>2;
+$foo = 1<em> </em>/<em> </em>2;
+$foo = 1<em> </em>%<em> </em>2;
+$foo = (1<em> </em>+<em> </em>2)<em> </em>*<em> </em>(5<em> </em>%<em> </em>3);
+]]>
+        </code>
+        <code title="Invalid: No space before and after arithmetic operator.">
+        <![CDATA[
+$foo = 1<em></em>+<em></em>2;
+$foo = 1<em></em>-<em></em>2;
+$foo = 1<em></em>*<em></em>2;
+$foo = 1<em></em>/<em></em>2;
+$foo = 1<em></em>%<em></em>2;
+$foo = (1<em></em>+<em></em>2)<em></em>*<em></em>(5<em></em>%<em></em>3);
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Double arrow operator surrounded by space
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Space before and after double arrow operator.">
+        <![CDATA[
+$foo = array('foo'<em> </em>=><em> </em>'bar');
+]]>
+        </code>
+        <code title="Invalid: No space before and after double arrow operator.">
+        <![CDATA[
+$foo = array('foo'<em></em>=><em></em>'bar');
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    No space after minus operator when its negate a number
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No space after minus.">
+        <![CDATA[
+foo::bar($baz,<em> </em>-<em></em>10);
+foo::bar(<em></em>-<em></em>10, $baz);
+
+$foo = $bar *<em> </em>-<em></em>1;
+
+
+function foo($bar){
+	return<em> </em>-<em></em>5;
+}
+]]>
+        </code>
+        <code title="Invalid: Space after minus.">
+        <![CDATA[
+foo::bar($baz,<em> </em>-<em> </em>10);
+
+
+$foo = $bar *<em> </em>-<em> </em>1;
+$foo = $bar *<em></em>-<em></em>1;
+
+function foo($bar){
+	return<em> </em>-<em> </em>5;
+}
+
+function foo($bar){
+	return<em></em>-<em> </em>5;
+}
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Allow multiple whitespaces (helps for aligning)
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No space after minus.">
+        <![CDATA[
+$foo<em>   </em>= $bar;
+$foo<em>  </em>+= $bar;
+$foo -=<em>  </em>$bar;
+$foo .=<em>   </em>$bar;
+$foo<em>   </em>&= $bar;
+$foo %=<em>  </em>$bar;
+$foo<em>   </em>*=<em>   </em>$bar;
+$foo<em>    </em>/= $bar;
+$foo =<em>  </em>($bar<em>    </em>== $baz);
+$foo = ($bar ===<em>    </em>$baz);
+$foo = ($bar<em>  </em>!=<em>   </em>$baz);
+$foo = ($bar<em>   </em>!== $baz);
+$foo = ($bar <<em>  </em>$baz);
+$foo = ($bar<em>   </em>> $baz);
+$foo = ($bar<em>  </em><=<em>  </em>$baz);
+$foo = ($bar<em>    </em>>=<em>       </em>$baz);
+$foo = 1<em>   </em>+ 2;
+$foo = 1 -<em>   </em>2;
+$foo = 1<em>   </em>*<em>   </em>2;
+$foo = 1<em>  </em>/<em>  </em>2;
+$foo<em>    </em>=<em>    </em>1 %<em>   </em>2;
+$foo = (1 + 2) * (5<em>  </em>%<em>   </em>3);
+$foo<em>    </em>^=<em>   </em>$bar;
+$foo = array('foo'<em>    </em>=><em>   </em>'bar');
+]]>
+        </code>
+        <code title="">
+        <![CDATA[
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    No space after prefix operator
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No space after prefix operator.">
+        <![CDATA[
+$foo = ++<em></em>$i;
+$foo = --<em></em>$i;
+]]>
+        </code>
+        <code title="Invalid: Space after prefix operator.">
+        <![CDATA[
+$foo = ++<em> </em>$i;
+$foo = --<em> </em>$i;
+]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    No space before postfix operator
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No space before postfix operator.">
+        <![CDATA[
+$foo = $i<em></em>++;
+$foo = $i<em></em>--;
+]]>
+        </code>
+        <code title="Invalid: Space before postfix operator.">
+        <![CDATA[
+$foo = $i<em> </em>++;
+$foo = $i<em> </em>--;
+]]>
+        </code>
+    </code_comparison>
+</documentation>
