@@ -39,6 +39,7 @@ class TYPO3SniffPool_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sn
                 T_IMPLEMENTS,
                 T_ABSTRACT,
                 T_FINAL,
+                T_TRAIT,
                 T_VAR,
                 T_CONST,
                 T_PRIVATE,
