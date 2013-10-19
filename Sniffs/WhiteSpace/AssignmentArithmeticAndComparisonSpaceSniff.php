@@ -36,6 +36,13 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
     public $supportedTokenizes = array('PHP');
 
     /**
+     * The pre-/postfix tokens
+     *
+     * @var array
+     */
+    public $prePostFixTokens = array(T_INC, T_DEC);
+
+    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -44,6 +51,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
     {
         $registeredTokens = array_merge(PHP_CodeSniffer_Tokens::$assignmentTokens, PHP_CodeSniffer_Tokens::$arithmeticTokens);
         $registeredTokens = array_merge($registeredTokens, PHP_CodeSniffer_Tokens::$comparisonTokens);
+        $registeredTokens = array_merge($registeredTokens, $this->prePostFixTokens);
         return $registeredTokens;
     }
 
@@ -60,8 +68,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
     {
         $tokens = $phpcsFile->getTokens();
         $found = $this->getFoundString($tokens, $stackPtr);
-        $kindOfToken = $this->getKindOfToken($tokens[$stackPtr]);
-        // The following code sniplet was copied and modified from Squiz_Sniffs_Formatting_OperatorBracketSniff
+        $kindOfToken = $this->getKindOfToken($tokens[$stackPtr], $phpcsFile, $stackPtr);
+
+        // The following code snippet was copied and modified from Squiz_Sniffs_Formatting_OperatorBracketSniff
         // Thanks for this guys!
         // There is one instance where brackets aren't needed, which involves
         // the minus sign being used to assign a negative number to a variable.
@@ -93,6 +102,47 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
                 }
             }
         }
+
+        if (($tokens[$stackPtr]['code'] === T_INC) || ($tokens[$stackPtr]['code'] === T_DEC)) {
+            $prevStopToken = $phpcsFile->findPrevious(array(T_EQUAL, T_SEMICOLON), $stackPtr, null, false, null, true);
+            $prev = $phpcsFile->findPrevious(T_VARIABLE, $stackPtr - 1, $prevStopToken, false, null, true);
+            $next = $phpcsFile->findNext(T_VARIABLE, $stackPtr + 1, null, false, null, true);
+
+            switch ($kindOfToken) {
+                case 'postfix':
+                    if ($this->existsWhitespace('before', $tokens, $stackPtr)) {
+                        $error = 'No whitespace before the %s operator. Found "%s". Expected "%s"';
+                        $code  = 'NoWhitSpaceBeforePostfix';
+                        $found = rtrim($found);
+                        $data  = array(
+                                    $kindOfToken,
+                                    $tokens[$prev]['content'] . $found,
+                                    $tokens[$prev]['content'] . trim($found)
+                                 );
+                        $phpcsFile->addWarning($error, $stackPtr, $code, $data);
+                    }
+                    break;
+
+                case 'prefix':
+                    if ($this->existsWhitespace('after', $tokens, $stackPtr)) {
+                        $error = 'No whitespace after the %s operator. Found "%s". Expected "%s"';
+                        $code  = 'NoWhitSpaceAfterPrefix';
+                        $found = ltrim($found);
+                        $data  = array(
+                                    $kindOfToken,
+                                    $found . $tokens[$next]['content'],
+                                    trim($found) . $tokens[$next]['content']
+                                 );
+                        $phpcsFile->addWarning($error, $stackPtr, $code, $data);
+                    }
+                    break;
+
+                default:
+            }
+
+            return;
+        }
+
         if ($this->existsWhitespace('before', $tokens, $stackPtr) === false && $this->existsWhitespace('after', $tokens, $stackPtr) === false) {
             $expected = $this->getExpectedString('before-after', $tokens, $stackPtr);
             $phpcsFile->addError('Whitespace must be added before and after the ' . $kindOfToken . ' operator. Found "' . $found . '". Expected "' . $expected . '"', $stackPtr);
@@ -113,17 +163,25 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      *
      * @return string
      */
-    protected function getKindOfToken(array $token)
+    protected function getKindOfToken(array $token, PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $result = '';
         if (in_array($token['code'], PHP_CodeSniffer_Tokens::$assignmentTokens)) {
             $result = 'assignment';
-
         } elseif (in_array($token['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens)) {
             $result = 'arithmetic';
-
         } elseif (in_array($token['code'], PHP_CodeSniffer_Tokens::$comparisonTokens)) {
             $result = 'comparison';
+        } elseif (in_array($token['code'], $this->prePostFixTokens)) {
+            $prevStopToken = $phpcsFile->findPrevious(array(T_EQUAL, T_SEMICOLON), $stackPtr, null, false, null, true);
+            $prev = $phpcsFile->findPrevious(T_VARIABLE, $stackPtr - 1, $prevStopToken, false, null, true);
+            $next = $phpcsFile->findNext(T_VARIABLE, $stackPtr + 1, null, false, null, true);
+
+            if ($prev) {
+                $result = 'postfix';
+            } elseif ($next) {
+                $result = 'prefix';
+            }
         }
 
         return $result;

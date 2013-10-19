@@ -128,7 +128,20 @@ class TYPO3SniffPool_Tests_WhiteSpace_AssignmentArithmeticAndComparisonSpaceUnit
      */
     public function getWarningList()
     {
-        return array();
+        return array(
+                187 => 1,
+                191 => 1,
+                195 => 1,
+                199 => 1,
+                205 => 1,
+                213 => 1,
+                221 => 1,
+                229 => 1,
+                234 => 1,
+                236 => 1,
+                238 => 1,
+                240 => 1,
+            );
     }
 }
 ?>
