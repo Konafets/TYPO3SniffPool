@@ -9,7 +9,7 @@
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2013 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 
 /**
@@ -24,7 +24,7 @@
  * @copyright 2013 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Files_FileExtensionUnitTest extends AbstractSniffUnitTest
 {
