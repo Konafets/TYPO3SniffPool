@@ -34,13 +34,27 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
+     * @param string $testFile
+     *
      * @return array(int => int)
      */
-    public function getErrorList()
+    public function getErrorList($testFile='')
     {
-        return array(
-                2 => 1,
-               );
+        switch ($testFile) {
+        case 'FilenameUnitTest.1.inc':
+            return array(
+                    2 => 1,
+                   );
+            break;
+        case 'FilenameUnitTest.2.inc':
+            return array(
+                    2 => 1,
+                   );
+            break;
+        default:
+            return array();
+            break;
+        }//end switch
     }//end getErrorList()
 
     /**
@@ -49,11 +63,22 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
+     * @param string $testFile
+     *
      * @return array(int => int)
      */
-    public function getWarningList()
+    public function getWarningList($testFile='')
     {
-        return array();
+        switch ($testFile) {
+        case 'FilenameUnitTest.3.inc':
+            return array(
+                    2 => 0,
+                   );
+            break;
+        default:
+            return array();
+            break;
+        }//end switch
 
     }//end getWarningList()
     

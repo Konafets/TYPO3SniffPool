@@ -50,7 +50,7 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
         $findTokens = array(
                        T_CLASS,
                        T_INTERFACE,
-                       T_CLOSE_TAG,
+                       T_CLOSE_TAG
                       );
 
         $stackPtr = $phpcsFile->findNext($findTokens, ($stackPtr + 1));
@@ -58,14 +58,46 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
         $className      = $tokens[$classNameToken]['content'];
         $fileName = explode('.', $phpcsFile->getFileName());
         $fileName = basename($fileName[0]);
-        if ($fileName !== $className) {
-            $error = 'The classname is not equal to the filename; Found classname "%s" and filename "%s"';
+
+        // Check if we hit a file without a class. Raise a warning and return
+        if ($classNameToken === false) {
+            $warning = 'Its recommended to use only PHP classes and avoid non-class files.';
+            $phpcsFile->addWarning($warning, 1, 'Non-ClassFileFound');
+
+            return;
+        }
+
+        if (strcmp($fileName, $className)) {
+            $error = 'The classname is not equal to the filename; found "%s" as classname and "%s" for filename.';
             $data = array(
                         $className,
-                        $fileName
+                        $fileName . '.php'
                     );
             $phpcsFile->addError($error, $stackPtr, 'ClassnameNotEqualToFilename', $data);
         }
+
+        if (strtolower($fileName) === $fileName) {
+            $error = 'The filename has to be in UpperCamelCase; found "%s".';
+            $data = array(
+                        $fileName . '.php'
+                    );
+            $phpcsFile->addError($error, $stackPtr, 'LowercaseFilename', $data);
+        }
+
+        if ($tokens[$stackPtr]['code'] === T_CLASS) {
+
+        } else if ($tokens[$stackPtr]['code'] === T_INTERFACE) {
+            if (!stristr($fileName, 'Interface')) {
+                $error = 'The file contains an interface but the string "Interface" is not part of the filename; found "%s", but expected "%s".';
+                $data = array(
+                            $fileName . '.php',
+                            $className . '.php'
+                        );
+                $phpcsFile->addError($error, $stackPtr, 'InterfaceNotInFilename', $data);
+            }
+        }
+
+
     } //end process()
 
 } //end class
