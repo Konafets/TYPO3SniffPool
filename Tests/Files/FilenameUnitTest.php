@@ -34,7 +34,7 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @param string $testFile
+     * @param string $testFile The file to test
      *
      * @return array(int => int)
      */
@@ -48,7 +48,7 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
             break;
         case 'FilenameUnitTest.2.inc':
             return array(
-                    2 => 1,
+                    2 => 2,
                    );
             break;
         default:
@@ -63,7 +63,7 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @param string $testFile
+     * @param string $testFile The file to test
      *
      * @return array(int => int)
      */
@@ -72,7 +72,7 @@ class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
         switch ($testFile) {
         case 'FilenameUnitTest.3.inc':
             return array(
-                    2 => 0,
+                    2 => 1,
                    );
             break;
         default:

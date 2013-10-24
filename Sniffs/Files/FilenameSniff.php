@@ -84,9 +84,7 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
             $phpcsFile->addError($error, $stackPtr, 'LowercaseFilename', $data);
         }
 
-        if ($tokens[$stackPtr]['code'] === T_CLASS) {
-
-        } else if ($tokens[$stackPtr]['code'] === T_INTERFACE) {
+        if ($tokens[$stackPtr]['code'] === T_INTERFACE) {
             if (!stristr($fileName, 'Interface')) {
                 $error = 'The file contains an interface but the string "Interface" is not part of the filename; found "%s", but expected "%s".';
                 $data = array(
@@ -96,10 +94,7 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
                 $phpcsFile->addError($error, $stackPtr, 'InterfaceNotInFilename', $data);
             }
         }
-
-
     } //end process()
-
 } //end class
 
 ?>
