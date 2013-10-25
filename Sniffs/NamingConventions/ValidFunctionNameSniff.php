@@ -7,11 +7,13 @@
  *
  * @category  NamingConventions
  * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
+ * @copyright 2013 Stefano Kowalke
  * @copyright 2010 Laura Thewalt, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * Checks that the functions named by lowerCamelCase
@@ -23,12 +25,14 @@
  *
  * @category  NamingConventions
  * @package   TYPO3_PHPCS_Pool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
+ * @copyright 2013 Stefano Kowalke
  * @copyright 2010 Laura Thewalt, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff
 {
@@ -62,19 +66,37 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
     {
         $tokens = $phpcsFile->getTokens();
         $functionName = $phpcsFile->findNext(array(T_STRING), $stackPtr);
-        if ($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === true || $this->isFunctionAPiBaseFunction($tokens[$functionName]['content']) === true) {
-            return null;
+        if (($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === true)
+            || ($this->isFunctionAPiBaseFunction($tokens[$functionName]['content']) === true)
+            || ($this->isFunctionUserFunction($tokens[$functionName]['content']) === true)
+        ) {
+            return;
         }
         $hasUnderscores = stripos($tokens[$functionName]['content'], '_');
-        $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($tokens[$functionName]['content'], false, true, true);
+        $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps(
+            $tokens[$functionName]['content'],
+            false, true, true
+        );
         $scope = $this->getCorrectScopeOfToken($tokens, $stackPtr);
         if ($hasUnderscores !== false) {
-            $error = 'Underscores are not allowed in ' . $scope . ' names "' . $tokens[$functionName]['content'] . '"; ';
-            $error.= 'use lowerCamelCase for ' . $scope . ' names instead';
-            $phpcsFile->addError($error, $stackPtr);
+            $error = 'Underscores are not allowed in %s names "%s"; ';
+            $error .= 'use lowerCamelCase for %s names instead';
+            $error.= '';
+            $data = array(
+                        $scope,
+                        $tokens[$functionName]['content'],
+                        $scope
+            );
+
+            $phpcsFile->addError($error, $stackPtr, 'UnderscoresInFunctionName', $data);
         } elseif ($isLowerCamelCase === false) {
-            $error = ucfirst($scope) . ' name "' . $tokens[$functionName]['content'] . '" must use lowerCamelCase';
-            $phpcsFile->addError($error, $stackPtr);
+            $error = '%s name "%s" must use lowerCamelCase';
+            $data = array(
+                        ucfirst($scope),
+                        $tokens[$functionName]['content']
+                    );
+
+            $phpcsFile->addError($error, $stackPtr, 'FilenameLowerCase', $data);
         }
     }
 
@@ -189,6 +211,24 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
         case 'pi_wrapInBaseClass':
             $result = true;
             break;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Returns true if the function is an user function
+     *
+     * @param string $name The name of the function
+     *
+     * @return bool
+     */
+    public function isFunctionUserFunction($name)
+    {
+        $result = false;
+
+        if (substr_compare($name, 'user_', 0, 5) === 0) {
+            $result = true;
         }
 
         return $result;
