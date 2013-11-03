@@ -61,7 +61,10 @@ class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends Abstract
      */
     public function getWarningList()
     {
-        return array();
+        return array(
+                8 => 1,
+                9 => 1,
+        );
 
     }
 }

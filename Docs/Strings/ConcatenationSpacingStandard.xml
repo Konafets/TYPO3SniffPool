@@ -1,0 +1,47 @@
+<documentation title="ConcatenationSpacing">
+    <standard>
+        <![CDATA[
+        This standard is about the spacing of concat strings
+        ]]>
+    </standard>
+    <standard>
+        <![CDATA[
+        <em>String concatenation</em> operators must be surrounded by spaces
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: String concatenation operator surrounded by space">
+            <![CDATA[
+$content  = 'Hello '<em> </em>.<em> </em>'world!';
+             ]]>
+        </code>
+        <code title="Invalid: String concatenation operator is not surrounded by space">
+            <![CDATA[
+$content  = 'Hello '<em></em>.<em> </em>'world!';
+
+$content  = 'Hello '<em> </em>.<em></em>'world!';
+
+$content  = 'Hello '<em></em>.<em></em>'world!';
+             ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        <em>String concatenation</em> operators should be surrounded by only one space
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: String concatenation operator surrounded by one space on every side">
+        <![CDATA[
+$content  = 'Hello '<em> </em>.<em> </em>'world!';
+        ]]>
+        </code>
+        <code title="Invalid: String concatenation operator surrounded by multiple spaces">
+        <![CDATA[
+$content  = 'Hello '<em>  </em>.<em> </em>'world!';
+
+$content  = 'Hello '<em>  </em>.<em>         </em>'world!';
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

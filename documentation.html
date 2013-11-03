@@ -73,6 +73,7 @@
   <h2>Table of Contents</h2>
   <ul class="toc">
    <li><a href="#Switch-Declaration">Switch Declaration</a></li>
+   <li><a href="#ConcatenationSpacing">ConcatenationSpacing</a></li>
   </ul>
   <a name="Switch-Declaration" />
   <h2>Switch Declaration</h2>
@@ -231,6 +232,31 @@
     <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight"></span></br>}</td>
    </tr>
   </table>
-  <div class="tag-line">Documentation generated on Sun, 03 Nov 2013 15:05:51 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
+  <a name="ConcatenationSpacing" />
+  <h2>ConcatenationSpacing</h2>
+  <p class="text">This standard is about the spacing of concat strings</p>
+  <p class="text"><em>String concatenation</em> operators must be surrounded by spaces</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: String concatenation operator surrounded by space</td>
+    <td class="code-comparison-title">Invalid: String concatenation operator is not surrounded by space</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</td>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight"></span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight"></span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight"></span>.<span class="code-comparison-highlight"></span>'world!';</td>
+   </tr>
+  </table>
+  <p class="text"><em>String concatenation</em> operators should be surrounded by only one space</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: String concatenation operator surrounded by one space on every side</td>
+    <td class="code-comparison-title">Invalid: String concatenation operator surrounded by multiple spaces</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</td>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'world!';</td>
+   </tr>
+  </table>
+  <div class="tag-line">Documentation generated on Sun, 03 Nov 2013 23:19:45 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
  </body>
 </html>
