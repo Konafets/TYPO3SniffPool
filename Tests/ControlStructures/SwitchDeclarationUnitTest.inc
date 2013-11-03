@@ -3,7 +3,7 @@
 // Valid SWITCH statement.
 switch ($something) {
 	case '1':
-		$case = '1';
+	$case = '1';
 		$content .= $this->extendedUse();
 		break;
 	case '2':
@@ -13,7 +13,7 @@ switch ($something) {
 		$case = '5';
 		break;
 	case '4':
-		$case = '4';
+			$case = '4';
 		break;
 	default:
 		$case = null;
@@ -26,7 +26,7 @@ switch ($something) {
 		return '1';
 case '2':
 	$case = '2';
-	// Fall through
+	break;
 	case '3':
 		$case = '5';
 	break;
@@ -83,7 +83,7 @@ switch ($something) {
 		$case = null;
 }
 
-// Valid SWITCH statement.
+// Default statement is not the last one in the switch
 switch ($something) {
 	case '1':
 		$case = '1';
@@ -100,5 +100,42 @@ switch ($something) {
 	case '4':
 		$case = '4';
 		break;
+}
+
+// First case statement passes control directly to second case statement
+switch ($something) {
+	case '1':
+	case '2':
+		// Fall through
+	case '3':
+		$case = '5';
+		break;
+	case '4':
+		$case = '4';
+		break;
+	default:
+		$case = null;
+}
+
+// Blank line before the break statement
+// Blank line after default statement
+switch ($something) {
+	case '1':
+		$case = '1';
+		$content .= $this->extendedUse();
+
+		break;
+	case '2':
+		$case = '2';
+		break;
+	case '3':
+		$case = '5';
+		break;
+	case '4':
+
+		$case = '4';
+		break;
+	default:
+		$case = null;
 }
 ?>

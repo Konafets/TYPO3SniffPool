@@ -47,7 +47,10 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
     public function getErrorList()
     {
         return array(
+                6 => 1,
+                16 => 1,
                 27 => 1,
+                29 => 1,
                 32 => 1,
                 33 => 1,
                 35 => 1,
@@ -57,6 +60,7 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
                 73 => 1,
                 78 => 1,
                 98 => 1,
+                107 => 1,
                );
 
     }//end getErrorList()
@@ -72,7 +76,10 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
      */
     public function getWarningList()
     {
-        return array();
+        return array(
+                127 => 1,
+                134 => 1
+        );
 
     }//end getWarningList()
 

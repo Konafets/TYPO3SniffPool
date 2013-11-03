@@ -6,7 +6,42 @@
     </standard>
     <standard>
         <![CDATA[
-        <em>Case</em> statements are indented with a single indent (tab) inside the <em>switch</em> statement.
+        The keywords <em>Switch</em>, <em>Case</em> and <em>Default</em> should be lowercase
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Lowercase keywords">
+            <![CDATA[
+<em>switch</em> ($something) {
+    <em>case</em> '1':
+        $case = '1';
+        break;
+    <em>case</em> '2':
+        $case = '3';
+        break;
+    <em>default:</em>
+        $case = null;
+}
+             ]]>
+        </code>
+        <code title="Invalid: Keywords begins with a uppercase letter or are complete uppercase">
+            <![CDATA[
+<em>Switch</em> ($something) {
+    <em>CASE</em> '1':
+        $case = '1';
+        break;
+    <em>CASE</em> '2':
+        $case = '3';
+        break;
+    <em>Default:</em>
+        $case = null;
+}
+             ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        <em>Case</em> and <em>Default</em> statements are indented with a single indent (tab) inside the <em>Switch</em> statement.
         ]]>
     </standard>
     <code_comparison>
@@ -39,36 +74,22 @@ switch ($something) {
     </code_comparison>
     <standard>
         <![CDATA[
-        The code inside the <em>case</em> statements is further indented with a single (tab) indent.
+        <em>Case</em> keyword should be followed by a single space.
         ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: The code is indent one more tab then case statement.">
+        <code title="Valid: Case statement is followed by a single space">
         <![CDATA[
 switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab][tab]</em>$case = '1';
+    case<em> </em>'1':
 ...
 }
         ]]>
         </code>
-        <code title="Invalid: The code is indent with spaces or with only one tab.">
+        <code title="Invalid: No space after Case statement">
         <![CDATA[
 switch ($something) {
-<em>[tab]</em>case '1':
-<em>[space][space]</em>$case = '1';
-...
-}
-
-switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab]</em>$case = '1';
-...
-}
-
-switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab][tab][tab]</em>$case = '1';
+    case<em></em>'1':
 ...
 }
         ]]>
@@ -76,33 +97,22 @@ switch ($something) {
     </code_comparison>
     <standard>
         <![CDATA[
-        The <em>break</em> statement is aligned with the code.
+        There should be no space before the colon.
         ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: The break statement is aligned to the code.">
+        <code title="Valid: No space before the colon">
         <![CDATA[
 switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab][tab]</em>$case = '1';
-<em>[tab][tab]</em>break;
+    case '1'<em></em>:
 ...
 }
         ]]>
         </code>
-        <code title="Invalid: The break statement is not aligned with the code.">
+        <code title="Invalid: Space before the colon">
         <![CDATA[
 switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab][tab]</em>$case = '1';
-<em>[tab]</em>break;
-...
-}
-
-switch ($something) {
-<em>[tab]</em>case '1':
-<em>[tab][tab]</em>$case = '1';
-<em>[tab][tab][tab]</em>break;
+    case '1'<em> </em>:
 ...
 }
         ]]>
@@ -110,35 +120,48 @@ switch ($something) {
     </code_comparison>
     <standard>
         <![CDATA[
-        Only one <em>break</em> statement is allowed per <em>case</em>.
+        If one <em>Case</em> block has to pass control into another <em>Case</em> block without having a <em>Break</em>, there must be a comment about it in the code.
         ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: Only one break statement per case">
+        <code title="Valid: The fall-through is explained with a comment">
         <![CDATA[
 switch ($something) {
     case '1':
         $case = '1';
-        <em>break;</em>
-...
+        break;
+    case '2':
+        $case = '3';
+        <em>// Fall through the next case on purpose</em>
+    case '3':
+        $case = '3';
+        break;
+    default:
+        $case = null;
 }
         ]]>
         </code>
-        <code title="Invalid: Two case statements per case">
+        <code title="Invalid: No comment at the fall-through">
         <![CDATA[
 switch ($something) {
     case '1':
         $case = '1';
-        <em>break;
-        break;</em>
-...
+        break;
+    case '2':
+        $case = '3';
+        <em></em>
+    case '3':
+        $case = '3';
+        break;
+    default:
+        $case = null;
 }
         ]]>
         </code>
     </code_comparison>
     <standard>
         <![CDATA[
-        The <em>default</em> statement must be the last in the <em>switch</em> and must not have a <em>break</em> statement.
+        The <em>Default</em> statement must be the last in the <em>Switch</em> and must not have a <em>Break</em> statement.
         ]]>
     </standard>
     <code_comparison>
@@ -179,41 +202,247 @@ switch ($something) {
     </code_comparison>
     <standard>
         <![CDATA[
-        If one <em>case</em> block has to pass control into another <em>case</em> block without having a <em>break</em>, there must be a comment about it in the code.
+        The code inside the <em>Case</em> statements is further indented with a single (tab) indent.
         ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: The fall-through is explained with a comment">
+        <code title="Valid: The code is indent one more tab then case statement.">
+        <![CDATA[
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab][tab]</em>$case = '1';
+...
+}
+        ]]>
+        </code>
+        <code title="Invalid: The code is indent with spaces or with only one tab.">
+        <![CDATA[
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[space][space]</em>$case = '1';
+...
+}
+
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab]</em>$case = '1';
+...
+}
+
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab][tab][tab]</em>$case = '1';
+...
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        The <em>Break</em> statement is aligned with the code.
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: The break statement is aligned to the code.">
+        <![CDATA[
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab][tab]</em>$case = '1';
+<em>[tab][tab]</em>break;
+...
+}
+        ]]>
+        </code>
+        <code title="Invalid: The break statement is not aligned with the code.">
+        <![CDATA[
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab][tab]</em>$case = '1';
+<em>[tab]</em>break;
+...
+}
+
+switch ($something) {
+<em>[tab]</em>case '1':
+<em>[tab][tab]</em>$case = '1';
+<em>[tab][tab][tab]</em>break;
+...
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        There should be no blank lines before the <em>Break</em> statement
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No blank line before the break statement">
         <![CDATA[
 switch ($something) {
     case '1':
-        $case = '1';
-        break;
-    case '2':
-        $case = '3';
-        <em>// Fall through the next case on purpose</em>
-    case '3':
-        $case = '3';
+        $case = '1';<em></em>
         break;
     default:
         $case = null;
 }
         ]]>
         </code>
-        <code title="Invalid: No comment at the fall-through">
+        <code title="Invalid: Blank line before the break statement">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
+<em>                    </em>
+        break;
+    default:
+        $case = null;
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        Only one <em>Break</em> statement is allowed per <em>Case</em>.
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Only one break statement per case">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
+        <em>break;</em>
+...
+}
+        ]]>
+        </code>
+        <code title="Invalid: Two case statements per case">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
+        <em>break;
+        break;</em>
+...
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        There should be no blank lines after the <em>Case</em> statement
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No blank line after the case statement">
+        <![CDATA[
+switch ($something) {
+    case '1':<em></em>
+        $case = '1';
+        break;
+    default:
+        $case = null;
+}
+        ]]>
+        </code>
+        <code title="Invalid: Blank line after the case statement">
+        <![CDATA[
+switch ($something) {
+    case '1':
+<em>                    </em>
+        $case = '1';
+        break;
+    default:
+        $case = null;
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        All <em>Switch</em> statements must contain a <em>Default</em> case
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Switch with a default case">
         <![CDATA[
 switch ($something) {
     case '1':
         $case = '1';
         break;
-    case '2':
-        $case = '3';
-        <em></em>
-    case '3':
-        $case = '3';
+    <em>default:
+        $case = null;
+</em>
+}
+        ]]>
+        </code>
+        <code title="Invalid: Switch without a default case">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
+        break;
+<em></em>
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        Closing brace of the <em>Switch</em> statement must aligned with the <em>Switch</em> keyword
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Closing brace aligned with the switch keyword">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
         break;
     default:
         $case = null;
+<em>}</em>
+        ]]>
+        </code>
+        <code title="Invalid: Closing brace not aligned with the switch keyword">
+        <![CDATA[
+switch ($something) {
+    case '1':
+        $case = '1';
+        break;
+    default:
+        $case = null;
+<em>    }</em>
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+        <![CDATA[
+        <em>Switch</em> statement must contain at least one <em>Case</em> statement
+        ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Switch contains at least one case statement">
+        <![CDATA[
+switch ($something) {
+<em>    case '1':
+        $case = '1';
+        break;</em>
+    default:
+        $case = null;
+}
+
+switch ($something) {
+<em>    default:
+        $case = null;</em>
+}
+        ]]>
+        </code>
+        <code title="Invalid: Switch contains not case statement">
+        <![CDATA[
+switch ($something) {
+<em></em>
 }
         ]]>
         </code>
