@@ -69,8 +69,8 @@ class TYPO3SniffPool_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_Cod
 
         }
 
-        if (($prevToken['code'] === T_WHITESPACE && stristr($prevToken['content'], '  ') !== FALSE)
-            || ($nextToken['code'] === T_WHITESPACE && stristr($nextToken['content'], '  ') !== FALSE)
+        if (($prevToken['code'] === T_WHITESPACE && stristr($prevToken['content'], '  ') !== false)
+            || ($nextToken['code'] === T_WHITESPACE && stristr($nextToken['content'], '  ') !== false)
         ) {
             $error = 'Concat operator should be surrounded by just one space';
             $phpcsFile->addWarning($error, $stackPtr, 'OnlyOneSpaceAroundConcat');

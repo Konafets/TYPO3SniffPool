@@ -223,8 +223,8 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                                 break;
                             }
                             if (($tokens[$nextCase]['column'] + 1) !== ($tokens[$i]['column'])) {
-                               $error = 'The code inside the case statemens is further indented with a single tab';
-                               $phpcsFile->addError($error, $i, 'CodeNotCorrectlyAligned');
+                                $error = 'The code inside the case statemens is further indented with a single tab';
+                                $phpcsFile->addError($error, $i, 'CodeNotCorrectlyAligned');
                             }
                             break;
                         }
