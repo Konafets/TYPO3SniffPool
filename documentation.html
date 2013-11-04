@@ -74,6 +74,7 @@
   <ul class="toc">
    <li><a href="#Switch-Declaration">Switch Declaration</a></li>
    <li><a href="#ConcatenationSpacing">ConcatenationSpacing</a></li>
+   <li><a href="#Closing-Brace-Indentation">Closing Brace Indentation</a></li>
   </ul>
   <a name="Switch-Declaration" />
   <h2>Switch Declaration</h2>
@@ -257,6 +258,31 @@
     <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'world!';</td>
    </tr>
   </table>
-  <div class="tag-line">Documentation generated on Sun, 03 Nov 2013 23:19:45 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
+  <a name="Closing-Brace-Indentation" />
+  <h2>Closing Brace Indentation</h2>
+  <p class="text">This checks the indention of the closing brace of a scope</p>
+  <p class="text">The closing curly brace must start on a new line.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The closing curly brace starts on a new line.</td>
+    <td class="code-comparison-title">Invalid: The closing curly brace doesn't starts on a new line.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br><span class="code-comparison-highlight">}</span></br></br>function&nbsp;test2()&nbsp;{</br><span class="code-comparison-highlight">}</span></td>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;<span class="code-comparison-highlight">}</span></br></br>function&nbsp;test2()&nbsp;{<span class="code-comparison-highlight">}</span></td>
+   </tr>
+  </table>
+  <p class="text">Closing braces should be indented at the same level as the beginning of the scope.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Consistent indentation level for scope.</td>
+    <td class="code-comparison-title">Invalid: The ending brace is indented further than the if statement.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br>}</td>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>}</td>
+   </tr>
+  </table>
+  <div class="tag-line">Documentation generated on Mon, 04 Nov 2013 16:05:54 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
  </body>
 </html>
