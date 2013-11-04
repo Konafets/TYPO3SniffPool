@@ -73,6 +73,7 @@
   <h2>Table of Contents</h2>
   <ul class="toc">
    <li><a href="#Switch-Declaration">Switch Declaration</a></li>
+   <li><a href="#Ternary-Conditional-Operator">Ternary Conditional Operator</a></li>
    <li><a href="#ConcatenationSpacing">ConcatenationSpacing</a></li>
    <li><a href="#Closing-Brace-Indentation">Closing Brace Indentation</a></li>
   </ul>
@@ -233,6 +234,20 @@
     <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight"></span></br>}</td>
    </tr>
   </table>
+  <a name="Ternary-Conditional-Operator" />
+  <h2>Ternary Conditional Operator</h2>
+  <p class="text">This checks the correct usage of ternary conditional operators</p>
+  <p class="text">The ternary conditional operator ? : must be used only, if it has exactly two outcomes.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The ternary conditional operator is not nested.</td>
+    <td class="code-comparison-title">Invalid: The ternary conditional operator is nested.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$result&nbsp;=&nbsp;($useComma&nbsp;?&nbsp;','&nbsp;:&nbsp;'.');</td>
+    <td class="code-comparison-code">$result&nbsp;=&nbsp;($useComma&nbsp;?&nbsp;','&nbsp;:&nbsp;<span class="code-comparison-highlight">$useDot&nbsp;?&nbsp;'.'&nbsp;:&nbsp;';'</span>);</td>
+   </tr>
+  </table>
   <a name="ConcatenationSpacing" />
   <h2>ConcatenationSpacing</h2>
   <p class="text">This standard is about the spacing of concat strings</p>
@@ -283,6 +298,6 @@
     <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>}</td>
    </tr>
   </table>
-  <div class="tag-line">Documentation generated on Mon, 04 Nov 2013 16:05:54 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
+  <div class="tag-line">Documentation generated on Mon, 04 Nov 2013 18:48:15 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
  </body>
 </html>

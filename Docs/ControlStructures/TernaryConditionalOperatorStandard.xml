@@ -1,0 +1,24 @@
+<documentation title="Ternary Conditional Operator">
+    <standard>
+    <![CDATA[
+    This checks the correct usage of ternary conditional operators
+    ]]>
+    </standard>
+    <standard>
+    <![CDATA[
+    The ternary conditional operator ? : must be used only, if it has exactly two outcomes.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: The ternary conditional operator is not nested.">
+        <![CDATA[
+$result = ($useComma ? ',' : '.');
+        ]]>
+        </code>
+        <code title="Invalid: The ternary conditional operator is nested.">
+        <![CDATA[
+$result = ($useComma ? ',' : <em>$useDot ? '.' : ';'</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
