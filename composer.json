@@ -20,7 +20,8 @@
 
 	"require": {
 		"php": ">=5.2.1",
-		"squizlabs/php_codesniffer": "1.*"
+		"squizlabs/php_codesniffer": "1.*",
+		"simplyadmire/composer-plugins": "*"
 	},
 
 	"suggest": {
