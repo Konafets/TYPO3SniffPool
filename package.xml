@@ -27,31 +27,58 @@ Additionally you must install the specific pear package for your preferred Codin
   <email>laura.thewalt@wmdb.de</email>
   <active>no</active>
  </developer>
- <date>2013-05-04</date>
- <time>17:30:02</time>
+ <date>2013-11-04</date>
+ <time>20:27:08</time>
  <version>
-  <release>0.0.6</release>
-  <api>0.0.6</api>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>alpha</release>
+  <api>alpha</api>
  </stability>
  <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
  <notes>
-- #9544: [FEATURE] Make UTF-8-Sniff-Error-Message configurable
-- #41255: [FEATURE] Add composer support
-- #41339: [TASK] Remove the sniff for checking indention of inline comments
-- #42019: [TASK] Replace &quot;TYPO3.Files.OneClassPerFile&quot; with &quot;Generic.Files.OneClassPerFile&quot;
-- #42020: [TASK] Replace &quot;TYPO3.Files.OneInterfacePerFile&quot; with &quot;Generic.Files.OneInterfacePerFile&quot;
-- #42022: [TASK] Replace &quot;TYPO3.PHP.ClosingPHPTag&quot; with &quot;Generic.PHP.ClosingPHPTag&quot;
-- #42023: [TASK] Replace &quot;TYPO3.PHP.CharacterBeforePHPOpeningTag&quot; with &quot;Generic.PHP.CharacterBeforePHPOpeningTag&quot;
-- #42312: [TASK] Deactivate and remove &quot;TYPO3.Files.EncodingUtf8&quot;-Sniff in both standards
-- #42975: [TASK] Create PHP_CodeSniffer custom installer for Composer
-- #42976: [TASK] Split repositories and move to github
+- [FEATURE] #12058 Detect usage of $_ in foreach loops
+- [FEATURE] #10130 Add check for extra brackets in do loops
+- [BUGFIX] #49830 PHP Notice: Undefined index: scope_opener
+- [TASK] #50199 Remove TYPO3SniffPool.Files.LowercasedFilename from standard
+- [TASK] #50702 Remove TYPO3SniffPool.Files.LowercasedFilename completly
+- [FEATURE] Add autoload functionality
+- [FEATURE] Improve the Composer handling. Make usage of the new plugin system to install the standard
+- [TASK] #52929: Remove sniff TYPO3SniffPool.PHP.CharacterAfterPHPClosingTag from standard
+- [BUGFIX] 41995: Take care of Incrementing/Decrementing Operators
+- [BUGFIX] #42288: Underscores are allowed in function name
+- [FEATURE] #10127: Last part of a switch statement is the default part
+- [FEATURE] #10126: switch-case - comment if one case have no break statement
+- [FEATURE] #10125: The code inside the case statements is further indented with a single indent.
+- [FEATURE] #10124: Case statements are indented with a single indent (tab) inside the switch statement
+- [TASK] #41156: ConcatenationSpacingSniff could check for too many spaces
+- [FEATURE] #10133: Closing braces of a scope have to be on his own line and aligned correctly
+- [FEATURE] #10123: Dont use nested &quot;ternary conditional&quot; operators
  </notes>
  <contents>
   <dir baseinstalldir="PHP/CodeSniffer/Standards/TYPO3SniffPool" name="/">
+   <dir name="Docs">
+    <dir name="ControlStructures">
+     <file name="SwitchDeclarationStandard.xml" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="TernaryConditionalOperatorStandard.xml" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /Docs/ControlStructures -->
+    <dir name="Strings">
+     <file name="ConcatenationSpacingStandard.xml" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /Docs/Strings -->
+    <dir name="WhiteSpace">
+     <file name="ScopeClosingBraceStandard.xml" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /Docs/WhiteSpace -->
+   </dir> <!-- /Docs -->
    <dir name="Sniffs">
     <dir name="Classes">
      <file name="LowercaseClassKeywordsSniff.php" role="php">
@@ -88,6 +115,18 @@ Additionally you must install the specific pear package for your preferred Codin
      <file name="DisallowElseIfConstructSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="ExtraBracesByAssignmentInLoopSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SwitchDeclarationSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="TernaryConditionalOperatorSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnusedVariableInForEachLoopSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="ValidBreakStatementsInSwitchesSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -101,10 +140,13 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Sniffs/Debug -->
     <dir name="Files">
-     <file name="IncludingFileSniff.php" role="php">
+     <file name="FileExtensionSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
-     <file name="LowercasedFilenameSniff.php" role="php">
+     <file name="FilenameSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="IncludingFileSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /Sniffs/Files -->
@@ -145,6 +187,9 @@ Additionally you must install the specific pear package for your preferred Codin
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="DisallowSpaceIndentSniff.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ScopeClosingBraceSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="WhitespaceAfterCommentSignsSniff.php" role="php">
@@ -218,6 +263,30 @@ Additionally you must install the specific pear package for your preferred Codin
      <file name="DisallowElseIfConstructUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="ExtraBracesByAssignmentInLoopUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ExtraBracesByAssignmentInLoopUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SwitchDeclarationUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="SwitchDeclarationUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="TernaryConditionalOperatorUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="TernaryConditionalOperatorUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnusedVariableInForEachLoopUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="UnusedVariableInForEachLoopUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="ValidBreakStatementsInSwitchesUnitTest.inc" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -240,16 +309,28 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Tests/Debug -->
     <dir name="Files">
+     <file name="FileExtensionUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FileExtensionUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FilenameUnitTest.1.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FilenameUnitTest.2.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FilenameUnitTest.3.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="FilenameUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="IncludingFileUnitTest.inc" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
      <file name="IncludingFileUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="LowercasedFilenameUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="LowercasedFilenameUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /Tests/Files -->
@@ -325,6 +406,12 @@ Additionally you must install the specific pear package for your preferred Codin
      <file name="DisallowSpaceIndentUnitTest.php" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
+     <file name="ScopeClosingBraceUnitTest.inc" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="ScopeClosingBraceUnitTest.php" role="test">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="WhitespaceAfterCommentSignsUnitTest.inc" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -333,6 +420,9 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Tests/WhiteSpace -->
    </dir> <!-- /Tests -->
+   <file name="documentation.html" role="doc">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
    <file name="README.rst" role="php">
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
@@ -352,12 +442,43 @@ Additionally you must install the specific pear package for your preferred Codin
    <package>
     <name>PHP_CodeSniffer</name>
     <channel>pear.php.net</channel>
-    <min>1.4.5</min>
+    <min>1.4.7</min>
    </package>
   </required>
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2013-11-04</date>
+   <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
+   <notes>
+- [FEATURE] #12058 Detect usage of $_ in foreach loops
+- [FEATURE] #10130 Add check for extra brackets in do loops
+- [BUGFIX] #49830 PHP Notice: Undefined index: scope_opener
+- [TASK] #50199 Remove TYPO3SniffPool.Files.LowercasedFilename from standard
+- [TASK] #50702 Remove TYPO3SniffPool.Files.LowercasedFilename completly
+- [FEATURE] Add autoload functionality
+- [FEATURE] Improve the Composer handling. Make usage of the new plugin system to install the standard
+- [TASK] #52929: Remove sniff TYPO3SniffPool.PHP.CharacterAfterPHPClosingTag from standard
+- [BUGFIX] 41995: Take care of Incrementing/Decrementing Operators
+- [BUGFIX] #42288: Underscores are allowed in function name
+- [FEATURE] #10127: Last part of a switch statement is the default part
+- [FEATURE] #10126: switch-case - comment if one case have no break statement
+- [FEATURE] #10125: The code inside the case statements is further indented with a single indent.
+- [FEATURE] #10124: Case statements are indented with a single indent (tab) inside the switch statement
+- [TASK] #41156: ConcatenationSpacingSniff could check for too many spaces
+- [FEATURE] #10133: Closing braces of a scope have to be on his own line and aligned correctly
+- [FEATURE] #10123: Dont use nested &quot;ternary conditional&quot; operators
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.0.6</release>
@@ -394,7 +515,7 @@ Additionally you must install the specific pear package for your preferred Codin
    <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
    <notes>
 - #41260: [BUGFIX] Standards was installed in wrong dir
-  </notes>
+   </notes>
   </release>
   <release>
    <version>

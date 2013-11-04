@@ -58,13 +58,23 @@ class TYPO3SniffPool_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_Cod
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE
-            || $tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE
+        $prevToken = $tokens[($stackPtr - 1)];
+        $nextToken = $tokens[($stackPtr + 1)];
+
+        if ($prevToken['code'] !== T_WHITESPACE
+            || $nextToken['code'] !== T_WHITESPACE
         ) {
-            $message = 'Concat operator must be surrounded by spaces';
-            $phpcsFile->addError($message, $stackPtr, 'NoSpaceAroundConcat');
+            $error = 'Concat operator must be surrounded by spaces. ';
+            $phpcsFile->addError($error, $stackPtr, 'NoSpaceAroundConcat');
+
         }
 
+        if (($prevToken['code'] === T_WHITESPACE && stristr($prevToken['content'], '  ') !== false)
+            || ($nextToken['code'] === T_WHITESPACE && stristr($nextToken['content'], '  ') !== false)
+        ) {
+            $error = 'Concat operator should be surrounded by just one space';
+            $phpcsFile->addWarning($error, $stackPtr, 'OnlyOneSpaceAroundConcat');
+        }
     }//end process()
 
 

@@ -26,4 +26,6 @@ ABSTRACT class lowercaseClassKeywordsAbstract {
 FINAL class lowercaseClassKeywordsFinal {
 	
 }
+
+Trait MyTrait {}
 ?>

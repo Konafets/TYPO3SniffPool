@@ -1,35 +1,32 @@
 <?php
 /**
- * Unit test class for the ConcatenationSpacing sniff.
+ * Unit test class for the FileExtension sniff.
  *
  * PHP version 5
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @category  Files
+ * @package   TYPO3SniffPool
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright 2013 Stefano Kowalke
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 
 /**
- * Unit test class for the ConcatenationSpacing sniff.
+ * Unit test class for the FileExtension sniff.
  *
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
+ * @category  Files
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2013 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_Files_FileExtensionUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -42,14 +39,11 @@ class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends Abstract
     public function getErrorList()
     {
         return array(
-                3 => 5,
-                4 => 0,
-                5 => 1,
-                6 => 1,
-                7 => 1,
+                1 => 1,
                );
 
-    }
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -61,11 +55,11 @@ class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends Abstract
      */
     public function getWarningList()
     {
-        return array(
-                8 => 1,
-                9 => 1,
-        );
+        return array();
 
-    }
-}
+    }//end getWarningList()
+
+
+}//end class
+
 ?>

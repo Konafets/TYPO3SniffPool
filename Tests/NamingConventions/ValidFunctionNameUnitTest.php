@@ -55,6 +55,7 @@ class TYPO3SniffPool_Tests_NamingConventions_ValidFunctionNameUnitTest extends A
                     120 => 0,
                     127 => 1,
                     198 => 1,
+                    200 => 0,
                 );
     }
 

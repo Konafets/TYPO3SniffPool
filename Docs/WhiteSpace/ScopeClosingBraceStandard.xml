@@ -1,0 +1,53 @@
+<documentation title="Closing Brace Indentation">
+    <standard>
+    <![CDATA[
+    This checks the indention of the closing brace of a scope
+    ]]>
+    </standard>
+    <standard>
+    <![CDATA[
+    The closing curly brace must start on a new line.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: The closing curly brace starts on a new line.">
+        <![CDATA[
+if ($test) {
+    $var = 1;
+<em>}</em>
+
+function test2() {
+<em>}</em>
+        ]]>
+        </code>
+        <code title="Invalid: The closing curly brace doesn't starts on a new line.">
+        <![CDATA[
+if ($test) {
+    $var = 1;<em>}</em>
+
+function test2() {<em>}</em>
+        ]]>
+        </code>
+    </code_comparison>
+    <standard>
+    <![CDATA[
+    Closing braces should be indented at the same level as the beginning of the scope.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: Consistent indentation level for scope.">
+        <![CDATA[
+if ($test) {
+    $var = 1;
+}
+        ]]>
+        </code>
+        <code title="Invalid: The ending brace is indented further than the if statement.">
+        <![CDATA[
+if ($test) {
+    $var = 1;
+<em>    </em>}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

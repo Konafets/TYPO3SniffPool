@@ -1,0 +1,303 @@
+<html>
+ <head>
+  <title>TYPO3SniffPool Coding Standards</title>
+  <style>
+                    body {
+                        background-color: #FFFFFF;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                        color: #000000;
+                    }
+
+                    h1 {
+                        color: #666666;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-top: 0px;
+                        background-color: #E6E7E8;
+                        padding: 20px;
+                        border: 1px solid #BBBBBB;
+                    }
+
+                    h2 {
+                        color: #00A5E3;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin-top: 50px;
+                    }
+
+                    .code-comparison {
+                        width: 100%;
+                    }
+
+                    .code-comparison td {
+                        border: 1px solid #CCCCCC;
+                    }
+
+                    .code-comparison-title, .code-comparison-code {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                        color: #000000;
+                        vertical-align: top;
+                        padding: 4px;
+                        width: 50%;
+                        background-color: #F1F1F1;
+                        line-height: 15px;
+                    }
+
+                    .code-comparison-code {
+                        font-family: Courier;
+                        background-color: #F9F9F9;
+                    }
+
+                    .code-comparison-highlight {
+                        background-color: #DDF1F7;
+                        border: 1px solid #00A5E3;
+                        line-height: 15px;
+                    }
+
+                    .tag-line {
+                        text-align: center;
+                        width: 100%;
+                        margin-top: 30px;
+                        font-size: 12px;
+                    }
+
+                    .tag-line a {
+                        color: #000000;
+                    }
+                </style>
+ </head>
+ <body>
+  <h1>TYPO3SniffPool Coding Standards</h1>
+  <h2>Table of Contents</h2>
+  <ul class="toc">
+   <li><a href="#Switch-Declaration">Switch Declaration</a></li>
+   <li><a href="#Ternary-Conditional-Operator">Ternary Conditional Operator</a></li>
+   <li><a href="#ConcatenationSpacing">ConcatenationSpacing</a></li>
+   <li><a href="#Closing-Brace-Indentation">Closing Brace Indentation</a></li>
+  </ul>
+  <a name="Switch-Declaration" />
+  <h2>Switch Declaration</h2>
+  <p class="text">This standard covers all switch declarations.</p>
+  <p class="text">The keywords <em>Switch</em>, <em>Case</em> and <em>Default</em> should be lowercase</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Lowercase keywords</td>
+    <td class="code-comparison-title">Invalid: Keywords begins with a uppercase letter or are complete uppercase</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code"><span class="code-comparison-highlight">switch</span>&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">case</span>&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">case</span>&nbsp;'2':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">default:</span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+    <td class="code-comparison-code"><span class="code-comparison-highlight">Switch</span>&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">CASE</span>&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">CASE</span>&nbsp;'2':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">Default:</span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+   </tr>
+  </table>
+  <p class="text"><em>Case</em> and <em>Default</em> statements are indented with a single indent (tab) inside the <em>Switch</em> statement.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Case statement is indent with one tab</td>
+    <td class="code-comparison-title">Invalid: Case statement is indent with one space. Case statement is not indent at all or with two tabs.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[space]</span>case&nbsp;'1':</br>...</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight"></span>case&nbsp;'1':</br>...</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab][tab]</span>case&nbsp;'1':</br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text"><em>Case</em> keyword should be followed by a single space.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Case statement is followed by a single space</td>
+    <td class="code-comparison-title">Invalid: No space after Case statement</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case<span class="code-comparison-highlight">&nbsp;</span>'1':</br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case<span class="code-comparison-highlight"></span>'1':</br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text">There should be no space before the colon.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: No space before the colon</td>
+    <td class="code-comparison-title">Invalid: Space before the colon</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1'<span class="code-comparison-highlight"></span>:</br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1'<span class="code-comparison-highlight">&nbsp;</span>:</br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text">If one <em>Case</em> block has to pass control into another <em>Case</em> block without having a <em>Break</em>, there must be a comment about it in the code.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The fall-through is explained with a comment</td>
+    <td class="code-comparison-title">Invalid: No comment at the fall-through</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'2':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">//&nbsp;Fall&nbsp;through&nbsp;the&nbsp;next&nbsp;case&nbsp;on&nbsp;purpose</span></br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'3':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'2':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight"></span></br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'3':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'3';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+   </tr>
+  </table>
+  <p class="text">The <em>Default</em> statement must be the last in the <em>Switch</em> and must not have a <em>Break</em> statement.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The default statement is the last in the switch and have no break statement.</td>
+    <td class="code-comparison-title">Invalid: Default statement is not the last element and it contains a break.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</span></br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'2':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'2';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>}</br></br>switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">break;</span></br>}</td>
+   </tr>
+  </table>
+  <p class="text">The code inside the <em>Case</em> statements is further indented with a single (tab) indent.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The code is indent one more tab then case statement.</td>
+    <td class="code-comparison-title">Invalid: The code is indent with spaces or with only one tab.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab][tab]</span>$case&nbsp;=&nbsp;'1';</br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[space][space]</span>$case&nbsp;=&nbsp;'1';</br>...</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab]</span>$case&nbsp;=&nbsp;'1';</br>...</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab][tab][tab]</span>$case&nbsp;=&nbsp;'1';</br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text">The <em>Break</em> statement is aligned with the code.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The break statement is aligned to the code.</td>
+    <td class="code-comparison-title">Invalid: The break statement is not aligned with the code.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab][tab]</span>$case&nbsp;=&nbsp;'1';</br><span class="code-comparison-highlight">[tab][tab]</span>break;</br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab][tab]</span>$case&nbsp;=&nbsp;'1';</br><span class="code-comparison-highlight">[tab]</span>break;</br>...</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">[tab]</span>case&nbsp;'1':</br><span class="code-comparison-highlight">[tab][tab]</span>$case&nbsp;=&nbsp;'1';</br><span class="code-comparison-highlight">[tab][tab][tab]</span>break;</br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text">There should be no blank lines before the <em>Break</em> statement</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: No blank line before the break statement</td>
+    <td class="code-comparison-title">Invalid: Blank line before the break statement</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';<span class="code-comparison-highlight"></span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+   </tr>
+  </table>
+  <p class="text">Only one <em>Break</em> statement is allowed per <em>Case</em>.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Only one break statement per case</td>
+    <td class="code-comparison-title">Invalid: Two case statements per case</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">break;</span></br>...</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">break;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></br>...</br>}</td>
+   </tr>
+  </table>
+  <p class="text">There should be no blank lines after the <em>Case</em> statement</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: No blank line after the case statement</td>
+    <td class="code-comparison-title">Invalid: Blank line after the case statement</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':<span class="code-comparison-highlight"></span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</td>
+   </tr>
+  </table>
+  <p class="text">All <em>Switch</em> statements must contain a <em>Default</em> case</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Switch with a default case</td>
+    <td class="code-comparison-title">Invalid: Switch without a default case</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comparison-highlight">default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br></span></br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br><span class="code-comparison-highlight"></span></br>}</td>
+   </tr>
+  </table>
+  <p class="text">Closing brace of the <em>Switch</em> statement must aligned with the <em>Switch</em> keyword</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Closing brace aligned with the switch keyword</td>
+    <td class="code-comparison-title">Invalid: Closing brace not aligned with the switch keyword</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br><span class="code-comparison-highlight">}</span></td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;}</span></td>
+   </tr>
+  </table>
+  <p class="text"><em>Switch</em> statement must contain at least one <em>Case</em> statement</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Switch contains at least one case statement</td>
+    <td class="code-comparison-title">Invalid: Switch contains not case statement</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'1':</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;'1';</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</span></br>&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</br>}</br></br>switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;default:</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$case&nbsp;=&nbsp;null;</span></br>}</td>
+    <td class="code-comparison-code">switch&nbsp;($something)&nbsp;{</br><span class="code-comparison-highlight"></span></br>}</td>
+   </tr>
+  </table>
+  <a name="Ternary-Conditional-Operator" />
+  <h2>Ternary Conditional Operator</h2>
+  <p class="text">This checks the correct usage of ternary conditional operators</p>
+  <p class="text">The ternary conditional operator ? : must be used only, if it has exactly two outcomes.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The ternary conditional operator is not nested.</td>
+    <td class="code-comparison-title">Invalid: The ternary conditional operator is nested.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$result&nbsp;=&nbsp;($useComma&nbsp;?&nbsp;','&nbsp;:&nbsp;'.');</td>
+    <td class="code-comparison-code">$result&nbsp;=&nbsp;($useComma&nbsp;?&nbsp;','&nbsp;:&nbsp;<span class="code-comparison-highlight">$useDot&nbsp;?&nbsp;'.'&nbsp;:&nbsp;';'</span>);</td>
+   </tr>
+  </table>
+  <a name="ConcatenationSpacing" />
+  <h2>ConcatenationSpacing</h2>
+  <p class="text">This standard is about the spacing of concat strings</p>
+  <p class="text"><em>String concatenation</em> operators must be surrounded by spaces</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: String concatenation operator surrounded by space</td>
+    <td class="code-comparison-title">Invalid: String concatenation operator is not surrounded by space</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</td>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight"></span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight"></span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight"></span>.<span class="code-comparison-highlight"></span>'world!';</td>
+   </tr>
+  </table>
+  <p class="text"><em>String concatenation</em> operators should be surrounded by only one space</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: String concatenation operator surrounded by one space on every side</td>
+    <td class="code-comparison-title">Invalid: String concatenation operator surrounded by multiple spaces</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</td>
+    <td class="code-comparison-code">$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;</span>'world!';</br></br>$content&nbsp;&nbsp;=&nbsp;'Hello&nbsp;'<span class="code-comparison-highlight">&nbsp;&nbsp;</span>.<span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'world!';</td>
+   </tr>
+  </table>
+  <a name="Closing-Brace-Indentation" />
+  <h2>Closing Brace Indentation</h2>
+  <p class="text">This checks the indention of the closing brace of a scope</p>
+  <p class="text">The closing curly brace must start on a new line.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: The closing curly brace starts on a new line.</td>
+    <td class="code-comparison-title">Invalid: The closing curly brace doesn't starts on a new line.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br><span class="code-comparison-highlight">}</span></br></br>function&nbsp;test2()&nbsp;{</br><span class="code-comparison-highlight">}</span></td>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;<span class="code-comparison-highlight">}</span></br></br>function&nbsp;test2()&nbsp;{<span class="code-comparison-highlight">}</span></td>
+   </tr>
+  </table>
+  <p class="text">Closing braces should be indented at the same level as the beginning of the scope.</p>
+  <table class="code-comparison">
+   <tr>
+    <td class="code-comparison-title">Valid: Consistent indentation level for scope.</td>
+    <td class="code-comparison-title">Invalid: The ending brace is indented further than the if statement.</td>
+   </tr>
+   <tr>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br>}</td>
+    <td class="code-comparison-code">if&nbsp;($test)&nbsp;{</br>&nbsp;&nbsp;&nbsp;&nbsp;$var&nbsp;=&nbsp;1;</br><span class="code-comparison-highlight">&nbsp;&nbsp;&nbsp;&nbsp;</span>}</td>
+   </tr>
+  </table>
+  <div class="tag-line">Documentation generated on Mon, 04 Nov 2013 18:48:15 +0100 by <a href="http://pear.php.net/package/PHP_CodeSniffer">PHP_CodeSniffer 1.4.6</a></div>
+ </body>
+</html>
