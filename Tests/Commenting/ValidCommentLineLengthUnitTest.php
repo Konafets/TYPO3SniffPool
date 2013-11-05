@@ -13,7 +13,7 @@
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * Unit test class for the ValidCommentLineLength sniff.
@@ -27,7 +27,7 @@
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Commenting_ValidCommentLineLengthUnitTest extends AbstractSniffUnitTest
 {

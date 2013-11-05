@@ -10,7 +10,7 @@
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * Checks that one whitespace is before and after an assignment, arithmethic and comparison token.
@@ -24,7 +24,7 @@
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSniff implements PHP_CodeSniffer_Sniff
 {

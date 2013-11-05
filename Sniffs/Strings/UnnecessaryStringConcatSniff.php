@@ -11,7 +11,7 @@
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff.
@@ -26,7 +26,7 @@
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_CodeSniffer_Sniff
 {
