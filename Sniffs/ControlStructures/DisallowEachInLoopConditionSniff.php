@@ -10,7 +10,7 @@
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * Checks that the PHP function "each()" is not used in loop conditions.
@@ -21,7 +21,7 @@
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff implements PHP_CodeSniffer_Sniff
 {

@@ -12,7 +12,7 @@
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
  * Unit test class for the DisallowMultiplePHPTags sniff.
@@ -28,7 +28,7 @@
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version   Release: @package_version@
- * @link      http://pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_PHP_DisallowMultiplePHPTagsUnitTest extends AbstractSniffUnitTest
 {
