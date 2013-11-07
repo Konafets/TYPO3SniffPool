@@ -54,6 +54,10 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
                       );
 
         $stackPtr = $phpcsFile->findNext($findTokens, ($stackPtr + 1));
+        // Check if we found a class
+        if (!$stackPtr) {
+            return;
+        }
         $classNameToken = $phpcsFile->findNext(T_STRING, $stackPtr);
         $className      = $tokens[$classNameToken]['content'];
         $fileName = explode('.', $phpcsFile->getFileName());
