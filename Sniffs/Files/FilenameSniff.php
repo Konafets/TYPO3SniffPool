@@ -54,8 +54,11 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
                       );
 
         $stackPtr = $phpcsFile->findNext($findTokens, ($stackPtr + 1));
-        // Check if we found a class
+
+        // Check if we hit a file without a class. Raise a warning and return
         if (!$stackPtr) {
+            $warning = 'Its recommended to use only PHP classes and avoid non-class files.';
+            $phpcsFile->addWarning($warning, 1, 'Non-ClassFileFound');
             return;
         }
         $classNameToken = $phpcsFile->findNext(T_STRING, $stackPtr);
