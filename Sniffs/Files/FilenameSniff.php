@@ -49,8 +49,7 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $findTokens = array(
                        T_CLASS,
-                       T_INTERFACE,
-                       T_CLOSE_TAG
+                       T_INTERFACE
                       );
 
         $stackPtr = $phpcsFile->findNext($findTokens, ($stackPtr + 1));
