@@ -49,25 +49,23 @@ class TYPO3SniffPool_Sniffs_Files_FilenameSniff implements PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $findTokens = array(
                        T_CLASS,
-                       T_INTERFACE,
-                       T_CLOSE_TAG
+                       T_INTERFACE
                       );
 
         $stackPtr = $phpcsFile->findNext($findTokens, ($stackPtr + 1));
-        // Check if we found a class
+
+        // Check if we hit a file without a class. Raise a warning and return
         if (!$stackPtr) {
+            $warning = 'Its recommended to use only PHP classes and avoid non-class files.';
+            $phpcsFile->addWarning($warning, 1, 'Non-ClassFileFound');
             return;
         }
         $classNameToken = $phpcsFile->findNext(T_STRING, $stackPtr);
         $className      = $tokens[$classNameToken]['content'];
-        $fileName = explode('.', $phpcsFile->getFileName());
-        $fileName = basename($fileName[0]);
-
-        // Check if we hit a file without a class. Raise a warning and return
-        if ($classNameToken === false) {
-            $warning = 'Its recommended to use only PHP classes and avoid non-class files.';
-            $phpcsFile->addWarning($warning, 1, 'Non-ClassFileFound');
-
+        $fullPath = basename($phpcsFile->getFileName());
+        $fileName = substr($fullPath, 0, strrpos($fullPath, '.'));
+        if ($fileName === '') {
+            // No filename probably means STDIN, so we can't do this check.
             return;
         }
 

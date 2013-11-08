@@ -27,8 +27,8 @@ Additionally you must install the specific pear package for your preferred Codin
   <email>laura.thewalt@wmdb.de</email>
   <active>no</active>
  </developer>
- <date>2013-11-04</date>
- <time>20:27:08</time>
+ <date>2013-11-08</date>
+ <time>18:26:28</time>
  <version>
   <release>1.0.0</release>
   <api>1.0.0</api>
@@ -74,6 +74,9 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Docs/Strings -->
     <dir name="WhiteSpace">
+     <file name="AssignmentArithmeticAndComparisonSpaceStandard.xml" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
      <file name="ScopeClosingBraceStandard.xml" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -159,9 +162,6 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Sniffs/NamingConventions -->
     <dir name="PHP">
-     <file name="CharacterAfterPHPClosingTagSniff.php" role="php">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
      <file name="DisallowMultiplePHPTagsSniff.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -349,12 +349,6 @@ Additionally you must install the specific pear package for your preferred Codin
      </file>
     </dir> <!-- /Tests/NamingConventions -->
     <dir name="PHP">
-     <file name="CharacterAfterPHPClosingTagUnitTest.inc" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
-     <file name="CharacterAfterPHPClosingTagUnitTest.php" role="test">
-      <tasks:replace from="@package_version@" to="version" type="package-info" />
-     </file>
      <file name="DisallowMultiplePHPTagsUnitTest.inc" role="test">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
@@ -457,7 +451,7 @@ Additionally you must install the specific pear package for your preferred Codin
     <release>alpha</release>
     <api>alpha</api>
    </stability>
-   <date>2013-11-04</date>
+   <date>2013-11-08</date>
    <license uri="http://www.gnu.org/licenses/gpl.html">GPL</license>
    <notes>
 - [FEATURE] #12058 Detect usage of $_ in foreach loops
