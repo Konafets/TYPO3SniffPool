@@ -181,4 +181,64 @@ $foo    =    1 %   2;
 $foo = (1 + 2) * (5  %   3);
 $foo    ^=   $bar;
 $foo = array('foo'    =>   'bar');
+
+// Prefix ++
+$foo = ++$i;
+$foo = ++ $i;
+
+// Postfix ++
+$foo = $i++;
+$foo = $i ++;
+
+// Prefix --
+$foo = --$i;
+$foo = -- $i;
+
+// Postfix --
+$foo = $i--;
+$foo = $i --;
+
+for($i = 0; $i < 10; $i++) {
+
+}
+
+for($i = 0; $i < 10; $i ++) {
+
+}
+
+for($i = 0; $i < 10; $i--) {
+
+}
+
+for($i = 0; $i < 10; $i --) {
+
+}
+
+for($i = 0; $i < 10; ++$i) {
+
+}
+
+for($i = 0; $i < 10; ++ $i) {
+
+}
+
+for($i = 0; $i < 10; --$i) {
+
+}
+
+for($i = 0; $i < 10; -- $i) {
+
+}
+
+$i++;
+$i ++;
+++$i;
+++ $i;
+$i--;
+$i --;
+--$i;
+-- $i;
+
+$precedenceForNotEquals = ($precedenceA < $precedenceB ? -1 : 1);
+$precedenceForNotEquals = ($precedenceA < $precedenceB ? 1 : -1);
 ?>

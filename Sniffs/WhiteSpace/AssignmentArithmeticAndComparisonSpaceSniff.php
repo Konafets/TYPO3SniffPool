@@ -66,11 +66,16 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
         // There is one instance where brackets aren't needed, which involves
         // the minus sign being used to assign a negative number to a variable.
         if ($tokens[$stackPtr]['code'] === T_MINUS) {
-            // Check to see if we are trying to return -n.
+            // Check to see if we are trying to return -n or if we are inside a ternary operator.
             $prev = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-            if ($tokens[$prev]['code'] === T_RETURN) {
+
+            if ($tokens[$prev]['code'] === T_RETURN
+                || $tokens[$prev]['code'] === T_INLINE_THEN
+                || $tokens[$prev]['code'] === T_INLINE_ELSE
+            ) {
                 return;
             }
+
             $number = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
             if ($tokens[$number]['code'] === T_LNUMBER || $tokens[$number]['code'] === T_DNUMBER) {
                 $previous = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
