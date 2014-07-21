@@ -162,15 +162,15 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
     {
         $expected = $tokens[($stackPtr - 1) ]['content'];
         switch (strtolower($mode)) {
-            case 'before':
-                $expected.= ' ' . $tokens[$stackPtr]['content'];
-                break;
-            case 'after':
+        case 'before':
+            $expected.= ' ' . $tokens[$stackPtr]['content'];
+            break;
+        case 'after':
                 $expected.= $tokens[$stackPtr]['content'] . ' ';
-                break;
-            case 'before-after':
-                $expected.= ' ' . $tokens[$stackPtr]['content'] . ' ';
-                break;
+            break;
+        case 'before-after':
+            $expected.= ' ' . $tokens[$stackPtr]['content'] . ' ';
+            break;
         }
         $expected.= $tokens[($stackPtr + 1) ]['content'];
         return $expected;
@@ -206,13 +206,13 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
     protected function manageStackPtrCounter($mode, $stackPtr)
     {
         switch (strtolower($mode)) {
-            case 'before':
-                $stackPtr--;
-                break;
-            case 'after':
-                $stackPtr++;
-                break;
-            default:
+        case 'before':
+            $stackPtr--;
+            break;
+        case 'after':
+            $stackPtr++;
+            break;
+        default:
         }
         return $stackPtr;
     }
