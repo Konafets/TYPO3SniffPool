@@ -153,10 +153,10 @@ $foo = $bar * - 1;
 $foo = $bar *-1;
 
 function foo($bar){
-	return -5;
+    return -5;
 }
 
-	// Multiple Whitespace section :)
+// Multiple Whitespace section :)
 $foo   = $bar;
 $foo  += $bar;
 $foo -=  $bar;
@@ -241,3 +241,4 @@ $i --;
 
 $precedenceForNotEquals = ($precedenceA < $precedenceB ? -1 : 1);
 $precedenceForNotEquals = ($precedenceA < $precedenceB ? 1 : -1);
+?>
