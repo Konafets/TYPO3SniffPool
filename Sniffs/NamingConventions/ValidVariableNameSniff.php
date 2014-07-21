@@ -159,9 +159,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
             $phpcsFile->addError($error, $stackPtr, 'VariableNameHasUnderscoresNotLowerCamelCased', $messageData);
 
         } elseif ($isLowerCamelCase === false) {
-            $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/e';
-            $replace = "ucfirst(strtolower('\\1'))";
-            $variableNameLowerCamelCased =  preg_replace($pattern, $replace, $variableName);
+            $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/';
+            $variableNameLowerCamelCased = preg_replace_callback(
+                $pattern, function ($m) {
+                    return ucfirst(strtolower($m[1]));
+                }, $variableName
+            );
 
             $messageData = array(ucfirst($scope), lcfirst($variableNameLowerCamelCased), $variableName);
             $error = '%svariablename must be lowerCamelCase; expect "$%s" but found "$%s"';

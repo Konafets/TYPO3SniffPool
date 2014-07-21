@@ -16,7 +16,7 @@ switch ($something) {
 			$case = '4';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 }
 
 // Alignment wrong.
@@ -34,7 +34,7 @@ case '4':
 	$case = '4';
 break;
 	default:
-		$case = null;
+		$case = NULL;
 }
 
 // Closing brace wrong.
@@ -43,7 +43,7 @@ switch ($something) {
 		$case = '1';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 	}
 
 // No default case
@@ -59,7 +59,7 @@ switch ($something) {
 		$case = '1';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 		break;
 }
 
@@ -80,7 +80,7 @@ switch ($something) {
 		$case = '4';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 }
 
 // Default statement is not the last one in the switch
@@ -96,7 +96,7 @@ switch ($something) {
 		$case = '5';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 	case '4':
 		$case = '4';
 		break;
@@ -114,7 +114,7 @@ switch ($something) {
 		$case = '4';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 }
 
 // Blank line before the break statement
@@ -136,6 +136,6 @@ switch ($something) {
 		$case = '4';
 		break;
 	default:
-		$case = null;
+		$case = NULL;
 }
 ?>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TYPO3SniffPool" default="build">
+    <property name="php" value="php"/>
+
+    <target name="build" depends="lint,phpunit,phpcs"/>
+
+    <target name="lint">
+        <apply executable="${php}" failonerror="true">
+            <arg value="-l"/>
+
+            <fileset dir="${basedir}/Sniffs">
+                <include name="**/*.php"/>
+                <modified/>
+            </fileset>
+
+            <fileset dir="${basedir}/Tests">
+                <include name="**/*.php"/>
+                <modified/>
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phpcs">
+        <exec executable="phpcs">
+            <arg value="--standard=PEAR"/>
+            <arg value="--extensions=php"/>
+            <arg value="--report=summary"/>
+            <arg value="-np"/>
+            <arg value="--ignore=*/Tests/"/>
+            <arg path="${basedir}/Sniffs"/>
+        </exec>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true">
+            <arg value="/Users/sok/Development/PHP/PHP_CodeSniffer/tests/AllTests.php"/>
+        </exec>
+    </target>
+
+    <target name="docs">
+        <exec executable="phpcs" output="documentation.html">
+            <arg value="--standard=TYPO3SniffPool"/>
+            <arg value="--generator=html"/>
+        </exec>
+    </target>
+
+</project>

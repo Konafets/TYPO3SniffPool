@@ -238,4 +238,6 @@ $i--;
 $i --;
 --$i;
 -- $i;
-?>
+
+$precedenceForNotEquals = ($precedenceA < $precedenceB ? -1 : 1);
+$precedenceForNotEquals = ($precedenceA < $precedenceB ? 1 : -1);
