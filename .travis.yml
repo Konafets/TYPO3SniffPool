@@ -7,6 +7,10 @@ php:
   - 5.6
   - hhvm
 
+matrix:
+  allow_failures:
+    - php: hhvm
+
 before_script:
  - cd ..
  - git clone --branch=master --depth=100 --quiet https://github.com/squizlabs/PHP_CodeSniffer.git
