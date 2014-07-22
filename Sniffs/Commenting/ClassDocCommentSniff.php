@@ -12,7 +12,7 @@
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @link      pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === false) {
     $error = 'Class PHP_CodeSniffer_CommentParser_ClassCommentParser not found';
@@ -43,7 +43,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: @package_version@
- * @link      pear.typo3.org
+ * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_Commenting_ClassDocCommentSniff implements PHP_CodeSniffer_Sniff
 {
