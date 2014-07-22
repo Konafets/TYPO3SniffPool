@@ -67,4 +67,20 @@ $_GET = 'bar';
 $_GET['foo'] = 'bar';
 $_POST = 'bar';
 $_POST['foo'] = 'bar';
+
+$_ = 'foo';
+
+function foo() {
+    foreach ($variable as $key => $_) {
+
+    }
+}
+
+foreach ($variable as $key => $value) {
+
+}
+
+foreach ($variable as $key => $_) {
+
+}
 ?>

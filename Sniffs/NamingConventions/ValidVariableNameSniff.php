@@ -140,6 +140,15 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         }
 
         $hasUnderscores = stripos($variableName, '_');
+
+        // Check if the variable is named "$_" and is the value variable in a foreach statement
+        // foreach ($variable as $key => $_) { ...
+        // Because if only a key is needed in a foreach loop, the cgl says that the developer
+        // has to rename the foreach value variable $_
+        if ($variableName === '_' && $this->isVariableValuePartInForEach($phpcsFile, $stackPtr)) {
+            return;
+        }
+
         $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, false, true, true);
         if ($hasUnderscores !== false) {
             $messageData = array($scope, $variableName);
@@ -170,6 +179,45 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
             $error = '%svariablename must be lowerCamelCase; expect "$%s" but found "$%s"';
             $phpcsFile->addError($error, $stackPtr, 'VariableIsNotLowerCamelCased', $messageData);
         }
+    }
+
+    /**
+     * Checks if a variable name is named $_ and is located in a foreach loop.
+     * If this is the case, the variable name $_ is valid.
+     *
+     * This kind of variable name is valid if this variable is
+     * a) used as value part in a foreach loop
+     * b) and not used in foreach body
+     * But this case is checked by TYPO3SniffPoo.ControlStructures.UnusedVariableInForEachLoop
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     *
+     * @return bool
+     */
+    protected function isVariableValuePartInForEach(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
+        $result = false;
+        $tokens = $phpcsFile->getTokens();
+
+        // If we got a variable named $_ and it is not located in a foreach loop
+        // There are no parenthesis. Exit here.
+        if (isset($tokens[$stackPtr]['nested_parenthesis']) === false) {
+            return $result;
+        }
+
+        // Get the tokens of the normal parenthesis of a foreach statement
+        // foreach *(* $variable as $key => $_ *)* {
+        $parenthesisStart = key($tokens[$stackPtr]['nested_parenthesis']);
+
+        // Look for the foreach token
+        $forEachSearch = $phpcsFile->findPrevious(T_FOREACH, $parenthesisStart, null, false, null, true);
+        if ($forEachSearch !== false) {
+            $result = true;
+        }
+
+        return $result;
     }
 
     /**
