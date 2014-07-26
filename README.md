@@ -39,7 +39,8 @@ During the development of the PHP_CodeSniffer rules many people take hands on an
 * [Bastian Waidelich](http://forge.typo3.org/users/61) (Documentation)
 * [Christian Trabold](http://forge.typo3.org/users/599) (CI-Integration/ Documentation)
 * [Tim Eilers](http://forge.typo3.org/users/20>) (Code / Documentation)
+* and many more can be found at our [contributors page](https://github.com/typo3-ci/TYPO3SniffPool/graphs/contributors)
 
 *Thank you! You are awesome!*
 
-We collected a bunch of information how to contribute to this project in our [wiki](https://github.com/typo3-ci/TYPO3SniffPool/wiki#contribute). There you can find information about the used [branching model](https://github.com/typo3-ci/TYPO3SniffPool/wiki/Branching-model), how to execute [unit tests](https://github.com/typo3-ci/TYPO3SniffPool/wiki/Unit-tests) or about [TravisCI](https://github.com/typo3-ci/TYPO3SniffPool/wiki/TravisCI).
+If you want to contribute now, we have collected a bunch of information how to contribute to this project in our [wiki](https://github.com/typo3-ci/TYPO3SniffPool/wiki#contribute). There you can find information about the used [branching model](https://github.com/typo3-ci/TYPO3SniffPool/wiki/Branching-model), how to execute [unit tests](https://github.com/typo3-ci/TYPO3SniffPool/wiki/Unit-tests) or about [TravisCI](https://github.com/typo3-ci/TYPO3SniffPool/wiki/TravisCI).
