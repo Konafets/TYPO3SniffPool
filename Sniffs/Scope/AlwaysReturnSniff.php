@@ -95,7 +95,6 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
         // Lets have a look if there is a doc comment. The doc comment could have a "@return void"
         // If there is a "@return void" there must not be a "return".
         $docComment = $this->getDocCommentOfFunction($phpcsFile, $stackPtr);
-
         $className = '';
 
         // Skip interfaces because the may have doc comments with @return annotations but no
@@ -266,6 +265,10 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
                 $searchedLevel = $levelOfControlStructure + 1;
                 $nestedToken = $this->getPreviousTokenOnLevel($phpcsFile, $returnStatement, $scopeOpener, T_IF, $searchedLevel);
 
+                if (!isset($tokens[$nestedToken]['scope_opener'])) {
+                    return false;
+                }
+
                 $recursionStart = $tokens[$nestedToken]['scope_opener'];
                 $recursionEnd = $tokens[$nestedToken]['scope_closer'];
                 $result = $this->gotEveryWayOfControlStructureAReturnStatement($phpcsFile, $recursionStart, $recursionEnd, $depth);
@@ -375,7 +378,6 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
     protected function checkAvailableReturnStatement(array $tokens, $tokenStart, $tokenEnd, $nonEmpty = true)
     {
         $returnStatementResult = false;
-
         do {
             $returnResult = null;
             $result = $this->currentFile->findNext(array(T_RETURN), $tokenStart, $tokenEnd);
@@ -388,6 +390,11 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
                 // If there is no return-Statement between $tokenStart and $tokenEnd, stop here with the loop
             if ($result === false) {
                 $tokenStart = $tokenEnd;
+
+                // If there is a return-Statement between $tokenStart and $tokenEnd, check if the this return statement
+                // is part of an anonymous functions. In this case, this will be ignored.
+            } elseif ($nonEmpty === true && $this->currentFile->hasCondition($result, T_CLOSURE)) {
+                break;
 
                 // If there is a return-Statement between $tokenStart and $tokenEnd, check if the next relevant
                 // token is a T_SEMICOLON. If no, this is a normal return statement like "return $foo;".

@@ -65,6 +65,10 @@ class TYPO3SniffPool_Tests_Scope_AlwaysReturnUnitTest extends AbstractSniffUnitT
                     285 => 1,
                     305 => 0,
                     327 => 0,
+                    354 => 0,
+                    360 => 1,
+                    366 => 1,
+                    376 => 0,
                 );
     }
 

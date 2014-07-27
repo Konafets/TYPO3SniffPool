@@ -347,4 +347,60 @@ function nestedControlStructures6() {
 
     return 7;
 }
+
+/**
+ * @return void
+ */
+function anonymousFunc() {
+    $test = function() {
+        return 'bar';
+    }
+}
+
+function anonymousFuncWithoutDocComment() {
+    $test = function() {
+        return 'bar';
+    }
+}
+
+function nestedControlStructuresWithAnonymousFunc() {
+    if (bar) {
+        if (baz) {
+            $test = function() {
+                return 'bar';
+            }
+        }
+    }
+}
+
+function nestedControlStructuresWithAnonymousFunc2() {
+    if (5) {
+        if (6) {
+            if (8) {
+                if (10) {
+                    $test = function() {
+                        return 'bar';
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            } elseif (7) {
+                return false;
+            } else {
+                return false;
+            }
+        }
+
+        $test = function() {
+            return 'bar';
+        }
+
+        return true;
+    } else {
+        return false;
+    }
+
+    return 7;
+}
 ?>
