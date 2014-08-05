@@ -7,7 +7,7 @@ Every big project has its own coding standards for syntax and formatting (Coding
 
 With the [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) it is possible to detect violations from a defined set of rules (called sniffs) for PHP, JavaScript and CSS files.
 
-This repository contains self developed sniffs based on the [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) for the [TYPO3 Project](http://typo3.org/) to check coding guideline violation.
+This repository contains self developed sniffs based on the [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) for the [TYPO3 Project](http://typo3.org/) to check for the coding guidelines and detect violation.
 We call this repository the _TYPO3 Sniff Pool_, because it contains all sniffs we use in the seperate coding standards like [TYPO3Flow](https://github.com/typo3-ci/TYPO3Flow) and [TYPO3CMS](https://github.com/typo3-ci/TYPO3CMS).
 
 How to install
