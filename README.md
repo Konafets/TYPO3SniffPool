@@ -3,7 +3,7 @@ The TYPO3 Sniff Pool
 
 [![TravisCI Build Status](https://travis-ci.org/typo3-ci/TYPO3SniffPool.svg?branch=develop)](https://travis-ci.org/typo3-ci/TYPO3SniffPool)
 
-Every big project has its own coding standards for syntax and formatting (Coding Guidelines / CGL). For example [Zend Framework](http://framework.zend.com/manual/en/coding-standard.html), [PEAR](http://pear.php.net/manual/en/standards.php), [Drupal](http://drupal.org/coding-standards), [Symfony2](http://symfony.com/doc/current/contributing/code/standards.html) and so on. [TYPO3 CMS](http://docs.typo3.org/typo3cms/CodingGuidelinesReference/) and [Flow / Neos](http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartV/CodingGuideLines/Index.html) as well.
+Every big project has its own coding standards for syntax and formatting (Coding Guidelines / CGL). For example [Zend Framework](http://framework.zend.com/manual/en/coding-standard.html), [PEAR](http://pear.php.net/manual/en/standards.php), [Drupal](http://drupal.org/coding-standards), [Symfony2](http://symfony.com/doc/current/contributing/code/standards.html) and so on. [TYPO3 CMS](http://docs.typo3.org/typo3cms/CodingGuidelinesReference/) and [TYPO3 Flow / Neos](http://docs.typo3.org/flow/TYPO3FlowDocumentation/TheDefinitiveGuide/PartV/CodingGuideLines/Index.html) as well.
 
 With the [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) it is possible to detect violations from a defined set of rules (called sniffs) for PHP, JavaScript and CSS files.
 
