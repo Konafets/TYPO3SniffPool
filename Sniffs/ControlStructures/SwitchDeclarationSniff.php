@@ -102,11 +102,13 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
             if ($tokens[$nextCase]['code'] === T_DEFAULT) {
                 $type         = 'Default';
                 $foundDefault = true;
+
             } else {
                 $type = 'Case';
                 $caseCount++;
             }
 
+            // Check if the keyword "switch", "default" or "case" is written lowercased
             if ($tokens[$nextCase]['content'] !== strtolower($tokens[$nextCase]['content'])) {
                 $expected = strtolower($tokens[$nextCase]['content']);
                 $error    = '%s keyword must be lowercase; expected "%s" but found "%s"';
@@ -118,6 +120,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                 $phpcsFile->addError($error, $nextCase, $type.'NotLower', $data);
             }
 
+            // Check if the alignment / column is correct in relation to the switch keyword
             if ($tokens[$nextCase]['column'] !== $caseAlignment) {
                 $error = '%s keyword must be indented %s tab from SWITCH keyword';
                 $data = array(
@@ -127,7 +130,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                 $phpcsFile->addError($error, $nextCase, $type.'Indent', $data);
             }
 
-
+            // Check if the case statement is follow by a single space
             if ($type === 'Case'
                 && ($tokens[($nextCase + 1)]['type'] !== 'T_WHITESPACE'
                 || $tokens[($nextCase + 1)]['content'] !== ' ')
@@ -141,7 +144,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                 $error = 'There must be no space before the colon in a %s statement';
                 $data = array(strtoupper($type),);
                 $phpcsFile->addError(
-                    $error, $nextCase, 'SpaceBeforeColon'.$type, $data
+                    $error, $nextCase, 'SpaceBeforeColon' . $type, $data
                 );
             }
 
@@ -164,13 +167,27 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
 
             $nextBreak = $tokens[$nextCase]['scope_closer'];
             if ($type === 'Default') {
-                if ($tokens[$nextCase]['scope_closer'] !== $switch['scope_closer']) {
-                    $error = 'The "default" statement must be the last in the switch.';
-                    $phpcsFile->addError($error, $nextCase, 'DefaultNotLastInSwitch');
-                } else if ($tokens[$nextBreak]['code'] === T_BREAK) {
+
+                // Check if the default statement scope include a break statement
+                if ($tokens[$nextBreak]['code'] === T_BREAK) {
                     $error = 'The "default" statement must not have a "break" statement.';
                     $phpcsFile->addError($error, $nextCase, 'DefaultNoBreak');
+
+                    // Check if the default statement is not the last statement in switch
+                    // If the default contains a throw, exit, continue or return statement
+                    // this will be chosen as scope_closer
+                    // But the default statement can contain a such statements
+                } elseif (($tokens[$nextCase]['scope_closer'] !== $switch['scope_closer'])
+                    && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_THROW
+                    && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_EXIT
+                    && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_CONTINUE
+                    && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_RETURN
+                ) {
+
+                    $error = 'The "default" statement must be the last in the switch.';
+                    $phpcsFile->addError($error, $nextCase, 'DefaultNotLastInSwitch');
                 }
+
             } else if ($tokens[$nextBreak]['code'] === T_BREAK
                 || $tokens[$nextBreak]['code'] === T_RETURN
                 || $tokens[$nextBreak]['code'] === T_CONTINUE
