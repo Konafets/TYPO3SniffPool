@@ -114,35 +114,35 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
             $next = $phpcsFile->findNext(T_VARIABLE, $stackPtr + 1, null, false, null, true);
 
             switch ($kindOfToken) {
-                case 'postfix':
-                    if ($this->existsWhitespace('before', $tokens, $stackPtr)) {
-                        $error = 'No whitespace before the %s operator. Found "%s". Expected "%s"';
-                        $code  = 'NoWhitSpaceBeforePostfix';
-                        $found = rtrim($found);
-                        $data  = array(
-                                    $kindOfToken,
-                                    $tokens[$prev]['content'] . $found,
-                                    $tokens[$prev]['content'] . trim($found)
-                                 );
-                        $phpcsFile->addWarning($error, $stackPtr, $code, $data);
-                    }
-                    break;
+            case 'postfix':
+                if ($this->existsWhitespace('before', $tokens, $stackPtr)) {
+                    $error = 'No whitespace before the %s operator. Found "%s". Expected "%s"';
+                    $code  = 'NoWhitSpaceBeforePostfix';
+                    $found = rtrim($found);
+                    $data  = array(
+                                $kindOfToken,
+                                $tokens[$prev]['content'] . $found,
+                                $tokens[$prev]['content'] . trim($found)
+                             );
+                    $phpcsFile->addWarning($error, $stackPtr, $code, $data);
+                }
+                break;
 
-                case 'prefix':
-                    if ($this->existsWhitespace('after', $tokens, $stackPtr)) {
-                        $error = 'No whitespace after the %s operator. Found "%s". Expected "%s"';
-                        $code  = 'NoWhitSpaceAfterPrefix';
-                        $found = ltrim($found);
-                        $data  = array(
-                                    $kindOfToken,
-                                    $found . $tokens[$next]['content'],
-                                    trim($found) . $tokens[$next]['content']
-                                 );
-                        $phpcsFile->addWarning($error, $stackPtr, $code, $data);
-                    }
-                    break;
+            case 'prefix':
+                if ($this->existsWhitespace('after', $tokens, $stackPtr)) {
+                    $error = 'No whitespace after the %s operator. Found "%s". Expected "%s"';
+                    $code  = 'NoWhitSpaceAfterPrefix';
+                    $found = ltrim($found);
+                    $data  = array(
+                                $kindOfToken,
+                                $found . $tokens[$next]['content'],
+                                trim($found) . $tokens[$next]['content']
+                             );
+                    $phpcsFile->addWarning($error, $stackPtr, $code, $data);
+                }
+                break;
 
-                default:
+            default:
             }
 
             return;
@@ -164,8 +164,11 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      * Returns the kind of token.
      * Possible values: assignment, arithmetic, comparison
      *
-     * @param array $token All tokens of the current file
-     *
+     * @param array                $token     All tokens of the current file
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $stackPtr  The position of the current token in
+     *                                        the stack passed in $tokens.
+     * 
      * @return string
      */
     protected function getKindOfToken(array $token, PHP_CodeSniffer_File $phpcsFile, $stackPtr)
