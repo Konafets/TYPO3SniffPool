@@ -138,4 +138,42 @@ switch ($something) {
 	default:
 		$case = NULL;
 }
+
+switch ($variable) {
+	case 'x':
+		$result = 'y';
+		break;
+	default:
+		throw new Exception('unsupported option');
+}
+
+switch ($variable) {
+	case 'x':
+		$result = 'y';
+		break;
+	default:
+		die(0);
+}
+
+do {
+	switch ($variable) {
+		case 'x':
+			$result = 'y';
+			break;
+		default:
+			continue;
+	}
+} while(true);
+
+function returnInDefault($variable) {
+	switch ($variable) {
+		case 'x':
+			$result = 'y';
+			break;
+		default:
+			return;
+	}
+
+	return $result;
+}
 ?>

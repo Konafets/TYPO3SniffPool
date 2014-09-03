@@ -61,6 +61,10 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
                 78 => 1,
                 98 => 1,
                 107 => 1,
+                147 => 0,
+                155 => 0,
+                164 => 0,
+                174 => 0
                );
 
     }//end getErrorList()

@@ -54,6 +54,10 @@ class TYPO3SniffPool_Tests_NamingConventions_ValidVariableNameUnitTest extends A
                 67 => 1,
                 68 => 1,
                 69 => 1,
+                71 => 1,
+                74 => 0,
+                79 => 0,
+                83 => 0,
             );
     }
 

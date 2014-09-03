@@ -12,13 +12,14 @@ matrix:
     - php: hhvm
 
 before_script:
- - cd ..
- - git clone --branch=master --depth=100 --quiet https://github.com/squizlabs/PHP_CodeSniffer.git
- - PWD=`pwd`
- - ln -s $PWD/TYPO3SniffPool $PWD/PHP_CodeSniffer/CodeSniffer/Standards/TYPO3SniffPool
- - pyrus install pear/PHP_CodeSniffer
- - phpenv rehash
+  - composer self-update
+  - composer install --prefer-source --dev
+  - mkdir ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool
+  - ln -s ../../../../../../ruleset.xml ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/ruleset.xml
+  - ln -s ../../../../../../Sniffs ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/Sniffs
+  - ln -s ../../../../../../Tests ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/Tests
 
 script:
- - phpunit -v PHP_CodeSniffer/tests/AllTests.php
- - phpcs --standard=PEAR --extensions=php --warning-severity=0 $PWD/TYPO3SniffPool
+ - ./vendor/bin/phpunit  -v ./vendor/squizlabs/php_codesniffer/tests/AllTests.php
+ - ./vendor/bin/phpcs --standard=PEAR --extensions=php --warning-severity=0 Sniffs
+ - ./vendor/bin/phpcs --standard=PEAR --extensions=php --warning-severity=0 Tests

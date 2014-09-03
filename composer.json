@@ -24,6 +24,10 @@
 		"simplyadmire/composer-plugins": "*"
 	},
 
+	"require-dev": {
+		"phpunit/phpunit": "4.1.*"
+	},
+
 	"suggest": {
 		"typo3-ci/typo3cms": "*",
 		"typo3-ci/typo3flow": "*"
