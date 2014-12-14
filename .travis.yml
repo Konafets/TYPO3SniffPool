@@ -20,6 +20,4 @@ before_script:
   - ln -s ../../../../../../Tests ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/Tests
 
 script:
- - ./vendor/bin/phpunit  -v ./vendor/squizlabs/php_codesniffer/tests/AllTests.php
- - ./vendor/bin/phpcs --standard=PEAR --extensions=php --warning-severity=0 Sniffs
- - ./vendor/bin/phpcs --standard=PEAR --extensions=php --warning-severity=0 Tests
+ - ant build

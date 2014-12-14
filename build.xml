@@ -2,7 +2,7 @@
 <project name="TYPO3SniffPool" default="build">
     <property name="php" value="php"/>
 
-    <target name="build" depends="lint,phpunit,phpcs"/>
+    <target name="build" depends="lint,phpunit,phpcs_sniffs,phpcs_tests"/>
 
     <target name="lint">
         <apply executable="${php}" failonerror="true">
@@ -20,14 +20,26 @@
         </apply>
     </target>
 
-    <target name="phpcs">
+    <target name="phpcs_sniffs">
         <exec executable="phpcs">
             <arg value="--standard=PEAR"/>
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
+            <arg value="--warning-severity=0"/>
             <arg value="-np"/>
             <arg value="--ignore=*/Tests/"/>
             <arg path="${basedir}/Sniffs"/>
+        </exec>
+    </target>
+
+    <target name="phpcs_tests">
+        <exec executable="phpcs">
+            <arg value="--standard=PEAR"/>
+            <arg value="--extensions=php"/>
+            <arg value="--report=summary"/>
+            <arg value="--warning-severity=0"/>
+            <arg value="-np"/>
+            <arg path="${basedir}/Tests"/>
         </exec>
     </target>
 
