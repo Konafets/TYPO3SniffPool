@@ -45,7 +45,7 @@
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
         <exec executable="phpunit" failonerror="true">
-            <arg value="/Users/sok/Development/PHP/PHP_CodeSniffer/tests/AllTests.php"/>
+            <arg value="./vendor/squizlabs/php_codesniffer/tests/AllTests.php"/>
         </exec>
     </target>
 
