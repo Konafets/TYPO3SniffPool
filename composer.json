@@ -20,17 +20,17 @@
 
 	"require": {
 		"php": ">=5.2.1",
-		"squizlabs/php_codesniffer": "1.*",
-		"simplyadmire/composer-plugins": "*"
+		"squizlabs/php_codesniffer": "~2.0",
+		"simplyadmire/composer-plugins": "~1.0"
 	},
 
 	"require-dev": {
-		"phpunit/phpunit": "4.1.*"
+		"phpunit/phpunit": "~4.1"
 	},
 
 	"suggest": {
-		"typo3-ci/typo3cms": "*",
-		"typo3-ci/typo3flow": "*"
+		"typo3-ci/typo3cms": "The ruleset for TYPO3 CMS",
+		"typo3-ci/typo3flow": "The ruleset for TYPO3 Flow"
 	},
 
 	"replace": {
@@ -47,6 +47,12 @@
 		"classmap": [
 		"Sniffs/"
 		]
+	},
+
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
+		}
 	}
 
 }
