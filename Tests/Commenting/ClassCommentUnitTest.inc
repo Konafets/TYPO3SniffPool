@@ -27,7 +27,7 @@ class Invalid_Comment_Style1 {}
  * @version   Release: 1.0
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Extra_Description_Newlines {}
+// Extra description newlines
 
 
 /**
@@ -40,19 +40,21 @@ class Extra_Description_Newlines {}
  * @version
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Missing_Newlines_Before_Tags {}
+// Missing newlines before tags
 
 
 /**
  *
  *
  */
-class Empty_Class_Doc {}
+// Empty doc comment
+
+interface No_Comment {}
 
 
-/**
- *
- *
- */
-interface Empty_Interface_Doc {}
-?>
+//
+// Sample class comment
+//
+//
+//
+interface Invalid_Comment_Style1 {}

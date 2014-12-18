@@ -1,6 +1,6 @@
 <?php
 /**
- * Unit test class for TYPO3_Sniffs_Commenting_ClassDocCommentSniff.
+ * Unit test class for TYPO3_Sniffs_Commenting_ClassCommentSniff.
  *
  * PHP version 5
  * TYPO3 version 4
@@ -13,7 +13,7 @@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
- * Unit test class for TYPO3_Sniffs_Commenting_ClassDocCommentSniff.
+ * Unit test class for TYPO3_Sniffs_Commenting_ClassCommentSniff.
  *
  * This unit test is copied and modified from PEAR_Tests_Commenting_ClassCommentUnitTest.
  * Thanks for this guys!
@@ -26,7 +26,7 @@
  * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_Commenting_ClassCommentUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -41,12 +41,13 @@ class TYPO3SniffPool_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSn
         return array(
                 2 => 1,
                 10 => 1,
-                14 => 1,
-                17 => 1,
-                20 => 1,
+                16 => 1,
+                19 => 1,
+                22 => 1,
                 35 => 1,
                 46 => 1,
-                53 => 1
+                52 => 1,
+                60 => 1,
                 );
     }
 
@@ -60,7 +61,9 @@ class TYPO3SniffPool_Tests_Commenting_ClassDocCommentUnitTest extends AbstractSn
      */
     public function getWarningList()
     {
-        return array();
+        return array(
+
+        );
     }
 }
 ?>
