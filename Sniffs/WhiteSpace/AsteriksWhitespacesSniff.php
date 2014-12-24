@@ -42,7 +42,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AsteriksWhitespacesSniff implements PHP_C
      */
     public function register()
     {
-        return array(T_DOC_COMMENT);
+        return array(T_DOC_COMMENT_STAR);
     }
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -56,14 +56,28 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AsteriksWhitespacesSniff implements PHP_C
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $content = trim($tokens[$stackPtr]['content']);
+        $contentAfterCommentStar = $tokens[$stackPtr + 1]['content'];
         // We ignore empty lines in doc comment
-        if (preg_match('/^\*\s{0,}$/', $content) == 1) {
+        if ($contentAfterCommentStar === "\n") {
             return;
         }
-        if ((strpos($content, '*') === 0) && (strpos($content, ' ') != 1) && (strpos($content, '/') != 1) && (strpos($content, "\n") != 1)) {
-            $phpcsFile->addError('Whitespace must be added after single asteriks expected "* ' . ltrim($content, '*') . '" found "' . $content . '"', $stackPtr);
+
+        if (strpos($contentAfterCommentStar, ' ') === false) {
+            $error = 'Whitespace must be added after comment star sign; ';
+            $error .= 'Expected "* %s", but found "*%s"';
+            $data = array($contentAfterCommentStar, $contentAfterCommentStar);
+            $fix = $phpcsFile->addFixableError(
+                $error,
+                $stackPtr,
+                'NoWhitespaceAfterCommentStar',
+                $data
+            );
+
+            if ($fix === true) {
+                $phpcsFile->fixer->beginChangeset();
+                $phpcsFile->fixer->replaceToken($stackPtr, '* ');
+                $phpcsFile->fixer->endChangeset();
+            }
         }
     }
 }
-?>

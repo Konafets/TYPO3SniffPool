@@ -39,9 +39,7 @@ class TYPO3SniffPool_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends Abstra
     public function getErrorList()
     {
         return array(
-                    4 => 0,
                     5 => 1,
-                    10 => 0,
                 );
     }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Correct
- * 
+ *
  *False
  */
 
@@ -10,5 +10,3 @@
  *
  * @var string
  */
-
-?>
