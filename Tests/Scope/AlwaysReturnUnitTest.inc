@@ -403,4 +403,22 @@ function nestedControlStructuresWithAnonymousFunc2() {
 
     return 7;
 }
-?>
+
+class Autoloader {
+
+	/**
+	 * The autoloader is static, thus we do not allow instances of this class.
+	 */
+	private function __construct() {
+	}
+
+    private function __destruct() {
+    }
+}
+
+abstract class Tester {
+    /**
+     * @return integer
+     */
+    abstract protected function bar();
+}
