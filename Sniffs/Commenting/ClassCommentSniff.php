@@ -46,9 +46,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
      *
      * @var array
      */
-    public $supportedTokenizers = array(
-                                   'PHP',
-                                  );
+    public $supportedTokenizers = array('PHP');
 
     /**
      * Returns an array of tokens this test wants to listen for.
