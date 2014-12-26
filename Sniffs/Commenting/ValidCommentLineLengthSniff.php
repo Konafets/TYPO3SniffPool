@@ -68,7 +68,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
     {
         $tokens = $phpcsFile->getTokens();
         $commentLine = $tokens[$stackPtr]['content'];
-        $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, $stackPtr + 1, null, false, "\n");
+        $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, $stackPtr + 1, null, false, $phpcsFile->eolChar);
 
         for ($i = $stackPtr + 1; $i < $lineEnd; $i++) {
             $commentLine .= $tokens[$i]['content'];
