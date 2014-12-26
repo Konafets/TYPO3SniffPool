@@ -3,7 +3,7 @@
  * TYPO3_Sniffs_WhiteSpace_DisallowSpaceIndentSniff.
  *
  * PHP version 5
- * TYPO3 version 4
+ * TYPO3 CMS
  *
  * @category  Whitespace
  * @package   TYPO3_PHPCS_Pool
@@ -55,7 +55,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
     {
         $tokens = $phpcsFile->getTokens();
         // Make sure this is the first open tag.
-        $previousOpenTag = $phpcsFile->findPrevious(array(T_OPEN_TAG), ($stackPtr - 1));
+        $previousOpenTag = $phpcsFile->findPrevious(T_OPEN_TAG, ($stackPtr - 1));
         if ($previousOpenTag !== false) {
             return;
         }
@@ -67,16 +67,23 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
         foreach ($tokens as $token) {
             $tokenCount++;
             if ($token['line'] === $currentLine) {
-                $currentLineContent.= $token['content'];
+                $currentLineContent .= $token['content'];
             } else {
                 $currentLineContent = trim($currentLineContent, $phpcsFile->eolChar);
-                $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, $tokenIsDocComment, $tokenIsString);
+                $this->ifSpaceIndent(
+                    $phpcsFile,
+                    ($tokenCount - 1),
+                    $currentLineContent,
+                    $tokenIsDocComment,
+                    $tokenIsString
+                );
+
                 $currentLineContent = $token['content'];
                 // We have to check if the current token is a comment.
                 // We are looking for doc comments and normal comments
                 // but by the architecture comments like ...
                 // "// comment" will be ignored
-                $tokenIsDocComment = preg_match('/^T_(DOC_)?COMMENT$/', $token['type']) ? true : false;
+                $tokenIsDocComment = preg_match('/^T_(DOC_)?COMMENT(_WHITESPACE)?$/', $token['type']) ? true : false;
                 $tokenIsString = preg_match('/^T_CONSTANT_ENCAPSED_STRING$/', $token['type']) ? true : false;
                 $currentLine++;
             }
@@ -119,9 +126,12 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
             $isSpace = preg_match('/[^\t]/', $indentionPart) ? true : false;
             if ($isSpace) {
                 $error = 'Tabs must be used to indent lines; spaces are not allowed';
-                $phpcsFile->addError($error, $stackPtr - 1, ' http://forge.typo3.org/projects/team-php_codesniffer/wiki/Whitespace#Indent-code');
+                $phpcsFile->addError(
+                    $error,
+                    $stackPtr - 1,
+                    'SpaceIndentionNotAllowed'
+                );
             }
         }
     }
 }
-?>
