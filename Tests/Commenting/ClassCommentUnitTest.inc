@@ -1,5 +1,10 @@
 <?php
-class No_Comment {}
+/** File doc comment */
+
+class No_Comment
+{
+
+}//end class
 
 
 //
@@ -7,8 +12,10 @@ class No_Comment {}
 //
 //
 //
-class Invalid_Comment_Style1 {}
+class Invalid_Comment_Style1
+{
 
+}//end class
 
 /**
  *
@@ -27,20 +34,100 @@ class Invalid_Comment_Style1 {}
  * @version   Release: 1.0
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-// Extra description newlines
+
+class Extra_Description_Newlines
+{
+
+}//end class
 
 
 /**
- * Sample class comment
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * Sample class comment...
  */
-// Missing newlines before tags
+class Missing_Newlines_Before_Tags
+{
+
+}//end class
+
+/**
+ * Simple class comment
+ *
+ * @deprecated asd
+ */
+class Checking_Tags
+{
+    class Sub_Class {
+
+    }//end class
+
+
+}//end class
+
+/**
+ * Simple class comment
+ * that spans multiple line
+ * and not end with a full stop
+ *
+ * @hello      Hello tag
+ * @package    phpcs
+ */
+class Unknown_Hello_Tag
+{
+
+}//end class
+
+/**
+ *
+ *
+ *
+ */
+class Empty_Class_Doc
+{
+
+}//end class
+
+/**
+ */
+class Missing_Short_Desc
+{
+
+}//end class
+
+/**
+ * sample class comment.
+ *
+ * - long description with extra blank line before and after
+ */
+class Incorrect_Case
+{
+
+}//end class
+
+/**
+ * 0sample class comment.
+ *
+ * long description with extra blank line before and after
+ */
+class Incorrect_Case2
+{
+
+}//end class
+
+/** Sample class comment.
+ */
+class Start_Tag_Incorrect
+{
+
+}//end class
+
+/**
+ * 这是一条测试评论.
+ *
+ */
+class Space_At_end
+{
+
+}//end class
 
 
 /**
@@ -58,3 +145,60 @@ interface No_Comment {}
 //
 //
 interface Invalid_Comment_Style1 {}
+
+/**
+ * Sample class comment
+ * @category  PHP
+ * @package   PHP_CodeSniffer
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @version
+ * @link      http://pear.php.net/package/PHP_CodeSniffer
+ */
+
+interface Invalid_Comment_Style1 {}
+
+interface Invalid_Comment_Style1 {}
+
+
+/**
+ *
+ *
+ */
+// Empty doc comment
+
+trait MyFirstSenslessTrait {}
+
+//
+// Sample class comment
+//
+//
+//
+trait MyFirstSenslessTrait {}
+
+/**
+ * Sample class comment
+ * @category  PHP
+ * @package   PHP_CodeSniffer
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @version
+ * @link      http://pear.php.net/package/PHP_CodeSniffer
+ */
+
+trait MyFirstSenslessTrait {}
+
+trait MyFirstSenslessTrait {}
+/**
+ * Sample class comment
+ * @category  PHP
+ * @package   PHP_CodeSniffer
+ * @author    Greg Sherwood <gsherwood@squiz.net>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
+ * @version
+ * @link      http://pear.php.net/package/PHP_CodeSniffer
+ */
+trait MyFirstSenslessTrait {}
