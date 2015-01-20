@@ -334,6 +334,28 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
             $foundTags[$tagName] = true;
         }
 
+        // The data type has to be declared in short form
+        // integer -> int; boolean -> bool
+        $longTypes = array('boolean', 'integer');
+        $shortTypes = array('bool', 'int');
+        $fix = false;
+        foreach ($tokens[$stackPtr]['comment_tags'] as $pos => $tag) {
+            $dataType = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $tag + 1);
+            for ($i = 0; $i < count($longTypes); $i++) {
+                if (strpos($tokens[$dataType]['content'], $longTypes[$i]) !== FALSE) {
+                    $error = 'Use short form of data types; expected "%s" but found "%s".';
+                    $data = array($shortTypes[$i], $longTypes[$i]);
+                    $fix = $phpcsFile->addFixableError($error, $tag, 'UseShortDataType', $data);
+                }
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken(
+                        $dataType,
+                        substr_replace($tokens[$dataType]['content'], $shortTypes[$i], 0, strlen($longTypes[$i]))
+                    );
+                    $fix = false;
+                }
+            }
+        }
     }//end process()
 
 

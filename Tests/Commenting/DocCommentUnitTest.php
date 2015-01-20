@@ -50,6 +50,13 @@ class TYPO3SniffPool_Tests_Commenting_DocCommentUnitTest extends AbstractSniffUn
                 110 => 1,
                 119 => 1,
                 141 => 1,
+                173 => 1,
+                177 => 1,
+                182 => 1,
+                208 => 1,
+                209 => 1,
+                214 => 1,
+                215 => 1,
                );
 
     }//end getErrorList()

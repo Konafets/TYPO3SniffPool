@@ -197,6 +197,25 @@
  * @three bar
  */
 
+/**
+ * Short comment
+ *
+ * Long comment, which is longer than the short comment
+ *
+ * @param bool $one
+ * @param int $two
+ * @param array $three
+ * @param boolean $four
+ * @param integer $five
+ * @param array $six
+ * @param bool|mixed $seven
+ * @param int|mixed $eight
+ * @param array|mixed $nine
+ * @param boolean|mixed $ten
+ * @param integer|mixed $eleven
+ * @param array|mixed $twelve
+ */
+
 
 
 
