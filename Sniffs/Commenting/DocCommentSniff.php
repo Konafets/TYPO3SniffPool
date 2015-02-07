@@ -39,6 +39,7 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                                    'JS',
                                   );
 
+    protected $spaces = 1;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -356,7 +357,351 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                 }
             }
         }
+
+
+        $tags = array();
+        foreach ($tokens[$stackPtr]['comment_tags'] as $pos => $tag) {
+            $type               = '';
+            $typeSpaceContent   = '';
+            $isTypeSpaceTab     = false;
+            $typeSpaceToken     = 1;
+            $typeSpaceLength    = 1;
+            $var                = '';
+            $isVarSpaceTab      = false;
+            $varSpaceLength     = 1;
+            $comment            = '';
+            $commentLines       = array();
+            $isCommentSpaceTab  = false;
+            $commentSpaceLength = 1;
+
+//            $line                 = array();
+//            $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, ($tag + 1), null, false, "\n", true);
+//
+//            $line[] = $tokens[$tag]['content'];
+//            for ($i = ($tag + 1); $i < $lineEnd; $i++) {
+//                $line[] = $tokens[$i]['content'];
+//            }
+
+            if ($tokens[($tag + 2)]['code'] === T_DOC_COMMENT_STRING) {
+                $matches = array();
+                preg_match('/([^$&]+)(?:((?:\$|&)[^\s]+)(?:(\s+)(.*))?)?/', $tokens[($tag + 2)]['content'], $matches);
+
+                $type              = trim($matches[1]);
+                $typeSpaceToken    = $tag + 1;
+                $typeSpaceContent  = $tokens[$typeSpaceToken]['content'];
+                $typeSpaceLength   = strlen($typeSpaceContent);
+                $isTypeSpaceTab    = $this->isTabUsedToIntend($typeSpaceContent);
+
+                if (isset($matches[2]) === true) {
+                    $var            = $matches[2];
+                    $isVarSpaceTab  = $this->isTabUsedToIntend($matches[1]);
+                    $varSpaceLength = strlen(ltrim($matches[1], $type));
+                }
+
+                if (isset($matches[4]) === true) {
+                    $commentSpaceContent = $matches[3];
+                    $commentSpaceLength  = strlen($commentSpaceContent);
+                    $isCommentSpaceTab   = $this->isTabUsedToIntend($commentSpaceContent);
+                    $comment             = $matches[4];
+                    $commentLines[]      = array(
+                                            'comment' => $comment,
+                                            'token'   => ($tag + 2),
+                                            'indent'  => $commentSpaceLength,
+                                           );
+
+                    // Any strings until the next tag belong to this comment.
+                    if (isset($tokens[$commentStart]['comment_tags'][($pos + 1)]) === true) {
+                        $end = $tokens[$commentStart]['comment_tags'][($pos + 1)];
+                    } else {
+                        $end = $tokens[$commentStart]['comment_closer'];
+                    }
+
+                    for ($i = ($tag + 3); $i < $end; $i++) {
+                        if ($tokens[$i]['code'] === T_DOC_COMMENT_STRING) {
+                            $indent = 0;
+                            if ($tokens[($i - 1)]['code'] === T_DOC_COMMENT_WHITESPACE) {
+                                $indent = strlen($tokens[($i - 1)]['content']);
+                            }
+
+                            $comment       .= ' '.$tokens[$i]['content'];
+                            $commentLines[] = array(
+                                               'comment' => $tokens[$i]['content'],
+                                               'token'   => $i,
+                                               'indent'  => $indent,
+                                              );
+                        }
+                    }
+                } else {
+                    $commentLines[] = array('comment' => '');
+                }//end if
+            }
+
+            $tags[] = array(
+                'tag' => array(
+                    'token'   => $tag,
+                    'content' => $tokens[$tag]['content'],
+                ),
+                'type' => array(
+                    'space'       => $typeSpaceContent,
+                    'spaceToken'  => $typeSpaceToken,
+                    'spaceLength' => $typeSpaceLength,
+                    'spaceIsTab'  => $isTypeSpaceTab,
+                    'content'     => $type,
+                ),
+                'var' => array(
+                    'spaceLength' => $varSpaceLength,
+                    'spaceIsTab'  => $isVarSpaceTab,
+                    'content'     => $var,
+                ),
+                'comment' => array(
+                    'spaceLength' => $commentSpaceLength,
+                    'content'     => $comment,
+                    'lines'       => $commentLines,
+                    'spaceIsTab'  => $isCommentSpaceTab
+                ),
+            );
+        }
+
+        foreach ($tags as $pos => $tag) {
+            // Make sure that there are only spaces used to intend the var type.
+            if ($tag['type']['spaceIsTab'] === true) {
+                $error = 'Spaces must be used to indent variable type. Tabs found.';
+                $fix = $phpcsFile->addFixableError($error, $tag['tag']['token'], 'TabIndentVariableType');
+
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken($tag['type']['spaceToken'], str_repeat(' ', $this->spaces));
+                }
+            }
+
+            // Check number of spaces before the type.
+            if ($tag['type']['spaceLength'] > 1) {
+                $error = 'Expected 1 space after the %s tag; %s found';
+                $data = array($tag['tag']['content'], $tag['type']['spaceLength']);
+                $fix = $phpcsFile->addFixableWarning($error, $tag['tag']['token'], 'SpacingBeforeParamType', $data);
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken($tag['type']['spaceToken'], str_repeat(' ', $this->spaces));
+                }
+            }
+
+            switch ($tag['tag']['content']) {
+                case '@param':
+                case '@property':
+                case '@property-write':
+                case '@property-read':
+                    $this->processParams($phpcsFile, $tag);
+                    break;
+                case '@author':
+
+                    break;
+
+                case '@return':
+                    $this->processReturn($phpcsFile, $tag['tag']['token'], $tokens);
+                    break;
+
+                case '@see':
+
+                    break;
+
+                case '@throw':
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }//end process()
 
+    /**
+     * Process the function parameter comments.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param                      $tag
+     *
+     * @return void
+     */
+    protected function processParams(PHP_CodeSniffer_File $phpcsFile, $tag)
+    {
+        // If the type is empty, the whole line is empty.
+        if ($tag['type']['content'] === '') {
+            return;
+        }
+
+        if ($tag['var']['content'] === '') {
+            return;
+        }
+
+        // Make sure that there are only spaces used to intend the var name.
+        if ($tag['var']['spaceIsTab'] === true) {
+            $error = 'Spaces must be used to indent the variable name. Tabs found.';
+            $fix = $phpcsFile->addFixableError($error, $tag['tag']['token'], 'TabIndentVariableName');
+
+            if ($fix === true) {
+                $this->rewriteSpaceAfterVariableType($phpcsFile, $tag, $this->spaces);
+            }
+        }
+
+        // Check number of spaces before the variable name
+        if ($tag['var']['spaceLength'] !== $this->spaces) {
+            $error = 'Expected %s spaces after parameter type; %s found';
+            $data  = array(
+                      $this->spaces,
+                      $tag['var']['spaceLength'],
+                     );
+
+            $fix = $phpcsFile->addFixableError($error, $tag['tag']['token'], 'SpacingAfterParamType', $data);
+            if ($fix === true) {
+                $this->rewriteSpaceAfterVariableType($phpcsFile, $tag, $this->spaces);
+            }
+        }
+
+        if ($tag['comment']['content'] === '') {
+            return;
+        }
+
+        // Make sure that there are only spaces used to intend the var comment.
+        if ($tag['comment']['spaceIsTab'] === true) {
+            $error = 'Spaces must be used to indent comment. Tabs found.';
+            $fix = $phpcsFile->addFixableError($error, $tag['tag']['token'], 'TabIndentVariableComment');
+            if ($fix === true) {
+                $this->rewriteSpaceAfterVariableName($phpcsFile, $tag, $this->spaces);
+            }
+        }
+
+        // Check number of spaces after the var name.
+        if ($tag['comment']['spaceLength'] !== $this->spaces) {
+            $error = 'Expected 1 space after parameter name; %s found';
+            $data  = array($tag['comment']['spaceLength']);
+            $fix = $phpcsFile->addFixableWarning($error, $tag['tag']['token'], 'SpacingAfterParamName', $data);
+            if ($fix === true) {
+                $this->rewriteSpaceAfterVariableName($phpcsFile, $tag, $this->spaces);
+            }
+        }
+    }//end processParams()
+
+    /**
+     * Process the return comment of this function comment.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                  $return
+     * @param array                $tokens
+     *
+     * @return void
+     */
+    protected function processReturn(PHP_CodeSniffer_File $phpcsFile, $return, array $tokens)
+    {
+        if ($tokens[($return + 1)]['code'] === T_DOC_COMMENT_WHITESPACE) {
+            if ($this->isTabUsedToIntend($tokens[($return + 1)]['content']) === true) {
+                $error = 'Only spaces are allowed between @return and type; tabs found';
+
+                $fix = $phpcsFile->addFixableError($error, $return, 'ReturnSpacingTab');
+
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken(($return + 1), str_repeat(' ', $this->spaces));
+                }
+            }
+
+            $spaceLength = strlen($tokens[($return + 1)]['content']);
+            if ($spaceLength > $this->spaces) {
+                $error = 'Only %s space allowed between @return and type; % spaces found';
+                $data = array(
+                    $this->spaces,
+                    $spaceLength
+                );
+
+                $fix = $phpcsFile->addFixableError($error, $return, 'ReturnSpacing', $data);
+
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken(($return + 1), str_repeat(' ', $this->spaces));
+                }
+            }
+        }
+    }//end processReturn
+
+    /**
+     * @param \PHP_CodeSniffer_File $phpcsFile
+     * @param array                 $tag
+     *
+     * @return array
+     */
+    protected function rewriteSpaceAfterVariableType(PHP_CodeSniffer_File $phpcsFile, $tag)
+    {
+        $phpcsFile->fixer->beginChangeset();
+
+        $spaceContent = $tag['comment']['spaceIsTab'] ? "\t" : ' ';
+
+        $content = $tag['type']['content'];
+        $content .= str_repeat(' ', $this->spaces);
+        $content .= $tag['var']['content'];
+        $content .= str_repeat($spaceContent, $tag['comment']['spaceLength']);
+        $content .= $tag['comment']['lines'][0]['comment'];
+        $phpcsFile->fixer->replaceToken(($tag['tag']['token'] + 2), $content);
+
+        // Fix up the indent of additional comment lines.
+        foreach ($tag['comment']['lines'] as $lineNum => $line) {
+            if ($lineNum === 0
+                || $tag['comment']['lines'][$lineNum]['indent'] === 0
+            ) {
+                continue;
+            }
+
+            $newIndent = ($tag['comment']['lines'][$lineNum]['indent'] + $this->spaces
+                - $tag['type']['spaceLength']);
+            $phpcsFile->fixer->replaceToken(
+                ($tag['comment']['lines'][$lineNum]['token'] - 1),
+                str_repeat(' ', $newIndent)
+            );
+        }
+
+        $phpcsFile->fixer->endChangeset();
+    }//end rewriteSpaceAfterVariableType()
+
+    /**
+     * @param \PHP_CodeSniffer_File $phpcsFile
+     * @param array                 $tag
+     * @param integer               $spaces
+     */
+    public function rewriteSpaceAfterVariableName(PHP_CodeSniffer_File $phpcsFile, $tag, $spaces)
+    {
+        $phpcsFile->fixer->beginChangeset();
+
+        $spaceContent = $tag['var']['spaceIsTab'] ? "\t" : ' ';
+
+        $content  = $tag['type']['content'];
+        $content .= str_repeat($spaceContent, $tag['var']['spaceLength']);
+        $content .= $tag['var']['content'];
+        $content .= str_repeat(' ', $spaces);
+        $content .= $tag['comment']['lines'][0]['comment'];
+        $phpcsFile->fixer->replaceToken(($tag['tag']['token'] + 2), $content);
+
+        // Fix up the indent of additional comment lines.
+        foreach ($tag['comment']['lines'] as $lineNum => $line) {
+            if ($lineNum === 0
+                || $tag['comment']['lines'][$lineNum]['indent'] === 0
+            ) {
+                continue;
+            }
+
+            $newIndent = ($tag['comment']['lines'][$lineNum]['indent'] + $spaces - $tag['var']['spaceLength']);
+            $phpcsFile->fixer->replaceToken(
+                ($tag['comment']['lines'][$lineNum]['token'] - 1),
+                str_repeat(' ', $newIndent)
+            );
+        }
+
+        $phpcsFile->fixer->endChangeset();
+    }//end rewriteSpaceAfterVariableName()
+
+    /**
+     * Checks if the parameter contain a tab char
+     *
+     * @param string $content The whitespace part inside the comment
+     *
+     * @return boolean
+     */
+    protected function isTabUsedToIntend($content)
+    {
+        return preg_match('/[\t]/', $content) ? true : false;
+    }//end isTabUsedToIntend()
 
 }//end class

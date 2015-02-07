@@ -216,6 +216,45 @@
  * @param array|mixed $twelve
  */
 
+/**
+ * Short comment
+ *
+ * Long comment, which is longer than the short comment
+ *
+ * @param bool $one Comment 1
+ * @param int $two Comment 2
+ * @param array $three Comment 3
+ * @param boolean $four Comment 4
+ * @param integer $five Comment 5
+ * @param array $six Comment 6
+ * @param bool|mixed $seven Comment 7
+ * @param int|mixed $eight Comment 8
+ * @param array|mixed $nine Comment 9
+ * @param boolean|mixed $ten Comment 10
+ * @param integer|mixed $eleven Comment 11
+ * @param array|mixed $twelve Comment 12
+ */
+
+/**
+ * Short comment
+ *
+ * Long comment, which is longer than the short comment
+ *
+ * @param       bool      $one        Comment 1
+ * @param int$two      Comment 2
+ * @param	array	$three	Comment 3
+ * @param		boolean		$four		Comment 4
+ * @param	integer $five	Comment 5
+ * @param       array $six		Comment 6
+ * @param       array $seven
+ * @param       int
+ * @see söfsafsafssa
+ * @return bool
+ * @return     bool
+ * @return		bool
+ * @throws \Exeption safsfa
+ */
+
 
 
 
