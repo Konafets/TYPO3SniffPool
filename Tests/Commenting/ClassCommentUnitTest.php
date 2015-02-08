@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Andy Grunwald
@@ -17,7 +17,7 @@
  * Unit test class for TYPO3_Sniffs_Commenting_ClassCommentSniff.
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Andy Grunwald
@@ -39,22 +39,36 @@ class TYPO3SniffPool_Tests_Commenting_ClassCommentUnitTest extends AbstractSniff
      */
     public function getErrorList()
     {
-        return array(
-                4   => 1,
-                15  => 1,
-                36  => 1,
-                44  => 1,
-                59  => 1,
-                139 => 1,
-                147 => 1,
-                158 => 1,
-                162 => 1,
-                171 => 1,
-                178 => 1,
-                189 => 1,
-                193 => 1,
-                194 => 1,
-               );
+        if (version_compare(PHP_VERSION, '5.4.0', '<') === true) {
+            return array(
+                    4   => 1,
+                    15  => 1,
+                    36  => 1,
+                    44  => 1,
+                    59  => 1,
+                    139 => 1,
+                    147 => 1,
+                    158 => 1,
+                    162 => 1,
+                   );
+        } else {
+            return array(
+                    4   => 1,
+                    15  => 1,
+                    36  => 1,
+                    44  => 1,
+                    59  => 1,
+                    139 => 1,
+                    147 => 1,
+                    158 => 1,
+                    162 => 1,
+                    171 => 1,
+                    178 => 1,
+                    189 => 1,
+                    193 => 1,
+                    194 => 1,
+                   );
+        }//end if
 
     }//end getErrorList()
 
