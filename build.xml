@@ -4,6 +4,8 @@
 
     <target name="build" depends="lint,phpunit,phpcs_sniffs,phpcs_tests"/>
 
+    <target name="build-travis" depends="lint,phpunit"/>
+
     <target name="lint">
         <apply executable="${php}" failonerror="true">
             <arg value="-l"/>
@@ -22,7 +24,19 @@
 
     <target name="phpcs_sniffs">
         <exec executable="phpcs">
-            <arg value="--standard=PEAR"/>
+            <arg value="--standard=PHPCS"/>
+            <arg value="--extensions=php"/>
+            <arg value="--report=summary"/>
+            <arg value="--warning-severity=0"/>
+            <arg value="-np"/>
+            <arg value="--ignore=*/Tests/"/>
+            <arg path="${basedir}/Sniffs"/>
+        </exec>
+    </target>
+
+    <target name="phpcs_sniffs_travis">
+        <exec executable="./vendor/squizlabs/php_codesniffer/scripts/phpcs">
+            <arg value="--standard=PHPCS"/>
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
             <arg value="--warning-severity=0"/>
@@ -34,6 +48,17 @@
 
     <target name="phpcs_tests">
         <exec executable="phpcs">
+            <arg value="--standard=PEAR"/>
+            <arg value="--extensions=php"/>
+            <arg value="--report=summary"/>
+            <arg value="--warning-severity=0"/>
+            <arg value="-np"/>
+            <arg path="${basedir}/Tests"/>
+        </exec>
+    </target>
+
+    <target name="phpcs_tests_travis">
+        <exec executable="./vendor/squizlabs/php_codesniffer/scripts/phpcs">
             <arg value="--standard=PEAR"/>
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
