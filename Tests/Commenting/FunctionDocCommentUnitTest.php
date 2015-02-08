@@ -3,14 +3,15 @@
  * Unit test class for FunctionDocCommentSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Commenting
  * @package   TYPO3_PHPCS_Pool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2010 Andy Grunwald
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
@@ -22,17 +23,20 @@
  * Thanks for this guys!
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2010 Andy Grunwald
+ * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Commenting_FunctionDocCommentUnitTest extends AbstractSniffUnitTest
 {
+
+
     /**
      * Returns the lines where errors should occur.
      *
@@ -44,47 +48,49 @@ class TYPO3SniffPool_Tests_Commenting_FunctionDocCommentUnitTest extends Abstrac
     public function getErrorList()
     {
         return array(
-                9   => 1,
-                10  => 1,
                 12  => 1,
-                13  => 1,
-                24  => 1,
-                30  => 1,
-                33  => 1,
-                47  => 1,
-                68  => 1,
-                78  => 1,
-                92  => 1,
-                97  => 1,
-                100 => 1,
-                109 => 1,
-                110 => 1,
+                19  => 2,
+                24  => 2,
+                25  => 2,
+                27  => 1,
+                28  => 1,
+                39  => 1,
+                94  => 1,
+                99  => 1,
+                102 => 1,
                 111 => 1,
-                112 => 1,
                 113 => 2,
-                114 => 2,
-                115 => 4,
-                125 => 2,
-                126 => 2,
-                127 => 3,
-                128 => 3,
-                129 => 3,
-                141 => 2,
-                150 => 1,
-                157 => 1,
-                167 => 1,
-                176 => 3,
-                186 => 1,
-                197 => 1,
-                218 => 1,
-                250 => 3,
-                251 => 1,
-                252 => 1,
-                253 => 2,
+                114 => 1,
+                115 => 1,
+                116 => 1,
+                117 => 1,
+                132 => 1,
+                135 => 2,
+                153 => 1,
+                160 => 1,
+                170 => 1,
+                176 => 2,
+                191 => 1,
+                203 => 1,
+                221 => 1,
+                229 => 1,
+                253 => 1,
                 254 => 2,
-                255 => 4,
-            );
-    }
+                255 => 1,
+                256 => 1,
+                257 => 1,
+                258 => 1,
+                259 => 1,
+                264 => 1,
+                272 => 1,
+                281 => 1,
+                287 => 1,
+                293 => 1,
+                297 => 2,
+               );
+
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -96,7 +102,14 @@ class TYPO3SniffPool_Tests_Commenting_FunctionDocCommentUnitTest extends Abstrac
      */
     public function getWarningList()
     {
-        return array();
-    }
-}
-?>
+        return array(
+                  13  => 1,
+                  127 => 1,
+                  179 => 1,
+                  230 => 1,
+               );
+
+    }//end getWarningList()
+
+
+}//end class
