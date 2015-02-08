@@ -152,13 +152,13 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, false, true, true);
         if ($hasUnderscores !== false) {
             $messageData = array($scope, $variableName);
-            $error = 'Underscores are not allowed in the %svariablename "$%s".';
+            $error = 'Underscores are not allowed in the %s variable name "$%s".';
 
             switch($variableName) {
             case '_POST':
             case '_GET':
                 $messageData = array($variableName, $variableName);
-                $error = 'Direct access to "$%s" is not allowed; Please use t3lib_div::%s or t3lib_div::_GP instead';
+                $error = 'Direct access to "$%s" is not allowed; Please use GeneralUtility::%s or GeneralUtility::_GP instead';
                 break;
             default:
                 $messageData[] = $this->buildExampleVariableName($variableName);
@@ -176,7 +176,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
             );
 
             $messageData = array(ucfirst($scope), lcfirst($variableNameLowerCamelCased), $variableName);
-            $error = '%svariablename must be lowerCamelCase; expect "$%s" but found "$%s"';
+            $error = '%s variable name must be lowerCamelCase; expect "$%s" but found "$%s"';
             $phpcsFile->addError($error, $stackPtr, 'VariableIsNotLowerCamelCased', $messageData);
         }
     }

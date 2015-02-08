@@ -14,7 +14,7 @@
  */
 /**
  * Warns about the use of debug code like
- * print_r(), var_dump(), xdebug, debug and t3lib_div::debug
+ * print_r(), var_dump(), xdebug, debug and GeneralUtility::debug
  *
  * @category  Debug
  * @package   TYPO3_PHPCS_Pool
@@ -84,7 +84,7 @@ class TYPO3SniffPool_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Snif
             break;
         case 'T_COMMENT':
             $comment = $tokens[$stackPtr]['content'];
-            $ifDebugInComment = preg_match_all('/\b((t3lib_div::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $comment, $matchesArray);
+            $ifDebugInComment = preg_match_all('/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $comment, $matchesArray);
             if ($ifDebugInComment === 1) {
                 $error = 'Its not enough to comment out debug functions calls; ';
                 $error.= 'they must be removed from code.';
