@@ -63,7 +63,7 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
             $fix = $phpcsFile->addFixableError($error, $stackPtr, $type);
 
             if ($fix === true) {
-                $lineStart = $phpcsFile->findPrevious(T_DOC_COMMENT_WHITESPACE, $stackPtr, null, false, "\t ");
+                $lineStart = $phpcsFile->findPrevious(T_DOC_COMMENT_WHITESPACE, $stackPtr, null, false, "\n") + 1;
                 $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, $stackPtr + 1, null, false, $phpcsFile->eolChar);
 
                 $phpcsFile->fixer->beginChangeset();
