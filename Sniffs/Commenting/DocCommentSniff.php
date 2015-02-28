@@ -253,7 +253,7 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                     || ($paramGroupid !== null
                     && $paramGroupid !== $groupid)
                 ) {
-                    $error = 'Parameter tags should be grouped together in a doc commment';
+                    $error = 'Parameter tags should be grouped together in a doc comment';
                     $phpcsFile->addWarning($error, $tag, 'ParamGroup');
                 }
 
@@ -314,7 +314,7 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
 
         // If there is a param group, it needs to be first.
         if ($paramGroupid !== null && $paramGroupid !== 0) {
-            $error = 'Parameter tags must be defined first in a doc commment';
+            $error = 'Parameter tags must be defined first in a doc comment';
             $phpcsFile->addError($error, $tagGroups[$paramGroupid][0], 'ParamNotFirst');
         }
 
