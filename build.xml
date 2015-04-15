@@ -4,7 +4,7 @@
 
     <target name="build" depends="lint,phpunit,phpcs_sniffs,phpcs_tests"/>
 
-    <target name="build-travis" depends="lint,phpunit"/>
+    <target name="build-travis" depends="lint,phpcs_sniffs_travis,phpunit"/>
 
     <target name="lint">
         <apply executable="${php}" failonerror="true">
@@ -28,7 +28,7 @@
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
             <arg value="--warning-severity=0"/>
-            <arg value="-np"/>
+            <arg value="-npv"/>
             <arg value="--ignore=*/Tests/"/>
             <arg path="${basedir}/Sniffs"/>
         </exec>
