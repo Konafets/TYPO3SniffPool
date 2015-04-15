@@ -5,23 +5,23 @@
  * PHP version 5
  * TYPO3 CMS
  *
- * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
- * @author    Stefano Kowalke <blueduck@gmx.net>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @link      https://github.com/typo3-ci/TYPO3SniffPool
+ * @category Commenting
+ * @package  TYPO3_PHPCS_Pool
+ * @author   Stefano Kowalke <blueduck@gmx.net>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @link     https://github.com/typo3-ci/TYPO3SniffPool
  */
 
 /**
  * Parses and verifies that a function / method doc comment
  * has no @author annotation.
  *
- * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
- * @author    Stefano Kowalke <blueduck@gmx.net>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
- * @link      https://github.com/typo3-ci/TYPO3SniffPool
+ * @category Commenting
+ * @package  TYPO3_PHPCS_Pool
+ * @author   Stefano Kowalke <blueduck@gmx.net>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @version  Release: @package_version@
+ * @link     https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSniff implements PHP_CodeSniffer_Sniff
 {
@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
      */
     protected $commentParser = null;
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
     public function register()
     {
         return array(T_DOC_COMMENT_TAG);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -58,21 +61,25 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
         $content = $tokens[$stackPtr]['content'];
 
         if ($content === '@author') {
-            $type = 'NoAuthorAnnotationInFunctionDocComment';
+            $type  = 'NoAuthorAnnotationInFunctionDocComment';
             $error = '@author tag should not be used in function or method phpDoc comment blocks - only at class level';
-            $fix = $phpcsFile->addFixableError($error, $stackPtr, $type);
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, $type);
 
             if ($fix === true) {
-                $lineStart = $phpcsFile->findPrevious(T_DOC_COMMENT_WHITESPACE, $stackPtr, null, false, "\n") + 1;
-                $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, $stackPtr + 1, null, false, $phpcsFile->eolChar);
+                $lineStart = ($phpcsFile->findPrevious(T_DOC_COMMENT_WHITESPACE, $stackPtr, null, false, "\n") + 1);
+                $lineEnd   = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, ($stackPtr + 1), null, false, $phpcsFile->eolChar);
 
                 $phpcsFile->fixer->beginChangeset();
                 $i = $lineStart;
                 for ($i;$i <= $lineEnd;$i++) {
                     $phpcsFile->fixer->replaceToken($i, '');
                 }
+
                 $phpcsFile->fixer->endChangeset();
             }
         }
-    }
-}
+
+    }//end process()
+
+
+}//end class

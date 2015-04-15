@@ -25,15 +25,19 @@
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff implements PHP_CodeSniffer_Sniff
 {
+
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
-    public function register() 
+    public function register()
     {
         return array(T_INLINE_THEN);
-    } //end register()
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -44,11 +48,11 @@ class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff im
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) 
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $isNested = $phpcsFile->findNext(
             T_INLINE_THEN,
-            $stackPtr + 1,
+            ($stackPtr + 1),
             null,
             false,
             null,
@@ -59,8 +63,8 @@ class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff im
             $error = 'Nested ternary conditional operators are not allowed;';
             $phpcsFile->addError($error, $stackPtr);
         }
-    } //end process()
 
-} //end class
+    }//end process()
 
-?>
+
+}//end class

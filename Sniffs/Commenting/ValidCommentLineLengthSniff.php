@@ -45,6 +45,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public $supportedTokenizes = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -52,8 +53,13 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public function register()
     {
-        return array(T_DOC_COMMENT_STAR, T_COMMENT);
-    }
+        return array(
+                T_DOC_COMMENT_STAR,
+                T_COMMENT,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -66,17 +72,21 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens      = $phpcsFile->getTokens();
         $commentLine = $tokens[$stackPtr]['content'];
-        $lineEnd = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, $stackPtr + 1, null, false, $phpcsFile->eolChar);
+        $lineEnd     = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, ($stackPtr + 1), null, false, $phpcsFile->eolChar);
 
-        for ($i = $stackPtr + 1; $i < $lineEnd; $i++) {
+        for ($i = ($stackPtr + 1); $i < $lineEnd; $i++) {
             $commentLine .= $tokens[$i]['content'];
         }
+
         $commentLength = strlen($commentLine);
 
         if ($commentLength > $this->maxCommentLength) {
-            $phpcsFile->addWarning('Comment lines should be kept within a limit of about ' . $this->maxCommentLength . ' characters but this comment has ' . $commentLength . ' character!', $stackPtr);
+            $phpcsFile->addWarning('Comment lines should be kept within a limit of about '.$this->maxCommentLength.' characters but this comment has '.$commentLength.' character!', $stackPtr);
         }
-    }
-}
+
+    }//end process()
+
+
+}//end class

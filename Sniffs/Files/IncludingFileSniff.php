@@ -25,6 +25,8 @@
  */
 class TYPO3SniffPool_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_Sniff
 {
+
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -32,8 +34,14 @@ class TYPO3SniffPool_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_
      */
     public function register()
     {
-        return array(T_INCLUDE_ONCE, T_REQUIRE, T_INCLUDE);
-    }
+        return array(
+                T_INCLUDE_ONCE,
+                T_REQUIRE,
+                T_INCLUDE,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -46,32 +54,35 @@ class TYPO3SniffPool_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $keyword = $tokens[$stackPtr]['content'];
+        $tokens    = $phpcsFile->getTokens();
+        $keyword   = $tokens[$stackPtr]['content'];
         $tokenCode = $tokens[$stackPtr]['type'];
         switch ($tokenCode) {
         case 'T_INCLUDE_ONCE':
                 // Here we are looking if the found include_once keyword is
                 // part of an XClass declaration where this is allowed.
-            if ($tokens[$stackPtr + 7]['content'] == "'XCLASS'" ) {
+            if ($tokens[($stackPtr + 7)]['content'] === "'XCLASS'") {
                 return;
             }
-            $error = 'Including files with "' . $keyword . '" is not allowed; ';
-            $error.= 'use "require_once" instead';
+
+            $error  = 'Including files with "'.$keyword.'" is not allowed; ';
+            $error .= 'use "require_once" instead';
             $phpcsFile->addError($error, $stackPtr);
             break;
         case 'T_REQUIRE':
-            $error = 'Including files with "' . $keyword . '" is not allowed; ';
-            $error.= 'use "require_once" instead';
+            $error  = 'Including files with "'.$keyword.'" is not allowed; ';
+            $error .= 'use "require_once" instead';
             $phpcsFile->addError($error, $stackPtr);
             break;
         case 'T_INCLUDE':
-            $error = 'Including files with "' . $keyword . '" is not allowed; ';
-            $error.= 'use "require_once" instead';
+            $error  = 'Including files with "'.$keyword.'" is not allowed; ';
+            $error .= 'use "require_once" instead';
             $phpcsFile->addError($error, $stackPtr);
             break;
         default:
-        }
-    }
-}
-?>
+        }//end switch
+
+    }//end process()
+
+
+}//end class

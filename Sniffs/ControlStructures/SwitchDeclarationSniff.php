@@ -197,7 +197,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                     // in switch. If the default contains a throw, exit, continue
                     // or return statement this will be chosen as scope_closer
                     // But the default statement can contain a such statements.
-                } elseif (($tokens[$nextCase]['scope_closer'] !== $switch['scope_closer'])
+                } else if (($tokens[$nextCase]['scope_closer'] !== $switch['scope_closer'])
                     && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_THROW
                     && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_EXIT
                     && $tokens[$tokens[$nextCase]['scope_closer']]['code'] !== T_CONTINUE
@@ -266,8 +266,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                                 break;
                             }
 
-                            if (($tokens[$nextCase]['column'] + 1)
-                                !== ($tokens[$i]['column'])
+                            if (($tokens[$nextCase]['column'] + 1) !== ($tokens[$i]['column'])
                             ) {
                                 $error = 'The code inside the case statemens is further indented with a single tab';
                                 $phpcsFile->addError($error, $i, 'CodeNotCorrectlyAligned');
@@ -288,9 +287,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                         );
                     }
                 }//end if
-
             }//end if
-
 
             // We only want cases from here on on.
             if ($type !== 'case') {
@@ -308,8 +305,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements 
                     $afterNextCase,
                     $nextCase
                 );
-                if (($tokens[$commentBeforeCase]['line'])
-                    !== ($tokens[$afterNextCase]['line'] - 1)
+                if (($tokens[$commentBeforeCase]['line']) !== ($tokens[$afterNextCase]['line'] - 1)
                 ) {
                     $error = 'If one case block has to pass control into another case block without having a break, there must be a comment about it in the code.';
                     $phpcsFile->addError(

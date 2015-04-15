@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_WhitespaceAfterCommentSignsSniff implemen
      */
     public $supportedTokenizes = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_WhitespaceAfterCommentSignsSniff implemen
     public function register()
     {
         return array(T_COMMENT);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -53,15 +56,17 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_WhitespaceAfterCommentSignsSniff implemen
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens      = $phpcsFile->getTokens();
         $commentLine = '';
-        // we only need the single line comments which started with double slashes
+        // We only need the single line comments which started with double slashes.
         if (substr_compare($tokens[$stackPtr]['content'], '//', 0, 2) === 0) {
             $commentLine = $tokens[$stackPtr]['content'];
             if (preg_match_all('/\/\/( ){1,}[\S]|(\/){3,}/', $commentLine, $matchesarray) === 0) {
-                $phpcsFile->addError('Whitespace must be added after double slashes in single line comments; expected "// This is a comment" but found "' . trim($tokens[$stackPtr]['content']) . '"', $stackPtr);
+                $phpcsFile->addError('Whitespace must be added after double slashes in single line comments; expected "// This is a comment" but found "'.trim($tokens[$stackPtr]['content']).'"', $stackPtr);
             }
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

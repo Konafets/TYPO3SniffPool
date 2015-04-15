@@ -83,7 +83,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         // The first line of the comment should just be the /** code.
         if ($tokens[$short]['line'] === $tokens[$stackPtr]['line']) {
             $error = 'The open comment tag must be the only content on the line';
-            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'ContentAfterOpen');
+            $fix   = $phpcsFile->addFixableError(
+                $error,
+                $stackPtr,
+                'ContentAfterOpen'
+            );
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
                 $phpcsFile->fixer->addNewline($stackPtr);
@@ -96,7 +100,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         $prev = $phpcsFile->findPrevious($empty, ($commentEnd - 1), $stackPtr, true);
         if ($tokens[$prev]['line'] === $tokens[$commentEnd]['line']) {
             $error = 'The close comment tag must be the only content on the line';
-            $fix   = $phpcsFile->addFixableError($error, $commentEnd, 'ContentBeforeClose');
+            $fix   = $phpcsFile->addFixableError(
+                $error,
+                $commentEnd,
+                'ContentBeforeClose'
+            );
             if ($fix === true) {
                 $phpcsFile->fixer->addNewlineBefore($commentEnd);
             }
@@ -105,7 +113,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         // Check for additional blank lines at the end of the comment.
         if ($tokens[$prev]['line'] < ($tokens[$commentEnd]['line'] - 1)) {
             $error = 'Additional blank lines found at end of doc comment';
-            $fix   = $phpcsFile->addFixableError($error, $commentEnd, 'SpacingAfter');
+            $fix   = $phpcsFile->addFixableError(
+                $error,
+                $commentEnd,
+                'SpacingAfter'
+            );
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
                 for ($i = ($prev + 1); $i < $commentEnd; $i++) {
@@ -130,7 +142,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         // No extra newline before short description.
         if ($tokens[$short]['line'] !== ($tokens[$stackPtr]['line'] + 1)) {
             $error = 'Doc comment short description must be on the first line';
-            $fix   = $phpcsFile->addFixableError($error, $short, 'SpacingBeforeShort');
+            $fix   = $phpcsFile->addFixableError(
+                $error,
+                $short,
+                'SpacingBeforeShort'
+            );
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
                 for ($i = $stackPtr; $i < $short; $i++) {
@@ -145,7 +161,7 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
 
                 $phpcsFile->fixer->endChangeset();
             }
-        }
+        }//end if
 
         // Account for the fact that a short description might cover
         // multiple lines.
@@ -167,7 +183,12 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
             $phpcsFile->addError($error, $short, 'ShortNotCapital');
         }
 
-        $long = $phpcsFile->findNext($empty, ($shortEnd + 1), ($commentEnd - 1), true);
+        $long = $phpcsFile->findNext(
+            $empty,
+            ($shortEnd + 1),
+            ($commentEnd - 1),
+            true
+        );
         if ($long === false) {
             return;
         }
@@ -175,7 +196,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         if ($tokens[$long]['code'] === T_DOC_COMMENT_STRING) {
             if ($tokens[$long]['line'] !== ($tokens[$shortEnd]['line'] + 2)) {
                 $error = 'There must be exactly one blank line between descriptions in a doc comment';
-                $fix   = $phpcsFile->addFixableError($error, $long, 'SpacingBetween');
+                $fix   = $phpcsFile->addFixableError(
+                    $error,
+                    $long,
+                    'SpacingBetween'
+                );
                 if ($fix === true) {
                     $phpcsFile->fixer->beginChangeset();
                     for ($i = ($shortEnd + 1); $i < $long; $i++) {
@@ -190,7 +215,7 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
 
                     $phpcsFile->fixer->endChangeset();
                 }
-            }
+            }//end if
 
             if (preg_match('/\p{Lu}|\P{L}/u', $tokens[$long]['content'][0]) === 0) {
                 $error = 'Doc comment long description must start with a capital letter';
@@ -204,10 +229,19 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         }
 
         $firstTag = $tokens[$commentStart]['comment_tags'][0];
-        $prev     = $phpcsFile->findPrevious($empty, ($firstTag - 1), $stackPtr, true);
+        $prev     = $phpcsFile->findPrevious(
+            $empty,
+            ($firstTag - 1),
+            $stackPtr,
+            true
+        );
         if ($tokens[$firstTag]['line'] !== ($tokens[$prev]['line'] + 2)) {
             $error = 'There must be exactly one blank line before the tags in a doc comment';
-            $fix   = $phpcsFile->addFixableError($error, $firstTag, 'SpacingBeforeTags');
+            $fix   = $phpcsFile->addFixableError(
+                $error,
+                $firstTag,
+                'SpacingBeforeTags'
+            );
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
                 for ($i = ($prev + 1); $i < $firstTag; $i++) {
@@ -219,14 +253,18 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                 }
 
                 $indent = str_repeat(' ', $tokens[$stackPtr]['column']);
-                $phpcsFile->fixer->addContent($prev, $phpcsFile->eolChar.$indent.'*'.$phpcsFile->eolChar);
+                $phpcsFile->fixer->addContent(
+                    $prev,
+                    $phpcsFile->eolChar.$indent.'*'.$phpcsFile->eolChar
+                );
                 $phpcsFile->fixer->endChangeset();
             }
-        }
+        }//end if
 
         // Break out the tags into groups and check alignment within each.
         // A tag group is one where there are no blank lines between tags.
-        // The param tag group is special as it requires all @param tags to be inside.
+        // The param tag group is special as it requires all @param tags to
+        // be inside.
         $tagGroups    = array();
         $groupid      = 0;
         $paramGroupid = null;
@@ -278,7 +316,11 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                 }
 
                 // Check for a value. No value means no padding needed.
-                $string = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $tag, $commentEnd);
+                $string = $phpcsFile->findNext(
+                    T_DOC_COMMENT_STRING,
+                    $tag,
+                    $commentEnd
+                );
                 if ($string !== false && $tokens[$string]['line'] === $tokens[$tag]['line']) {
                     $paddings[$tag] = strlen($tokens[($tag + 1)]['content']);
                 }
@@ -287,12 +329,27 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
             // Check that there was single blank line after the tag block
             // but account for a multi-line tag comments.
             $lastTag = $group[$pos];
-            $next    = $phpcsFile->findNext(T_DOC_COMMENT_TAG, ($lastTag + 3), $commentEnd);
+            $next    = $phpcsFile->findNext(
+                T_DOC_COMMENT_TAG,
+                ($lastTag + 3),
+                $commentEnd
+            );
             if ($next !== false) {
-                $prev = $phpcsFile->findPrevious(array(T_DOC_COMMENT_TAG, T_DOC_COMMENT_STRING), ($next - 1), $commentStart);
+                $prev = $phpcsFile->findPrevious(
+                    array(
+                     T_DOC_COMMENT_TAG,
+                     T_DOC_COMMENT_STRING,
+                    ),
+                    ($next - 1),
+                    $commentStart
+                );
                 if ($tokens[$next]['line'] !== ($tokens[$prev]['line'] + 2)) {
                     $error = 'There must be a single blank line after a tag group';
-                    $fix   = $phpcsFile->addFixableError($error, $lastTag, 'SpacingAfterTagGroup');
+                    $fix   = $phpcsFile->addFixableError(
+                        $error,
+                        $lastTag,
+                        'SpacingAfterTagGroup'
+                    );
                     if ($fix === true) {
                         $phpcsFile->fixer->beginChangeset();
                         for ($i = ($prev + 1); $i < $next; $i++) {
@@ -304,12 +361,14 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                         }
 
                         $indent = str_repeat(' ', $tokens[$stackPtr]['column']);
-                        $phpcsFile->fixer->addContent($prev, $phpcsFile->eolChar.$indent.'*'.$phpcsFile->eolChar);
+                        $phpcsFile->fixer->addContent(
+                            $prev,
+                            $phpcsFile->eolChar.$indent.'*'.$phpcsFile->eolChar
+                        );
                         $phpcsFile->fixer->endChangeset();
                     }
-                }
+                }//end if
             }//end if
-
         }//end foreach
 
         // If there is a param group, it needs to be first.
@@ -335,18 +394,28 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
         }
 
         // The data type has to be declared in short form
-        // integer -> int; boolean -> bool
-        $longTypes = array('boolean', 'integer');
-        $shortTypes = array('bool', 'int');
-        $fix = false;
+        // integer -> int; boolean -> bool.
+        $longTypes  = array(
+                       'boolean',
+                       'integer',
+                      );
+        $shortTypes = array(
+                       'bool',
+                       'int',
+                      );
+        $fix        = false;
         foreach ($tokens[$stackPtr]['comment_tags'] as $pos => $tag) {
-            $dataType = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $tag + 1);
+            $dataType = $phpcsFile->findNext(T_DOC_COMMENT_STRING, ($tag + 1));
             for ($i = 0; $i < count($longTypes); $i++) {
-                if (strpos($tokens[$dataType]['content'], $longTypes[$i]) !== FALSE) {
+                if (strpos($tokens[$dataType]['content'], $longTypes[$i]) !== false) {
                     $error = 'Use short form of data types; expected "%s" but found "%s".';
-                    $data = array($shortTypes[$i], $longTypes[$i]);
-                    $fix = $phpcsFile->addFixableError($error, $tag, 'UseShortDataType', $data);
+                    $data  = array(
+                              $shortTypes[$i],
+                              $longTypes[$i],
+                             );
+                    $fix   = $phpcsFile->addFixableError($error, $tag, 'UseShortDataType', $data);
                 }
+
                 if ($fix === true) {
                     $phpcsFile->fixer->replaceToken(
                         $dataType,
@@ -355,7 +424,8 @@ class TYPO3SniffPool_Sniffs_Commenting_DocCommentSniff implements PHP_CodeSniffe
                     $fix = false;
                 }
             }
-        }
+        }//end foreach
+
     }//end process()
 
 

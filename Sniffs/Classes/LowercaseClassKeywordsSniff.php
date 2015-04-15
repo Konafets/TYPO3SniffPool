@@ -25,6 +25,8 @@
  */
 class TYPO3SniffPool_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sniffs_Classes_LowercaseClassKeywordsSniff
 {
+
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -44,8 +46,10 @@ class TYPO3SniffPool_Sniffs_Classes_LowercaseClassKeywordsSniff extends Squiz_Sn
                 T_CONST,
                 T_PRIVATE,
                 T_PUBLIC,
-                T_PROTECTED
-                );
-    }
-}
-?>
+                T_PROTECTED,
+               );
+
+    }//end register()
+
+
+}//end class

@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowElseIfConstructSniff imple
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowElseIfConstructSniff imple
     public function register()
     {
         return array(T_ELSE);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -54,9 +57,11 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowElseIfConstructSniff imple
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $result = $phpcsFile->findNext(T_IF, ($stackPtr + 1), ($stackPtr + 3));
-        if ($result) {
+        if ($result !== false) {
             $phpcsFile->addError('Usage of "ELSE IF" not allowed. Use "ELSEIF" instead.', $stackPtr);
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

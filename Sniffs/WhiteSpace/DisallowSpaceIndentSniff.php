@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
     public function register()
     {
         return array(T_OPEN_TAG);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -59,11 +62,12 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
         if ($previousOpenTag !== false) {
             return;
         }
-        $tokenCount = 0;
+
+        $tokenCount         = 0;
         $currentLineContent = '';
-        $currentLine = 1;
-        $tokenIsDocComment = true;
-        $tokenIsString = true;
+        $currentLine        = 1;
+        $tokenIsDocComment  = true;
+        $tokenIsString      = true;
         foreach ($tokens as $token) {
             $tokenCount++;
             if ($token['line'] === $currentLine) {
@@ -82,56 +86,86 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_DisallowSpaceIndentSniff implements PHP_C
                 // We have to check if the current token is a comment.
                 // We are looking for doc comments and normal comments
                 // but by the architecture comments like ...
-                // "// comment" will be ignored
-                $tokenIsDocComment = preg_match('/^T_(DOC_)?COMMENT(_WHITESPACE)?$/', $token['type']) ? true : false;
-                $tokenIsString = preg_match('/^T_CONSTANT_ENCAPSED_STRING$/', $token['type']) ? true : false;
+                // "// comment" will be ignored.
+                if (preg_match('/^T_(DOC_)?COMMENT(_WHITESPACE)?$/', $token['type']) === 1) {
+                    $tokenIsDocComment = true;
+                } else {
+                    $tokenIsDocComment = false;
+                }
+
+                if (preg_match('/^T_CONSTANT_ENCAPSED_STRING$/', $token['type']) === 1) {
+                    $tokenIsString = true;
+                } else {
+                    $tokenIsString = false;
+                }
+
                 $currentLine++;
-            }
-        }
+            }//end if
+        }//end foreach
+
         $this->ifSpaceIndent($phpcsFile, ($tokenCount - 1), $currentLineContent, (bool) $tokenIsDocComment, (bool) $tokenIsString);
         return;
-    }
+
+    }//end process()
+
 
     /**
      * Check if the code is intend with spaces
      *
      * @param PHP_CodeSniffer_File $phpcsFile         The file being scanned.
-     * @param int                  $stackPtr          The token at the end of the line.
+     * @param int                  $stackPtr          The token at the end of
+     *                                                the line.
      * @param string               $lineContent       The content of the line.
-     * @param boolean              $tokenIsDocComment True if the token is a doc block comment. False otherwise
-     * @param boolean              $tokenIsString     True if the token is a string. False otherwise.
+     * @param boolean              $tokenIsDocComment True if the token is a
+     *                                                doc block comment.
+     *                                                False otherwise
+     * @param boolean              $tokenIsString     True if the token is a string.
+     *                                                False otherwise.
      *
      * @return void
      */
     protected function ifSpaceIndent(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $lineContent, $tokenIsDocComment, $tokenIsString)
     {
-        // is the line intent by something?
-        $hasIndention = preg_match('/(^\S)|(^\s\*)|(^$)/', $lineContent) ? false : true;
+        // Is the line intent by something?
+        if (preg_match('/(^\S)|(^\s\*)|(^$)/', $lineContent) === 1) {
+            $hasIndention = false;
+        } else {
+            $hasIndention = true;
+        }
+
         $indentionPart = '';
-        if ($hasIndention) {
-             // spaces in strings at line start are allowed, so we don't care about
-            if ($tokenIsString) {
+        if ($hasIndention === true) {
+             // Spaces in strings at line start are allowed, so we don't care about.
+            if ($tokenIsString === true) {
                 return;
             }
 
-            if ($tokenIsDocComment) {
+            if ($tokenIsDocComment === true) {
                 $indentionPart = (string) substr($lineContent, 0, strpos($lineContent, ' *'));
             } else {
-                // get the intention part of the line
-                // (is stored in $matches)
+                // Get the intention part of the line (is stored in $matches).
                 preg_match_all('/^\s+/', $lineContent, $matches);
                 $indentionPart = $matches[0][0];
             }
-            // is a space char in the indention?
-            $isSpace = preg_match('/[^\t]/', $indentionPart) ? true : false;
-            if ($isSpace) {
+
+            // Is a space char in the indention?
+            if (preg_match('/[^\t]/', $indentionPart) === 1) {
+                $isSpace = true;
+            } else {
+                $isSpace = false;
+            }
+
+            if ($isSpace === true) {
                 $error = 'Tabs must be used to indent lines; spaces are not allowed';
                 $phpcsFile->addError(
                     $error,
-                    $stackPtr - 1,
+                    ($stackPtr - 1),
                     'SpaceIndentionNotAllowed'
                 );
             }
-        }
-    }
-}
+        }//end if
+
+    }//end ifSpaceIndent()
+
+
+}//end class

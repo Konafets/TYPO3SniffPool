@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_Commenting_SpaceAfterDoubleSlashSniff implements PHP
      */
     public $supportedTokenizes = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_Commenting_SpaceAfterDoubleSlashSniff implements PHP
     public function register()
     {
         return array(T_COMMENT);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -53,12 +56,14 @@ class TYPO3SniffPool_Sniffs_Commenting_SpaceAfterDoubleSlashSniff implements PHP
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens  = $phpcsFile->getTokens();
         $keyword = $tokens[$stackPtr]['content'];
-        if (substr($keyword, 0, 2) === '//' && !(substr($keyword, 2, 1) === ' ')) {
+        if (substr($keyword, 0, 2) === '//' && (substr($keyword, 2, 1) === ' ') === false) {
             $error = 'Space must be added in single line comments after the comment sign (double slash).';
             $phpcsFile->addError($error, $stackPtr);
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

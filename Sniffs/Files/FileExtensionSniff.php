@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_Files_FileExtensionSniff implements PHP_CodeSniffer_
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -42,6 +43,7 @@ class TYPO3SniffPool_Sniffs_Files_FileExtensionSniff implements PHP_CodeSniffer_
         return array(T_OPEN_TAG);
 
     }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -65,11 +67,11 @@ class TYPO3SniffPool_Sniffs_Files_FileExtensionSniff implements PHP_CodeSniffer_
         $extension = substr($fileName, strrpos($fileName, '.'));
 
         if ($extension !== '.php') {
-            $error = 'Extension for PHP files is always ".php". Found "' . $extension . '" file; use ".php" extension instead';
+            $error = 'Extension for PHP files is always ".php". Found "'.$extension.'" file; use ".php" extension instead';
             $phpcsFile->addError($error, $stackPtr, 'WrongFileExtension');
         }
-    } //end process()
 
-} //end class
+    }//end process()
 
-?>
+
+}//end class

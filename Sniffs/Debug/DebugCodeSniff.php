@@ -33,6 +33,7 @@ class TYPO3SniffPool_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Snif
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,8 +41,13 @@ class TYPO3SniffPool_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Snif
      */
     public function register()
     {
-        return array(T_STRING, T_COMMENT,);
-    }
+        return array(
+                T_STRING,
+                T_COMMENT,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -54,45 +60,47 @@ class TYPO3SniffPool_Sniffs_Debug_DebugCodeSniff implements PHP_CodeSniffer_Snif
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $tokenType = $tokens[$stackPtr]['type'];
+        $tokens       = $phpcsFile->getTokens();
+        $tokenType    = $tokens[$stackPtr]['type'];
         $currentToken = $tokens[$stackPtr]['content'];
         switch ($tokenType) {
         case 'T_STRING':
             if ($currentToken === 'debug') {
                 $previousToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
                 if ($tokens[$previousToken]['content'] === '::') {
-                    $errorData = array($tokens[$previousToken - 1]['content']);
-                    $error = 'Call to debug function %s::debug() must be removed';
+                    $errorData = array($tokens[($previousToken - 1)]['content']);
+                    $error     = 'Call to debug function %s::debug() must be removed';
                     $phpcsFile->addError($error, $stackPtr, 'StaticDebugCall', $errorData);
-                } elseif (($tokens[$previousToken]['content'] === '->') || ($tokens[$previousToken]['content'] === 'class') || ($tokens[$previousToken]['content'] === 'function')) {
+                } else if (($tokens[$previousToken]['content'] === '->') || ($tokens[$previousToken]['content'] === 'class') || ($tokens[$previousToken]['content'] === 'function')) {
                     // We don't care about code like:
                     // if ($this->debug) {...}
                     // class debug {...}
-                    // function debug () {...}
+                    // function debug () {...}.
                     return;
                 } else {
                     $errorData = array($currentToken);
-                    $error = 'Call to debug function %s() must be removed';
+                    $error     = 'Call to debug function %s() must be removed';
                     $phpcsFile->addError($error, $stackPtr, 'DebugFunctionCall', $errorData);
                 }
-            } elseif ($currentToken === 'print_r' || $currentToken === 'var_dump' || $currentToken === 'xdebug') {
+            } else if ($currentToken === 'print_r' || $currentToken === 'var_dump' || $currentToken === 'xdebug') {
                 $errorData = array($currentToken);
-                $error = 'Call to debug function %s() must be removed';
+                $error     = 'Call to debug function %s() must be removed';
                 $phpcsFile->addError($error, $stackPtr, 'NativDebugFunction', $errorData);
-            }
+            }//end if
             break;
         case 'T_COMMENT':
-            $comment = $tokens[$stackPtr]['content'];
+            $comment          = $tokens[$stackPtr]['content'];
             $ifDebugInComment = preg_match_all('/\b((DebugUtility::)?([x]?debug)|(print_r)|(var_dump))([\s]+)?\(/', $comment, $matchesArray);
             if ($ifDebugInComment === 1) {
-                $error = 'Its not enough to comment out debug functions calls; ';
-                $error.= 'they must be removed from code.';
+                $error  = 'Its not enough to comment out debug functions calls; ';
+                $error .= 'they must be removed from code.';
                 $phpcsFile->addError($error, $stackPtr, 'CommentOutDebugCall');
             }
             break;
         default:
-        }
-    }
-}
-?>
+        }//end switch
+
+    }//end process()
+
+
+}//end class

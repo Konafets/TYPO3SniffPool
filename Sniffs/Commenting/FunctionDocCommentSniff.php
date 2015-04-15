@@ -60,6 +60,7 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
                                      );
     protected $spaces = 1;
 
+
     /**
      * Process the return comment of this function comment.
      *
@@ -168,8 +169,6 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
                         }
                     }
                 }//end if
-
-
             }//end if
         } else {
             $error = 'Missing @return tag in function comment';
@@ -177,6 +176,7 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
         }//end if
 
     }//end processReturn()
+
 
     /**
      * Process any throw tags that this function comment has.
@@ -240,6 +240,7 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
 
     }//end processThrows()
 
+
     /**
      * Process the function parameter comments.
      *
@@ -256,37 +257,37 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
     {
         $tokens = $phpcsFile->getTokens();
 
-        $params  = array();
+        $params = array();
 
         foreach ($tokens[$commentStart]['comment_tags'] as $pos => $tag) {
             if ($tokens[$tag]['content'] !== '@param') {
                 continue;
             }
 
-            $type                 = '';
-            $typeSpace            = 0;
-            $isVarIntendByTab     = FALSE;
-            $var                  = '';
-            $varSpace             = 0;
-            $isCommentIndentByTab = FALSE;
-            $comment              = '';
-            $commentLines         = array();
+            $type      = '';
+            $typeSpace = 0;
+            $isVarIntendByTab = false;
+            $var      = '';
+            $varSpace = 0;
+            $isCommentIndentByTab = false;
+            $comment      = '';
+            $commentLines = array();
             if ($tokens[($tag + 2)]['code'] === T_DOC_COMMENT_STRING) {
                 $matches = array();
                 preg_match('/([^$&]+)(?:((?:\$|&)[^\s]+)(?:(\s+)(.*))?)?/', $tokens[($tag + 2)]['content'], $matches);
 
-                $typeLen                 = strlen($matches[1]);
-                $type                    = trim($matches[1]);
-                $typeSpace               = ($typeLen - strlen($type));
-                $isVarIntendByTab        = $this->isTabUsedToIntend($matches[1]);
+                $typeLen   = strlen($matches[1]);
+                $type      = trim($matches[1]);
+                $typeSpace = ($typeLen - strlen($type));
+                $isVarIntendByTab = $this->isTabUsedToIntend($matches[1]);
 
                 if (isset($matches[2]) === true) {
                     $var = $matches[2];
 
                     if (isset($matches[4]) === true) {
-                        $varSpace             = strlen($matches[3]);
+                        $varSpace = strlen($matches[3]);
                         $isCommentIndentByTab = $this->isTabUsedToIntend($matches[3]);
-                        $comment              = $matches[4];
+                        $comment        = $matches[4];
                         $commentLines[] = array(
                                            'comment' => $comment,
                                            'token'   => ($tag + 2),
@@ -381,7 +382,7 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
                         $suggestedTypeHint = 'array';
                     } else if (strpos($suggestedName, 'callable') !== false) {
                         $suggestedTypeHint = 'callable';
-                        // TODO: AllowedTypes are the long version but we only allow the short version
+                        // TODO: AllowedTypes are the long version but we only allow the short version.
                     } else if (in_array($typeName, self::$allowedTypes) === false) {
                         $suggestedTypeHint = $suggestedName;
                     }
@@ -474,7 +475,9 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
             $data  = array($neededParam);
             $phpcsFile->addError($error, $commentStart, 'MissingParamTag', $data);
         }
-    }
+
+    }//end processParams()
+
 
     /**
      * Checks if the parameter contain a tab char
@@ -485,9 +488,15 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
      */
     protected function isTabUsedToIntend($content)
     {
-        // is a tab char in the indention?
-        return preg_match('/[\t]/', $content) ? true : false;
-    }
+        // Is a tab char in the indention?
+        if (preg_match('/[\t]/', $content) === 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }//end isTabUsedToIntend()
+
 
     /**
      * Returns a valid variable type for param/var tag.
@@ -557,4 +566,6 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sni
         }//end if
 
     }//end suggestType()
-}
+
+
+}//end class

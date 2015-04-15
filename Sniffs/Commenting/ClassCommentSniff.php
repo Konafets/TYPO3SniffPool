@@ -87,11 +87,24 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
         if ($tokens[$commentEnd]['code'] !== T_DOC_COMMENT_CLOSE_TAG
             && $tokens[$commentEnd]['code'] !== T_COMMENT
         ) {
-            $phpcsFile->addError('Missing %s doc comment', $stackPtr, 'Missing', $errorData);
-            $phpcsFile->recordMetric($stackPtr, '%s has doc comment', 'no', ucfirst($type));
+            $phpcsFile->addError(
+                'Missing %s doc comment',
+                $stackPtr,
+                'Missing',
+                $errorData
+            );
+            $phpcsFile->recordMetric(
+                $stackPtr,
+                '%s has doc comment',
+                'no'
+            );
             return;
         } else {
-            $phpcsFile->recordMetric($stackPtr, '%s has doc comment', 'yes', ucfirst($type));
+            $phpcsFile->recordMetric(
+                $stackPtr,
+                '%s has doc comment',
+                'yes'
+            );
         }
 
         // Try and determine if this is a file comment instead of a class comment.
@@ -100,7 +113,12 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
         if ($tokens[$commentEnd]['code'] === T_DOC_COMMENT_CLOSE_TAG) {
             $start = ($tokens[$commentEnd]['comment_opener'] - 1);
         } else {
-            $start = $phpcsFile->findPrevious(T_COMMENT, ($commentEnd - 1), null, true);
+            $start = $phpcsFile->findPrevious(
+                T_COMMENT,
+                ($commentEnd - 1),
+                null,
+                true
+            );
         }
 
         $prev = $phpcsFile->findPrevious(T_WHITESPACE, $start, null, true);
@@ -109,13 +127,23 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
             if ($prevOpen === false) {
                 // This is a comment directly after the first open tag,
                 // so probably a file comment.
-                $phpcsFile->addError('Missing %s doc comment', $stackPtr, 'Missing', $errorData);
+                $phpcsFile->addError(
+                    'Missing %s doc comment',
+                    $stackPtr,
+                    'Missing',
+                    $errorData
+                );
                 return;
             }
         }
 
         if ($tokens[$commentEnd]['code'] === T_COMMENT) {
-            $phpcsFile->addError('You must use "/**" style comments for a %s comment', $stackPtr, 'WrongStyle', $errorData);
+            $phpcsFile->addError(
+                'You must use "/**" style comments for a %s comment',
+                $stackPtr,
+                'WrongStyle',
+                $errorData
+            );
             return;
         }
 
@@ -130,7 +158,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
             $phpcsFile->addError($error, $commentStart, 'SpacingBefore', $errorData);
         }
 
-        // Class doc comments should provide an @author tag
+        // Class doc comments should provide an @author tag.
         $hasAuthorTag = false;
         foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
             if ($tokens[$tag]['content'] === '@author') {
@@ -140,7 +168,11 @@ class TYPO3SniffPool_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSnif
         }
 
         if ($hasAuthorTag === false) {
-            $phpcsFile->addWarning('The doc comment on class level should provide an @author tag.', $commentStart, 'NoAuthorTag');
+            $phpcsFile->addWarning(
+                'The doc comment on class level should provide an @author tag.',
+                $commentStart,
+                'NoAuthorTag'
+            );
         }
 
     }//end process()

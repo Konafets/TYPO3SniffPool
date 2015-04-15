@@ -17,6 +17,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
     $error = 'Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found';
     throw new PHP_CodeSniffer_Exception($error);
 }
+
 /**
  * Checks the naming of member variables.
  * All identifiers must use camelCase and start with a lower case letter.
@@ -39,42 +40,43 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      * @var array $allowedTypo3InbuiltVariableNames
      */
     protected $allowedTypo3InbuiltVariableNames = array(
-                                                    'GLOBALS',
-                                                    'TYPO3_CONF_VARS',
-                                                    'TYPO3_LOADED_EXT',
-                                                    'TYPO3_DB',
-                                                    'EXEC_TIME',
-                                                    'SIM_EXEC_TIME',
-                                                    'TYPO_VERSION',
-                                                    'CLIENT',
-                                                    'PARSETIME_START',
-                                                    'PAGES_TYPES',
-                                                    'ICON_TYPES',
-                                                    'LANG_GENERAL_LABELS',
-                                                    'TCA',
-                                                    'TBE_MODULES',
-                                                    'TBE_STYLES',
-                                                    'T3_SERVICES',
-                                                    'T3_VAR',
-                                                    'FILEICONS',
-                                                    'WEBMOUNTS',
-                                                    'FILEMOUNTS',
-                                                    'BE_USER',
-                                                    'TBE_MODULES_EXT',
-                                                    'TCA_DESCR',
-                                                    '_EXTKEY',
-                                                    'EM_CONF',
-                                                    'LANG',
-                                                    'BACK_PATH',
-                                                    '_REQUEST',
-                                                    '_SERVER',
-                                                    '_REQUEST',
-                                                    '_COOKIE',
-                                                    '_FILES',
-                                                    'MCONF',
-                                                    'MLANG',
-                                                    'SOBE',
-                                                );
+                                                   'GLOBALS',
+                                                   'TYPO3_CONF_VARS',
+                                                   'TYPO3_LOADED_EXT',
+                                                   'TYPO3_DB',
+                                                   'EXEC_TIME',
+                                                   'SIM_EXEC_TIME',
+                                                   'TYPO_VERSION',
+                                                   'CLIENT',
+                                                   'PARSETIME_START',
+                                                   'PAGES_TYPES',
+                                                   'ICON_TYPES',
+                                                   'LANG_GENERAL_LABELS',
+                                                   'TCA',
+                                                   'TBE_MODULES',
+                                                   'TBE_STYLES',
+                                                   'T3_SERVICES',
+                                                   'T3_VAR',
+                                                   'FILEICONS',
+                                                   'WEBMOUNTS',
+                                                   'FILEMOUNTS',
+                                                   'BE_USER',
+                                                   'TBE_MODULES_EXT',
+                                                   'TCA_DESCR',
+                                                   '_EXTKEY',
+                                                   'EM_CONF',
+                                                   'LANG',
+                                                   'BACK_PATH',
+                                                   '_REQUEST',
+                                                   '_SERVER',
+                                                   '_REQUEST',
+                                                   '_COOKIE',
+                                                   '_FILES',
+                                                   'MCONF',
+                                                   'MLANG',
+                                                   'SOBE',
+                                                  );
+
 
     /**
      * Processes class member variables.
@@ -90,8 +92,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         if (empty($memberProps) === true) {
             return;
         }
+
         $this->processVariableNameCheck($phpcsFile, $stackPtr, 'member ');
-    }
+
+    }//end processMemberVar()
+
+
     /**
      * Processes normal variables.
      *
@@ -103,7 +109,9 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $this->processVariableNameCheck($phpcsFile, $stackPtr);
-    }
+
+    }//end processVariable()
+
 
     /**
      * Processes variables in double quoted strings.
@@ -117,7 +125,9 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
     {
         // We don't care about variables in strings.
         return;
-    }
+
+    }//end processVariableInString()
+
 
     /**
      * Proceed the whole variable name check.
@@ -131,11 +141,11 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      */
     protected function processVariableNameCheck(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $scope = '')
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens       = $phpcsFile->getTokens();
         $variableName = ltrim($tokens[$stackPtr]['content'], '$');
             // There are some historic builtin TYPO3 vars we don't care here.
             // if we found such vars, we leave the sniff here.
-        if (in_array($variableName, $this->allowedTypo3InbuiltVariableNames)) {
+        if (in_array($variableName, $this->allowedTypo3InbuiltVariableNames) === true) {
             return;
         }
 
@@ -144,42 +154,57 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         // Check if the variable is named "$_" and is the value variable in a foreach statement
         // foreach ($variable as $key => $_) { ...
         // Because if only a key is needed in a foreach loop, the cgl says that the developer
-        // has to rename the foreach value variable $_
-        if ($variableName === '_' && $this->isVariableValuePartInForEach($phpcsFile, $stackPtr)) {
+        // has to rename the foreach value variable $_.
+        if ($variableName === '_'
+            && $this->isVariableValuePartInForEach($phpcsFile, $stackPtr) === true
+        ) {
             return;
         }
 
         $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, false, true, true);
         if ($hasUnderscores !== false) {
-            $messageData = array($scope, $variableName);
-            $error = 'Underscores are not allowed in the %s variable name "$%s".';
+            $messageData = array(
+                            $scope,
+                            $variableName,
+                           );
+            $error       = 'Underscores are not allowed in the %s variable name "$%s".';
 
             switch($variableName) {
             case '_POST':
             case '_GET':
-                $messageData = array($variableName, $variableName);
-                $error = 'Direct access to "$%s" is not allowed; Please use GeneralUtility::%s or GeneralUtility::_GP instead';
+                $messageData = array(
+                                $variableName,
+                                $variableName,
+                               );
+                $error       = 'Direct access to "$%s" is not allowed; Please use GeneralUtility::%s or GeneralUtility::_GP instead';
                 break;
             default:
                 $messageData[] = $this->buildExampleVariableName($variableName);
-                $error.= 'Use lowerCamelCase for identifier instead e.g. "$%s"';
+                $error        .= 'Use lowerCamelCase for identifier instead e.g. "$%s"';
             }
 
             $phpcsFile->addError($error, $stackPtr, 'VariableNameHasUnderscoresNotLowerCamelCased', $messageData);
-
-        } elseif ($isLowerCamelCase === false) {
+        } else if ($isLowerCamelCase === false) {
             $pattern = '/([A-Z]{1,}(?=[A-Z]?|[0-9]))/';
             $variableNameLowerCamelCased = preg_replace_callback(
-                $pattern, function ($m) {
+                $pattern,
+                function ($m) {
                     return ucfirst(strtolower($m[1]));
-                }, $variableName
+                },
+                $variableName
             );
 
-            $messageData = array(ucfirst($scope), lcfirst($variableNameLowerCamelCased), $variableName);
-            $error = '%s variable name must be lowerCamelCase; expect "$%s" but found "$%s"';
+            $messageData = array(
+                            ucfirst($scope),
+                            lcfirst($variableNameLowerCamelCased),
+                            $variableName,
+                           );
+            $error       = '%s variable name must be lowerCamelCase; expect "$%s" but found "$%s"';
             $phpcsFile->addError($error, $stackPtr, 'VariableIsNotLowerCamelCased', $messageData);
-        }
-    }
+        }//end if
+
+    }//end processVariableNameCheck()
+
 
     /**
      * Checks if a variable name is named $_ and is located in a foreach loop.
@@ -188,7 +213,8 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      * This kind of variable name is valid if this variable is
      * a) used as value part in a foreach loop
      * b) and not used in foreach body
-     * But this case is checked by TYPO3SniffPoo.ControlStructures.UnusedVariableInForEachLoop
+     * But this case is checked by
+     * TYPO3SniffPoo.ControlStructures.UnusedVariableInForEachLoop
      *
      * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
      * @param int                  $stackPtr  The position of the current token in
@@ -208,17 +234,19 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         }
 
         // Get the tokens of the normal parenthesis of a foreach statement
-        // foreach *(* $variable as $key => $_ *)* {
+        // foreach *(* $variable as $key => $_ *)* {.
         $parenthesisStart = key($tokens[$stackPtr]['nested_parenthesis']);
 
-        // Look for the foreach token
+        // Look for the foreach token.
         $forEachSearch = $phpcsFile->findPrevious(T_FOREACH, $parenthesisStart, null, false, null, true);
         if ($forEachSearch !== false) {
             $result = true;
         }
 
         return $result;
-    }
+
+    }//end isVariableValuePartInForEach()
+
 
     /**
      * Returns a modified variable name.
@@ -230,15 +258,17 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      */
     protected function buildExampleVariableName($variableName)
     {
-        $newName = '';
+        $newName   = '';
         $nameParts = $this->trimExplode('_', $variableName, true);
-        $newName = $this->strToLowerStringIfNecessary(array_shift($nameParts));
+        $newName   = $this->strToLowerStringIfNecessary(array_shift($nameParts));
         foreach ($nameParts as $part) {
             $newName .= ucfirst(strtolower($part));
         }
 
         return $newName;
-    }
+
+    }//end buildExampleVariableName()
+
 
     /**
      * If the incomming $namePart is not camel cased, the string will be lowercased.
@@ -254,14 +284,17 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
         }
 
         return $namePart;
-    }
+
+    }//end strToLowerStringIfNecessary()
+
 
     /**
-     * explode()-function with trim() for every element.
+     * The explode() function with trim() for every element.
      *
      * @param string $delim             The boundary string.
      * @param string $string            The input string
-     * @param bool   $removeEmptyValues true if empty values should be removed, false otherwise
+     * @param bool   $removeEmptyValues true if empty values should be removed,
+     *                                  false otherwise
      * @param int    $limit             Limit of elements which will be returned
      *
      * @return array
@@ -272,27 +305,30 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
 
         $result = array_map('trim', $explodedValues);
 
-        if ($removeEmptyValues) {
+        if ($removeEmptyValues === true) {
             $temp = array();
             foreach ($result as $value) {
                 if ($value !== '') {
                     $temp[] = $value;
                 }
             }
+
             $result = $temp;
         }
 
-        if ($limit != 0) {
+        if ($limit !== 0) {
             if ($limit < 0) {
                 $result = array_slice($result, 0, $limit);
-            } elseif (count($result) > $limit) {
-                $lastElements = array_slice($result, $limit - 1);
-                $result = array_slice($result, 0, $limit - 1);
-                $result[] = implode($delim, $lastElements);
+            } else if (count($result) > $limit) {
+                $lastElements = array_slice($result, ($limit - 1));
+                $result       = array_slice($result, 0, ($limit - 1));
+                $result[]     = implode($delim, $lastElements);
             }
         }
 
         return $result;
-    }
-}
-?>
+
+    }//end trimExplode()
+
+
+}//end class

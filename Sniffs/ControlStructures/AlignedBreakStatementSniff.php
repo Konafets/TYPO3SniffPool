@@ -32,6 +32,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_AlignedBreakStatementSniff impleme
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,7 +41,9 @@ class TYPO3SniffPool_Sniffs_ControlStructures_AlignedBreakStatementSniff impleme
     public function register()
     {
         return array(T_BREAK);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -55,20 +58,22 @@ class TYPO3SniffPool_Sniffs_ControlStructures_AlignedBreakStatementSniff impleme
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[$stackPtr]['scope_condition'])) {
+        if (isset($tokens[$stackPtr]['scope_condition']) === true) {
             $checkTokenIndex = $tokens[$stackPtr]['scope_condition'];
         } else {
-            $scopeToken = array_keys($tokens[$stackPtr]['conditions']);
-            $checkTokenIndex = $scopeToken[count($scopeToken) - 1];
+            $scopeToken      = array_keys($tokens[$stackPtr]['conditions']);
+            $checkTokenIndex = $scopeToken[(count($scopeToken) - 1)];
         }
 
-        if ($tokens[$checkTokenIndex]['type'] == 'T_ELSE') {
-            if ($tokens[$stackPtr]['column'] != ($tokens[$checkTokenIndex]['column'] - 1)) {
+        if ($tokens[$checkTokenIndex]['type'] === 'T_ELSE') {
+            if ($tokens[$stackPtr]['column'] !== ($tokens[$checkTokenIndex]['column'] - 1)) {
                 $phpcsFile->addError('Break Statement must have the same indent than the scope.', $stackPtr);
             }
-        } elseif ($tokens[$stackPtr]['column'] != ($tokens[$checkTokenIndex]['column'] + 1)) {
+        } else if ($tokens[$stackPtr]['column'] !== ($tokens[$checkTokenIndex]['column'] + 1)) {
             $phpcsFile->addError('Break Statement must have the same indent than the scope.', $stackPtr);
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

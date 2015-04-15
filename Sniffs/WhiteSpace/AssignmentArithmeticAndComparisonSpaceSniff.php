@@ -40,7 +40,11 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      *
      * @var array
      */
-    public $prePostFixTokens = array(T_INC, T_DEC);
+    public $prePostFixTokens = array(
+                                T_INC,
+                                T_DEC,
+                               );
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -53,7 +57,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
         $registeredTokens = array_merge($registeredTokens, PHP_CodeSniffer_Tokens::$comparisonTokens);
         $registeredTokens = array_merge($registeredTokens, $this->prePostFixTokens);
         return $registeredTokens;
-    }
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -66,16 +72,18 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $found = $this->getFoundString($tokens, $stackPtr);
+        $tokens      = $phpcsFile->getTokens();
+        $found       = $this->getFoundString($tokens, $stackPtr);
         $kindOfToken = $this->getKindOfToken($tokens[$stackPtr], $phpcsFile, $stackPtr);
 
-        // The following code snippet was copied and modified from Squiz_Sniffs_Formatting_OperatorBracketSniff
+        // The following code snippet was copied and modified from
+        // Squiz_Sniffs_Formatting_OperatorBracketSniff
         // Thanks for this guys!
         // There is one instance where brackets aren't needed, which involves
         // the minus sign being used to assign a negative number to a variable.
         if ($tokens[$stackPtr]['code'] === T_MINUS) {
-            // Check to see if we are trying to return -n or if we are inside a ternary operator.
+            // Check to see if we are trying to return -n or if we are inside a
+            // ternary operator.
             $prev = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
             if ($tokens[$prev]['code'] === T_RETURN
@@ -89,11 +97,11 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
             if ($tokens[$number]['code'] === T_LNUMBER || $tokens[$number]['code'] === T_DNUMBER) {
                 $previous = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
                 if ($previous !== false) {
-                    $isAssignment = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens);
-                    $isEquality = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$equalityTokens);
-                    $isComparison = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$comparisonTokens);
-                    $isArithmetic = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens);
-                    $isFunctionOrArray = in_array($tokens[$previous]['code'], array(T_OPEN_PARENTHESIS, T_OPEN_SQUARE_BRACKET));
+                    $isAssignment       = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens);
+                    $isEquality         = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$equalityTokens);
+                    $isComparison       = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$comparisonTokens);
+                    $isArithmetic       = in_array($tokens[$previous]['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens);
+                    $isFunctionOrArray  = in_array($tokens[$previous]['code'], array(T_OPEN_PARENTHESIS, T_OPEN_SQUARE_BRACKET));
                     $isFunctionArgument = ($tokens[$previous]['code'] === T_COMMA);
                     if ($isAssignment === true || $isEquality === true || $isComparison === true || $isArithmetic === true || $isFunctionOrArray === true || $isFunctionArgument === true) {
                         // This is a negative assignment, comparion, calculcation, function argument or array key usage.
@@ -102,63 +110,66 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
                             $error = 'No space allowed between minus sign and number';
                             $phpcsFile->addError($error, $stackPtr, 'SpacingAfterMinus');
                         }
+
                         return;
                     }
                 }
-            }
-        }
+            }//end if
+        }//end if
 
         if (($tokens[$stackPtr]['code'] === T_INC) || ($tokens[$stackPtr]['code'] === T_DEC)) {
             $prevStopToken = $phpcsFile->findPrevious(array(T_EQUAL, T_SEMICOLON), $stackPtr, null, false, null, true);
-            $prev = $phpcsFile->findPrevious(T_VARIABLE, $stackPtr - 1, $prevStopToken, false, null, true);
-            $next = $phpcsFile->findNext(T_VARIABLE, $stackPtr + 1, null, false, null, true);
+            $prev          = $phpcsFile->findPrevious(T_VARIABLE, ($stackPtr - 1), $prevStopToken, false, null, true);
+            $next          = $phpcsFile->findNext(T_VARIABLE, ($stackPtr + 1), null, false, null, true);
 
             switch ($kindOfToken) {
             case 'postfix':
-                if ($this->existsWhitespace('before', $tokens, $stackPtr)) {
+                if ($this->existsWhitespace('before', $tokens, $stackPtr) === true) {
                     $error = 'No whitespace before the %s operator. Found "%s". Expected "%s"';
                     $code  = 'NoWhitSpaceBeforePostfix';
                     $found = rtrim($found);
                     $data  = array(
-                                $kindOfToken,
-                                $tokens[$prev]['content'] . $found,
-                                $tokens[$prev]['content'] . trim($found)
+                              $kindOfToken,
+                              $tokens[$prev]['content'].$found,
+                              $tokens[$prev]['content'].trim($found),
                              );
                     $phpcsFile->addWarning($error, $stackPtr, $code, $data);
                 }
                 break;
 
             case 'prefix':
-                if ($this->existsWhitespace('after', $tokens, $stackPtr)) {
+                if ($this->existsWhitespace('after', $tokens, $stackPtr) === true) {
                     $error = 'No whitespace after the %s operator. Found "%s". Expected "%s"';
                     $code  = 'NoWhitSpaceAfterPrefix';
                     $found = ltrim($found);
                     $data  = array(
-                                $kindOfToken,
-                                $found . $tokens[$next]['content'],
-                                trim($found) . $tokens[$next]['content']
+                              $kindOfToken,
+                              $found.$tokens[$next]['content'],
+                              trim($found).$tokens[$next]['content'],
                              );
                     $phpcsFile->addWarning($error, $stackPtr, $code, $data);
                 }
                 break;
 
             default:
-            }
+            }//end switch
 
             return;
-        }
+        }//end if
 
         if ($this->existsWhitespace('before', $tokens, $stackPtr) === false && $this->existsWhitespace('after', $tokens, $stackPtr) === false) {
             $expected = $this->getExpectedString('before-after', $tokens, $stackPtr);
-            $phpcsFile->addError('Whitespace must be added before and after the ' . $kindOfToken . ' operator. Found "' . $found . '". Expected "' . $expected . '"', $stackPtr);
-        } elseif ($this->existsWhitespace('before', $tokens, $stackPtr) === false) {
+            $phpcsFile->addError('Whitespace must be added before and after the '.$kindOfToken.' operator. Found "'.$found.'". Expected "'.$expected.'"', $stackPtr);
+        } else if ($this->existsWhitespace('before', $tokens, $stackPtr) === false) {
             $expected = $this->getExpectedString('before', $tokens, $stackPtr);
-            $phpcsFile->addError('Whitespace must be added before the ' . $kindOfToken . ' operator. Found "' . $found . '". Expected "' . $expected . '"', $stackPtr);
-        } elseif ($this->existsWhitespace('after', $tokens, $stackPtr) === false) {
+            $phpcsFile->addError('Whitespace must be added before the '.$kindOfToken.' operator. Found "'.$found.'". Expected "'.$expected.'"', $stackPtr);
+        } else if ($this->existsWhitespace('after', $tokens, $stackPtr) === false) {
             $expected = $this->getExpectedString('after', $tokens, $stackPtr);
-            $phpcsFile->addError('Whitespace must be added after the ' . $kindOfToken . ' operator. Found "' . $found . '". Expected "' . $expected . '"', $stackPtr);
+            $phpcsFile->addError('Whitespace must be added after the '.$kindOfToken.' operator. Found "'.$found.'". Expected "'.$expected.'"', $stackPtr);
         }
-    }
+
+    }//end process()
+
 
     /**
      * Returns the kind of token.
@@ -168,32 +179,34 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in
      *                                        the stack passed in $tokens.
-     * 
+     *
      * @return string
      */
     protected function getKindOfToken(array $token, PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $result = '';
-        if (in_array($token['code'], PHP_CodeSniffer_Tokens::$assignmentTokens)) {
+        if (in_array($token['code'], PHP_CodeSniffer_Tokens::$assignmentTokens) === true) {
             $result = 'assignment';
-        } elseif (in_array($token['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens)) {
+        } else if (in_array($token['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens) === true) {
             $result = 'arithmetic';
-        } elseif (in_array($token['code'], PHP_CodeSniffer_Tokens::$comparisonTokens)) {
+        } else if (in_array($token['code'], PHP_CodeSniffer_Tokens::$comparisonTokens) === true) {
             $result = 'comparison';
-        } elseif (in_array($token['code'], $this->prePostFixTokens)) {
+        } else if (in_array($token['code'], $this->prePostFixTokens) === true) {
             $prevStopToken = $phpcsFile->findPrevious(array(T_EQUAL, T_SEMICOLON), $stackPtr, null, false, null, true);
-            $prev = $phpcsFile->findPrevious(T_VARIABLE, $stackPtr - 1, $prevStopToken, false, null, true);
-            $next = $phpcsFile->findNext(T_VARIABLE, $stackPtr + 1, null, false, null, true);
+            $prev          = $phpcsFile->findPrevious(T_VARIABLE, ($stackPtr - 1), $prevStopToken, false, null, true);
+            $next          = $phpcsFile->findNext(T_VARIABLE, ($stackPtr + 1), null, false, null, true);
 
-            if ($prev) {
+            if ($prev !== false) {
                 $result = 'postfix';
-            } elseif ($next) {
+            } else if ($next !== false) {
                 $result = 'prefix';
             }
         }
 
         return $result;
-    }
+
+    }//end getKindOfToken()
+
 
     /**
      * Returns the found string.
@@ -206,14 +219,17 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      */
     protected function getFoundString(array $tokens, $stackPtr)
     {
-        $found = $tokens[($stackPtr - 1) ]['content'] . $tokens[$stackPtr]['content'] . $tokens[($stackPtr + 1) ]['content'];
+        $found = $tokens[($stackPtr - 1)]['content'].$tokens[$stackPtr]['content'].$tokens[($stackPtr + 1)]['content'];
         return $found;
-    }
+
+    }//end getFoundString()
+
 
     /**
      * Creates the expected string for the error message (correct formatting).
      *
-     * @param string $mode     Depends on the mode, the expected string is different. Possible values: before, after, before-after
+     * @param string $mode     Depends on the mode, the expected string is different.
+     *                         Possible values: before, after, before-after
      * @param array  $tokens   Array of all tokens of the current file
      * @param int    $stackPtr Stack pointer of found token. Position in $tokens
      *
@@ -221,26 +237,30 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      */
     protected function getExpectedString($mode, array $tokens, $stackPtr)
     {
-        $expected = $tokens[($stackPtr - 1) ]['content'];
+        $expected = $tokens[($stackPtr - 1)]['content'];
         switch (strtolower($mode)) {
         case 'before':
-            $expected.= ' ' . $tokens[$stackPtr]['content'];
+            $expected .= ' '.$tokens[$stackPtr]['content'];
             break;
         case 'after':
-            $expected.= $tokens[$stackPtr]['content'] . ' ';
+            $expected .= $tokens[$stackPtr]['content'].' ';
             break;
         case 'before-after':
-            $expected.= ' ' . $tokens[$stackPtr]['content'] . ' ';
+            $expected .= ' '.$tokens[$stackPtr]['content'].' ';
             break;
         }
-        $expected.= $tokens[($stackPtr + 1) ]['content'];
+
+        $expected .= $tokens[($stackPtr + 1)]['content'];
         return $expected;
-    }
+
+    }//end getExpectedString()
+
 
     /**
      * Checks if there is whitespace before or after the incomming $stackPts
      *
-     * @param string $mode     Mode which will be checked. Whitespace before or after. Possible values: before, after
+     * @param string $mode     Mode which will be checked. Whitespace before or
+     *                         after. Possible values: before, after
      * @param array  $tokens   Array of all tokens of the current file
      * @param int    $stackPtr Current position in $tokens
      *
@@ -248,18 +268,22 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
      */
     protected function existsWhitespace($mode, array $tokens, $stackPtr)
     {
-        $result = false;
+        $result   = false;
         $stackPtr = $this->manageStackPtrCounter($mode, $stackPtr);
-        if ($tokens[$stackPtr]['code'] == T_WHITESPACE) {
+        if ($tokens[$stackPtr]['code'] === T_WHITESPACE) {
             $result = true;
         }
+
         return $result;
-    }
+
+    }//end existsWhitespace()
+
 
     /**
      * Increments or decrements the incomming stack pointer (depends on $mode).
      *
-     * @param string $mode     Mode to decide if +1 or -1 with $stackPtr. Possible values: before, after
+     * @param string $mode     Mode to decide if +1 or -1 with $stackPtr.
+     *                         Possible values: before, after
      * @param int    $stackPtr Stack pointer which will be increment or decrement
      *
      * @return int
@@ -275,7 +299,10 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_AssignmentArithmeticAndComparisonSpaceSni
             break;
         default:
         }
+
         return $stackPtr;
-    }
-}
-?>
+
+    }//end manageStackPtrCounter()
+
+
+}//end class

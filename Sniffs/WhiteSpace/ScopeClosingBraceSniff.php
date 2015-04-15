@@ -73,8 +73,8 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
             return;
         }
 
-        $scopeStart  = $tokens[$stackPtr]['scope_opener'];
-        $scopeEnd    = $tokens[$stackPtr]['scope_closer'];
+        $scopeStart = $tokens[$stackPtr]['scope_opener'];
+        $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
 
         // If the scope closer doesn't think it belongs to this scope opener
         // then the opener is sharing its closer with other tokens. We only
@@ -120,7 +120,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
         }
 
         // Check now that the closing brace is lined up correctly.
-        $braceIndent   = $tokens[$scopeEnd]['column'];
+        $braceIndent = $tokens[$scopeEnd]['column'];
         if (in_array($tokens[$stackPtr]['code'], array(T_CASE, T_DEFAULT)) === true) {
             // BREAK statements should be indented one tab from the
             // CASE or DEFAULT statement.
@@ -141,11 +141,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
                          );
                 $phpcsFile->addError($error, $scopeEnd, 'Indent', $data);
             }
-        }
+        }//end if
 
     }//end process()
 
 
 }//end class
-
-?>

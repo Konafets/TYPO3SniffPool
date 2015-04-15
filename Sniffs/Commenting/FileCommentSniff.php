@@ -31,19 +31,19 @@ class TYPO3SniffPool_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniff
      * @var array
      */
     protected $copyright = array(
-        1  => "/*\n",
-        2  => " * This file is part of the TYPO3 CMS project.\n",
-        3  => " *\n",
-        4  => " * It is free software; you can redistribute it and/or modify it under\n",
-        5  => " * the terms of the GNU General Public License, either version 2\n",
-        6  => " * of the License, or any later version.\n",
-        7  => " *\n",
-        8  => " * For the full copyright and license information, please read the\n",
-        9  => " * LICENSE.txt file that was distributed with this source code.\n",
-        10 => " *\n",
-        11 => " * The TYPO3 project - inspiring people to share!\n",
-        12 => " */",
-    );
+                            1  => "/*\n",
+                            2  => " * This file is part of the TYPO3 CMS project.\n",
+                            3  => " *\n",
+                            4  => " * It is free software; you can redistribute it and/or modify it under\n",
+                            5  => " * the terms of the GNU General Public License, either version 2\n",
+                            6  => " * of the License, or any later version.\n",
+                            7  => " *\n",
+                            8  => " * For the full copyright and license information, please read the\n",
+                            9  => " * LICENSE.txt file that was distributed with this source code.\n",
+                            10 => " *\n",
+                            11 => " * The TYPO3 project - inspiring people to share!\n",
+                            12 => " */",
+                           );
 
 
     /**
@@ -83,17 +83,18 @@ class TYPO3SniffPool_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniff
         if ($tokens[$commentStart]['code'] === T_DOC_COMMENT_OPEN_TAG) {
             $fix = $phpcsFile->addFixableError(
                 'Copyright notice must start with /*; but /** was found!',
-                $commentStart, 'WrongStyle'
+                $commentStart,
+                'WrongStyle'
             );
 
-            if ($fix) {
+            if ($fix === true) {
                 $phpcsFile->fixer->replaceToken($commentStart, "/*");
             }
 
             return;
         }
 
-        $commentEnd = $phpcsFile->findNext(T_WHITESPACE, $commentStart + 1) - 1;
+        $commentEnd = ($phpcsFile->findNext(T_WHITESPACE, ($commentStart + 1)) - 1);
 
         if ($tokens[$commentStart]['code'] !== T_COMMENT) {
             $phpcsFile->addError('Copyright notice missing', $commentStart, 'NoCopyrightFound');
@@ -101,14 +102,14 @@ class TYPO3SniffPool_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniff
             return;
         }
 
-        if (($commentEnd - $commentStart) + 1 < count($this->copyright)) {
+        if ((($commentEnd - $commentStart) + 1) < count($this->copyright)) {
             $phpcsFile->addError(
                 'Copyright notice too short',
                 $commentStart,
                 'CommentTooShort'
             );
             return;
-        } else if (($commentEnd - $commentStart) + 1 > count($this->copyright)) {
+        } else if ((($commentEnd - $commentStart) + 1) > count($this->copyright)) {
             $phpcsFile->addError(
                 'Copyright notice too long',
                 $commentStart,
@@ -121,18 +122,23 @@ class TYPO3SniffPool_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniff
         for ($i = $commentStart; $i <= $commentEnd; $i++) {
             if ($tokens[$i]['content'] !== $this->copyright[$j]) {
                 $error = 'Found wrong part of copyright notice. Expected "%s", but found "%s"';
-                $data = array(trim($this->copyright[$j]), trim($tokens[$i]['content']));
-                $fix = $phpcsFile->addFixableError($error, $i, 'WrongText', $data);
+                $data  = array(
+                          trim($this->copyright[$j]),
+                          trim($tokens[$i]['content']),
+                         );
+                $fix   = $phpcsFile->addFixableError($error, $i, 'WrongText', $data);
 
-                if ($fix) {
+                if ($fix === true) {
                     $phpcsFile->fixer->replaceToken($i, $this->copyright[$j]);
                 }
             }
+
             $j++;
         }
 
         return;
 
     }//end process()
+
 
 }//end class

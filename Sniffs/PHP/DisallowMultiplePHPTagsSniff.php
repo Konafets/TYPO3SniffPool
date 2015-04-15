@@ -26,9 +26,12 @@
 class TYPO3SniffPool_Sniffs_PHP_DisallowMultiplePHPTagsSniff implements PHP_CodeSniffer_Sniff
 {
     /**
+     * A list of tokenizers this sniff supports.
+     *
      * @var array
      */
     public $supportedTokenizers = array('PHP');
+
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -37,8 +40,13 @@ class TYPO3SniffPool_Sniffs_PHP_DisallowMultiplePHPTagsSniff implements PHP_Code
      */
     public function register()
     {
-        return array(T_OPEN_TAG, T_CLOSE_TAG);
-    }
+        return array(
+                T_OPEN_TAG,
+                T_CLOSE_TAG,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -51,13 +59,16 @@ class TYPO3SniffPool_Sniffs_PHP_DisallowMultiplePHPTagsSniff implements PHP_Code
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens      = $phpcsFile->getTokens();
         $disallowTag = $phpcsFile->findNext($tokens[$stackPtr]['code'], ($stackPtr + 1));
         if (false !== $disallowTag) {
-            $error = 'Exactly one "' . $tokens[$stackPtr]['content'] . '" tag is allowed';
+            $error = 'Exactly one "'.$tokens[$stackPtr]['content'].'" tag is allowed';
             $phpcsFile->addError($error, $disallowTag);
         }
+
         return;
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class
