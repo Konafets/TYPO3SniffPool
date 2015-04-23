@@ -36,7 +36,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      *
      * @var int
      */
-    protected $maxCommentLength = 80;
+    public $maxCommentLength = 80;
 
     /**
      * A list of tokenizers this sniff supports
