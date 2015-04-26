@@ -152,8 +152,8 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
                     array($methodName)
                 );
 
-                // If there is "@return int" or something like this defined in doc block comment
-                // and there is a empty return statement.
+                // If there is "@return int" or something like this defined in
+                // doc block comment and there is a empty return statement.
             } else if ($returnContent !== null
                 && strtolower($returnContent) !== 'void'
                 && $this->checkAvailableReturnStatement($tokens, $start, $end, false) === true
@@ -228,7 +228,8 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
         }
 
         // Determine condition of recursive depth / level
-        // Conditions can contain classes and function, but we are only interested in if, elseif, else.
+        // Conditions can contain classes and function, but we are only
+        // interested in if, elseif, else.
         $i = 0;
         foreach ($tokens[$returnStatement]['conditions'] as $tokenNumber => $conditionType) {
             $startToken = $tokenNumber;
@@ -441,7 +442,8 @@ class TYPO3SniffPool_Sniffs_Scope_AlwaysReturnSniff implements PHP_CodeSniffer_S
             $returnResult = null;
             $result       = $this->currentFile->findNext(array(T_RETURN), $tokenStart, $tokenEnd);
 
-            // If there is a return statement in this function / method, try to find the next token, expect whitespaces.
+            // If there is a return statement in this function / method, try to
+            // find the next token, expect whitespaces.
             if ($result !== false) {
                 $returnResult = $this->currentFile->findNext(array(T_WHITESPACE), ($result + 1), $tokenEnd, true, null, true);
             }

@@ -37,9 +37,8 @@ class TYPO3SniffPool_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnit
     public function getErrorList()
     {
         return array(
-                9 => 1,
-                10 => 1,
-                40 => 1,
+                19 => 1,
+                42 => 1,
                 );
     }
 
@@ -53,7 +52,11 @@ class TYPO3SniffPool_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnit
      */
     public function getWarningList()
     {
-        return array();
+        return array(
+                60 => 1,
+                67 => 1,
+                74 => 1,
+        );
     }
 }
 ?>

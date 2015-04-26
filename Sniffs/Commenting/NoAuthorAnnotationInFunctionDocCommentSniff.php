@@ -6,8 +6,8 @@
  * TYPO3 CMS
  *
  * @category Commenting
- * @package  TYPO3_PHPCS_Pool
- * @author   Stefano Kowalke <blueduck@gmx.net>
+ * @package  TYPO3SniffPool
+ * @author   Stefano Kowalke <blueduck@mailbox.org>
  * @license  http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link     https://github.com/typo3-ci/TYPO3SniffPool
  */
@@ -17,8 +17,8 @@
  * has no @author annotation.
  *
  * @category Commenting
- * @package  TYPO3_PHPCS_Pool
- * @author   Stefano Kowalke <blueduck@gmx.net>
+ * @package  TYPO3SniffPool
+ * @author   Stefano Kowalke <blueduck@mailbox.org>
  * @license  http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @version  Release: @package_version@
  * @link     https://github.com/typo3-ci/TYPO3SniffPool
@@ -40,7 +40,12 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
      */
     public function register()
     {
-        return array(T_DOC_COMMENT_TAG);
+        return array(
+                T_FUNCTION,
+                T_CLASS,
+                T_INTERFACE,
+                T_TRAIT,
+               );
 
     }//end register()
 
@@ -56,14 +61,27 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens    = $phpcsFile->getTokens();
+        $type      = strtolower($tokens[$stackPtr]['content']);
+        $errorData = array($type);
 
-        $content = $tokens[$stackPtr]['content'];
+        $find   = PHP_CodeSniffer_Tokens::$methodPrefixes;
+        $find[] = T_WHITESPACE;
 
-        if ($content === '@author') {
+        $commentEnd = $phpcsFile->findPrevious($find, ($stackPtr - 1), null, true);
+        // If there is no comment we return here. This case will handled by another sniff.
+        if ($commentEnd === 0 || $commentEnd === false) {
+            return;
+        }
+
+        $commentStart = $tokens[$commentEnd]['comment_opener'];
+        $token        = $phpcsFile->findPrevious(T_DOC_COMMENT_TAG, $commentEnd, $commentStart, false, '@author');
+
+        if ($type === 'function' && $token !== false) {
             $type  = 'NoAuthorAnnotationInFunctionDocComment';
-            $error = '@author tag should not be used in function or method phpDoc comment blocks - only at class level';
-            $fix   = $phpcsFile->addFixableError($error, $stackPtr, $type);
+            $error = 'The @author tag should not be used in %s doc comment blocks - only at class level';
+
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, $type, $errorData);
 
             if ($fix === true) {
                 $lineStart = ($phpcsFile->findPrevious(T_DOC_COMMENT_WHITESPACE, $stackPtr, null, false, "\n") + 1);
@@ -77,7 +95,12 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
 
                 $phpcsFile->fixer->endChangeset();
             }
-        }
+        } else if (in_array($type, array('class', 'interface', 'trait')) === true && $token === false) {
+            $type  = 'NoAuthorAnnotationFoundInClassDocComment';
+            $error = 'Please add a @author tag in %s doc comment blocks.';
+
+            $phpcsFile->addWarning($error, $stackPtr, $type, $errorData);
+        }//end if
 
     }//end process()
 
