@@ -26,6 +26,8 @@
  */
 class TYPO3SniffPool_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnitTest extends AbstractSniffUnitTest
 {
+
+
     /**
      * Returns the lines where errors should occur.
      *
@@ -39,8 +41,10 @@ class TYPO3SniffPool_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnit
         return array(
                 19 => 1,
                 42 => 1,
-                );
-    }
+               );
+
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -52,11 +56,20 @@ class TYPO3SniffPool_Tests_Commenting_NoAuthorAnnotationInFunctionDocCommentUnit
      */
     public function getWarningList()
     {
-        return array(
-                60 => 1,
-                67 => 1,
-                74 => 1,
-        );
-    }
-}
-?>
+        if (version_compare(PHP_VERSION, '5.4.0', '<') === true) {
+            return array(
+                    60 => 1,
+                    67 => 1,
+                   );
+        } else {
+            return array(
+                    60 => 1,
+                    67 => 1,
+                    74 => 1,
+                   );
+        }
+
+    }//end getWarningList()
+
+
+}//end class
