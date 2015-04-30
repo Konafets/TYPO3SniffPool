@@ -74,6 +74,10 @@ class TYPO3SniffPool_Sniffs_Commenting_NoAuthorAnnotationInFunctionDocCommentSni
             return;
         }
 
+        if (isset($tokens[$commentEnd]['comment_opener']) === false) {
+            return;
+        }
+
         $commentStart = $tokens[$commentEnd]['comment_opener'];
         $token        = $phpcsFile->findPrevious(T_DOC_COMMENT_TAG, $commentEnd, $commentStart, false, '@author');
 
