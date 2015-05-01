@@ -60,7 +60,10 @@ class TYPO3SniffPool_Sniffs_Commenting_SpaceAfterDoubleSlashSniff implements PHP
         $keyword = $tokens[$stackPtr]['content'];
         if (substr($keyword, 0, 2) === '//' && (substr($keyword, 2, 1) === ' ') === false) {
             $error = 'Space must be added in single line comments after the comment sign (double slash).';
-            $phpcsFile->addError($error, $stackPtr);
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'SpaceAfterDoubleSlash');
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr, preg_replace('#^//#', '// ', $keyword));
+            }
         }
 
     }//end process()
