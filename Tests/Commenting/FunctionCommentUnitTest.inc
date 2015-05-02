@@ -1,5 +1,5 @@
 <?php
-class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
+class PHPCodeSnifferFileUnitTestFileForFunctionComment {
 
 	/**
 	 * A simple function comment.

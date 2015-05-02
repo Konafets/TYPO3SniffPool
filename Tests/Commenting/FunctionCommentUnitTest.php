@@ -1,11 +1,11 @@
 <?php
 /**
- * Unit test class for FunctionDocCommentSniff.
+ * Unit test class for FunctionCommentSniff.
  *
  * PHP version 5
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
@@ -16,7 +16,7 @@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
- * Unit test class for FunctionDocCommentSniff.
+ * Unit test class for FunctionCommentSniff.
  *
  * This unit test was copied and modified
  * from PEAR.Commenting.FunctionCommentSniff.
@@ -33,7 +33,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Commenting_FunctionDocCommentUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_Commenting_FunctionCommentUnitTest extends AbstractSniffUnitTest
 {
 
 

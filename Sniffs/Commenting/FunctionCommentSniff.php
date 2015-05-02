@@ -1,11 +1,11 @@
 <?php
 /**
- * TYPO3SniffsPool_Commenting_FunctionDocCommentSniff
+ * TYPO3SniffsPool_Commenting_FunctionCommentSniff
  *
  * PHP version 5
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
@@ -45,7 +45,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Sniffs_Commenting_FunctionDocCommentSniff extends Squiz_Sniffs_Commenting_FunctionCommentSniff
+class TYPO3SniffPool_Sniffs_Commenting_FunctionCommentSniff extends Squiz_Sniffs_Commenting_FunctionCommentSniff
 {
     protected static $allowedTypes = array(
                                       'array',
