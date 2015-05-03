@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  PHP
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Julian Kleinhans <kleinhans@bergisch-media.de>
  * @copyright 2010 Julian Kleinhans
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -15,7 +15,7 @@
  * Exactly one pair of opening and closing tags are allowed
  *
  * @category  PHP
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Julian Kleinhans <kleinhans@bergisch-media.de>
  * @copyright 2010 Julian Kleinhans
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

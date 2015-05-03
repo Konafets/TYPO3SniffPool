@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -18,7 +18,7 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

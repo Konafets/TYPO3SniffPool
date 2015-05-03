@@ -6,7 +6,7 @@
  * TYPO3 CMS
  *
  * @category  Scope
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.de>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Andy Grunwald
@@ -19,7 +19,7 @@
  * Checks that a function / method always have a return value if it return something.
  *
  * @category  Scope
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.de>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Andy Grunwald

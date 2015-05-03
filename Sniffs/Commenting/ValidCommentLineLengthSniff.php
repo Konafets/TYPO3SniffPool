@@ -6,7 +6,7 @@
  * TYPO3 CMS
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Laura Thewalt
@@ -20,7 +20,7 @@
  * (excluding tabs)
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Laura Thewalt

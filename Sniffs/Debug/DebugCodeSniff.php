@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Debug
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -16,7 +16,7 @@
  * print_r(), var_dump(), xdebug, debug and GeneralUtility::debug
  *
  * @category  Debug
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

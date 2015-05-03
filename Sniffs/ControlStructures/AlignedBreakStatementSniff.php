@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -15,7 +15,7 @@
  * Checks that the include_once is used in all cases.
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  PHP
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
@@ -20,7 +20,7 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  PHP
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Stefano Kowalke, Andy Grunwald
@@ -23,7 +23,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * Underscore characters are not allowed.
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Stefano Kowalke, Andy Grunwald

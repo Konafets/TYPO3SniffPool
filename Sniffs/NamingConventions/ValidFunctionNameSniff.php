@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
@@ -23,7 +23,7 @@
  *            function TestFunctionname ()
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>

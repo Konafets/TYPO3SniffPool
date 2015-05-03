@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
@@ -20,7 +20,7 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>

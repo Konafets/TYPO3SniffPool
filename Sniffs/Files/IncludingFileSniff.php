@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Files
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -15,7 +15,7 @@
  * Checks that the include_once is used in all cases.
  *
  * @category  Files
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

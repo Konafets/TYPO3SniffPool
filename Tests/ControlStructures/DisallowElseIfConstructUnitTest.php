@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -18,7 +18,7 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

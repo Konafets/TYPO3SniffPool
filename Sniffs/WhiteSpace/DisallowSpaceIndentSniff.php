@@ -6,7 +6,7 @@
  * TYPO3 CMS
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -16,7 +16,7 @@
  * Checks that code is indent with tabs; spaces are not allowed.
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2010 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

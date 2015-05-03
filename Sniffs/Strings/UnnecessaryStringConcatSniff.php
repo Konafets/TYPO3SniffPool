@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category  Strings
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
@@ -19,7 +19,7 @@
  * using one string instead.
  *
  * @category  Strings
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
