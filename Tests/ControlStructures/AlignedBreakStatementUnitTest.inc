@@ -76,4 +76,3 @@ while ($uid != 0 && $loopCheck) {
 		$theRowArray[] = $row;
 	}
 }
-?>

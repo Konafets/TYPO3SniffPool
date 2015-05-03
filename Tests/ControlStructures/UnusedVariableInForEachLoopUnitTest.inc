@@ -30,4 +30,3 @@ foreach ($array as $value) {
 foreach ($array as $_) {
 	echo $_;
 }
-?>

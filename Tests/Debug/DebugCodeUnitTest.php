@@ -79,4 +79,3 @@ class TYPO3SniffPool_Tests_Debug_DebugCodeUnitTest extends AbstractSniffUnitTest
         return array();
     }
 }
-?>

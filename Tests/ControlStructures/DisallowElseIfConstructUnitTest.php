@@ -52,4 +52,3 @@ class TYPO3SniffPool_Tests_ControlStructures_DisallowElseIfConstructUnitTest ext
         return array();
     }
 }
-?>

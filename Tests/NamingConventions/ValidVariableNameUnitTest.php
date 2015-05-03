@@ -72,4 +72,3 @@ class TYPO3SniffPool_Tests_NamingConventions_ValidVariableNameUnitTest extends A
         return array();
     }
 }
-?>

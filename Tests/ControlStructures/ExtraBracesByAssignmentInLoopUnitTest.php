@@ -56,4 +56,3 @@ class TYPO3SniffPool_Tests_ControlStructures_ExtraBracesByAssignmentInLoopUnitTe
         return array();
     }
 }
-?>

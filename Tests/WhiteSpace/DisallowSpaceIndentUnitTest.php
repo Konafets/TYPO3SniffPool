@@ -79,4 +79,3 @@ class TYPO3SniffPool_Tests_WhiteSpace_DisallowSpaceIndentUnitTest extends Abstra
         return array();
     }
 }
-?>

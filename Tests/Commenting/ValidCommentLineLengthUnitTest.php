@@ -64,4 +64,3 @@ class TYPO3SniffPool_Tests_Commenting_ValidCommentLineLengthUnitTest extends Abs
         );
     }
 }
-?>

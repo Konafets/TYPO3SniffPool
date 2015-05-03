@@ -61,4 +61,3 @@ class TYPO3SniffPool_Tests_Files_FileExtensionUnitTest extends AbstractSniffUnit
 
 }//end class
 
-?>

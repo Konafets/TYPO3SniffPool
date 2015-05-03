@@ -70,4 +70,3 @@ class TYPO3SniffPool_Tests_NamingConventions_ValidFunctionNameUnitTest extends A
         return array();
     }
 }
-?>

@@ -60,4 +60,3 @@ class TYPO3SniffPool_Tests_ControlStructures_TernaryConditionalOperatorUnitTest 
     
 }//end class
 
-?>

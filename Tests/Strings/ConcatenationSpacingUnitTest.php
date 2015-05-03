@@ -67,4 +67,3 @@ class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends Abstract
 
     }
 }
-?>

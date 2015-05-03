@@ -75,4 +75,3 @@ class TYPO3SniffPool_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends Abstract
 
 }//end class
 
-?>

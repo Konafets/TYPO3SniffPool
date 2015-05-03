@@ -56,4 +56,3 @@ class TYPO3SniffPool_Tests_Files_IncludingFileUnitTest extends AbstractSniffUnit
         return array();
     }
 }
-?>

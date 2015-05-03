@@ -82,5 +82,4 @@ require_once(PATH_typo3 . 'sysext/frontend/Classes/Plugin/AbstractPlugin.php');
 namespace TYPO3\CMS\XXX;
 
 require_once(PATH_typo3 . 'sysext/frontend/Classes/Plugin/AbstractPlugin.php');
-?>
 

@@ -77,4 +77,3 @@ class TYPO3SniffPool_Tests_Strings_UnnecessaryStringConcatUnitTest extends Abstr
         return array();
     }
 }
-?>

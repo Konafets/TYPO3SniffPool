@@ -52,4 +52,3 @@ class TYPO3SniffPool_Tests_Commenting_SpaceAfterDoubleSlashUnitTest extends Abst
         return array();
     }
 }
-?>

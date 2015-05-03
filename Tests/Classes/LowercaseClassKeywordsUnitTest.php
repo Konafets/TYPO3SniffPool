@@ -71,4 +71,3 @@ class TYPO3SniffPool_Tests_Classes_LowercaseClassKeywordsUnitTest extends Abstra
         return array();
     }
 }
-?>

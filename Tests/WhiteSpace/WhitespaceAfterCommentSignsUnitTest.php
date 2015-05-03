@@ -70,4 +70,3 @@ class TYPO3SniffPool_Tests_WhiteSpace_WhitespaceAfterCommentSignsUnitTest extend
         return array();
     }
 }
-?>

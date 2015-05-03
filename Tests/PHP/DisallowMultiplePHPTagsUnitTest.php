@@ -60,4 +60,3 @@ class TYPO3SniffPool_Tests_PHP_DisallowMultiplePHPTagsUnitTest extends AbstractS
         return array();
     }
 }
-?>

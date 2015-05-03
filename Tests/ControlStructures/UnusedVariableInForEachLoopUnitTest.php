@@ -61,4 +61,3 @@ class TYPO3SniffPool_Tests_ControlStructures_UnusedVariableInForEachLoopUnitTest
 
 } //end class
 
-?>
