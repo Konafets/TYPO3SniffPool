@@ -1,8 +1,8 @@
 # Change Log
 
-## [Unreleased](https://github.com/typo3-ci/TYPO3SniffPool/tree/HEAD)
+## [2.0.0](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.0.0) (2015-05-03)
 
-[Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/1.0.1...HEAD)
+[Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/1.0.1...2.0.0)
 
 **Implemented enhancements:**
 
@@ -14,7 +14,19 @@
 
 - \[TASK\] Refactor TYPO3SniffPool\_Sniffs\_ControlStructures\_SwitchDeclarationSniff [\#55](https://github.com/typo3-ci/TYPO3SniffPool/issues/55)
 
+- \[FEATURE\] Adjust DisallowSpaceIndentSniff to the new commenting tokenizer [\#42](https://github.com/typo3-ci/TYPO3SniffPool/issues/42)
+
+- \[FEATURE\] Adjust AsteriksWhitespace to the new commenting tokenizer [\#41](https://github.com/typo3-ci/TYPO3SniffPool/issues/41)
+
+- \[FEATURE\] Adjust AlwaysReturnSniff to the new comment tokenizer [\#40](https://github.com/typo3-ci/TYPO3SniffPool/issues/40)
+
+- \[FEATURE\] Adjust ValidCommentLineLength to the new commenting tokenizer [\#39](https://github.com/typo3-ci/TYPO3SniffPool/issues/39)
+
 - \[FEATURE\] Adjust FunctionDocComment to the new commenting tokenizer [\#38](https://github.com/typo3-ci/TYPO3SniffPool/issues/38)
+
+- \[FEATURE\] Adjust the NoAuthorAnnotationInFunctionDocCommentSniff to the new commenting tokenizer [\#37](https://github.com/typo3-ci/TYPO3SniffPool/issues/37)
+
+- \[FEATURE\] Adjust TYPO3SniffPool.Commenting.ClassDocComment to the new header format. [\#18](https://github.com/typo3-ci/TYPO3SniffPool/issues/18)
 
 **Fixed bugs:**
 
@@ -32,6 +44,8 @@
 
 **Closed issues:**
 
+- Checking has been aborted [\#54](https://github.com/typo3-ci/TYPO3SniffPool/issues/54)
+
 - \[CLEANUP\] Remove PHP closing tag from test files. [\#68](https://github.com/typo3-ci/TYPO3SniffPool/issues/68)
 
 - \[CLEANUP\] Adjust my mail address in class comment :-\) [\#67](https://github.com/typo3-ci/TYPO3SniffPool/issues/67)
@@ -44,21 +58,25 @@
 
 - \[CLEANUP\] Rename FunctionDocCommentSniff into FunctionCommentSniff [\#63](https://github.com/typo3-ci/TYPO3SniffPool/issues/63)
 
-- Checking has been aborted [\#54](https://github.com/typo3-ci/TYPO3SniffPool/issues/54)
-
 - \[TASK\] Check the code style of the sniffs against PHPCS standard on Travis-CI [\#51](https://github.com/typo3-ci/TYPO3SniffPool/issues/51)
+
+- \[TASK\] Remove WhiteSpace.AsteriksWhitespacesSniff [\#48](https://github.com/typo3-ci/TYPO3SniffPool/issues/48)
+
+- \[TASK\] Remove the PEAR installation from README [\#45](https://github.com/typo3-ci/TYPO3SniffPool/issues/45)
+
+- \[TASK\] Rename WhiteSpace/AsteriksWhitespacesSniff  [\#44](https://github.com/typo3-ci/TYPO3SniffPool/issues/44)
 
 - \[TASK\] Replace old class names like t3lib\_div [\#23](https://github.com/typo3-ci/TYPO3SniffPool/issues/23)
 
 **Merged pull requests:**
 
-- Update SpaceAfterDoubleSlashSniff.php [\#62](https://github.com/typo3-ci/TYPO3SniffPool/pull/62) ([radmiraal](https://github.com/radmiraal))
-
-- \[TASK\] Make it possible to override maxCommentLength [\#60](https://github.com/typo3-ci/TYPO3SniffPool/pull/60) ([kj187](https://github.com/kj187))
-
 - \[TASK\] Fixed typo [\#53](https://github.com/typo3-ci/TYPO3SniffPool/pull/53) ([derhansen](https://github.com/derhansen))
 
 - \[BUGFIX\] Fix typo in PHPDoc [\#50](https://github.com/typo3-ci/TYPO3SniffPool/pull/50) ([MattiasNilsson](https://github.com/MattiasNilsson))
+
+- Update SpaceAfterDoubleSlashSniff.php [\#62](https://github.com/typo3-ci/TYPO3SniffPool/pull/62) ([radmiraal](https://github.com/radmiraal))
+
+- \[TASK\] Make it possible to override maxCommentLength [\#60](https://github.com/typo3-ci/TYPO3SniffPool/pull/60) ([kj187](https://github.com/kj187))
 
 ## [1.0.1](https://github.com/typo3-ci/TYPO3SniffPool/tree/1.0.1) (2015-01-23)
 
@@ -66,27 +84,9 @@
 
 **Implemented enhancements:**
 
-- \[FEATURE\] Adjust DisallowSpaceIndentSniff to the new commenting tokenizer [\#42](https://github.com/typo3-ci/TYPO3SniffPool/issues/42)
-
-- \[FEATURE\] Adjust AsteriksWhitespace to the new commenting tokenizer [\#41](https://github.com/typo3-ci/TYPO3SniffPool/issues/41)
-
-- \[FEATURE\] Adjust AlwaysReturnSniff to the new comment tokenizer [\#40](https://github.com/typo3-ci/TYPO3SniffPool/issues/40)
-
-- \[FEATURE\] Adjust ValidCommentLineLength to the new commenting tokenizer [\#39](https://github.com/typo3-ci/TYPO3SniffPool/issues/39)
-
-- \[FEATURE\] Adjust the NoAuthorAnnotationInFunctionDocCommentSniff to the new commenting tokenizer [\#37](https://github.com/typo3-ci/TYPO3SniffPool/issues/37)
-
 - Generate / Create documentation of every sniff [\#25](https://github.com/typo3-ci/TYPO3SniffPool/issues/25)
 
-- \[FEATURE\] Adjust TYPO3SniffPool.Commenting.ClassDocComment to the new header format. [\#18](https://github.com/typo3-ci/TYPO3SniffPool/issues/18)
-
 **Closed issues:**
-
-- \[TASK\] Remove WhiteSpace.AsteriksWhitespacesSniff [\#48](https://github.com/typo3-ci/TYPO3SniffPool/issues/48)
-
-- \[TASK\] Remove the PEAR installation from README [\#45](https://github.com/typo3-ci/TYPO3SniffPool/issues/45)
-
-- \[TASK\] Rename WhiteSpace/AsteriksWhitespacesSniff  [\#44](https://github.com/typo3-ci/TYPO3SniffPool/issues/44)
 
 - Update composer file to the github url and wiki [\#43](https://github.com/typo3-ci/TYPO3SniffPool/issues/43)
 
