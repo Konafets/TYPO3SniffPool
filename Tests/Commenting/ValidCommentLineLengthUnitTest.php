@@ -6,7 +6,6 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Commenting
  * @package   TYPO3_PHPCS_Pool

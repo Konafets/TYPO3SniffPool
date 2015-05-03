@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_Commenting_DoubleSlashCommentsInNewLineSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Commenting
  * @package   TYPO3_PHPCS_Pool

@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_WhiteSpace_WhitespaceAfterCommentSignsSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Whitespace
  * @package   TYPO3_PHPCS_Pool

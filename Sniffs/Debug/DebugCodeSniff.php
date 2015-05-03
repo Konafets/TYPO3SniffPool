@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_Debug_DebugCodeSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Debug
  * @package   TYPO3_PHPCS_Pool

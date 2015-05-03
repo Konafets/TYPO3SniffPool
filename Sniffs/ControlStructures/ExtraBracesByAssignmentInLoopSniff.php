@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
  * @package   TYPO3_PHPCS_Pool

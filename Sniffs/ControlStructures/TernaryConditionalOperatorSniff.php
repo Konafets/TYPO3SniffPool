@@ -3,7 +3,6 @@
  * TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
  * @package   TYPO3SniffPool

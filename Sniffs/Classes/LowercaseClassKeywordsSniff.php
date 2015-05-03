@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_Classes_LowercaseClassKeywordsSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Classes
  * @package   TYPO3_PHPCS_Pool

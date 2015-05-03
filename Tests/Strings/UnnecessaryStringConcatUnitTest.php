@@ -3,7 +3,6 @@
  * Unit test class for the UnnecessaryStringConcat sniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Strings
  * @package   TYPO3_PHPCS_Pool

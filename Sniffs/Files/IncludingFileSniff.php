@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_Files_IncludingFileSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Files
  * @package   TYPO3_PHPCS_Pool

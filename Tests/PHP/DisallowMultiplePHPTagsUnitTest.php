@@ -3,7 +3,6 @@
  * Unit test class for the DisallowMultiplePHPTags sniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  PHP
  * @package   TYPO3_PHPCS_Pool

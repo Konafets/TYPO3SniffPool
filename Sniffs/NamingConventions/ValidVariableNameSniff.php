@@ -3,7 +3,6 @@
  * TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  NamingConventions
  * @package   TYPO3_PHPCS_Pool
