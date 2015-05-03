@@ -6,7 +6,7 @@
  *
  * @category  NamingConventions
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Stefano Kowalke, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -24,7 +24,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  *
  * @category  NamingConventions
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Stefano Kowalke, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

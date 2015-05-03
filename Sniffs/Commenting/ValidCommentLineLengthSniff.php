@@ -8,7 +8,7 @@
  * @category  Commenting
  * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Laura Thewalt
  * @copyright 2014 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -22,7 +22,7 @@
  * @category  Commenting
  * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Laura Thewalt
  * @copyright 2014 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

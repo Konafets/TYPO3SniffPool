@@ -9,7 +9,7 @@
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -39,7 +39,7 @@
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

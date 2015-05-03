@@ -7,7 +7,7 @@
  * @category  Strings
  * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
@@ -21,7 +21,7 @@
  * @category  Strings
  * @package   TYPO3SniffPool
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool

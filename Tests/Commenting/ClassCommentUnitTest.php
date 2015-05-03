@@ -7,7 +7,7 @@
  * @category  Commenting
  * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Andy Grunwald
  * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -19,7 +19,7 @@
  * @category  Commenting
  * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Andy Grunwald
  * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License

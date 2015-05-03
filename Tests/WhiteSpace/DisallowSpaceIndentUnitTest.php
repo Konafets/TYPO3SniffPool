@@ -6,7 +6,7 @@
  *
  * @category  Whitespace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2010 Stefano Kowalke
@@ -21,7 +21,7 @@
  *
  * @category  Whitespace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2010 Stefano Kowalke

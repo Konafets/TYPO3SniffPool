@@ -6,7 +6,7 @@
  *
  * @category  NamingConventions
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2013 Stefano Kowalke
@@ -24,7 +24,7 @@
  *
  * @category  NamingConventions
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2013 Stefano Kowalke
