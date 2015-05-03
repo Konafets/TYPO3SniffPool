@@ -24,7 +24,6 @@
  * @copyright 2010 Andy Grunwald
  * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_WhiteSpace_NoWhitespaceAtInDecrementSniff implements PHP_CodeSniffer_Sniff

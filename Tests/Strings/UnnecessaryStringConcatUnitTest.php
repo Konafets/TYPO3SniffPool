@@ -25,7 +25,6 @@
  * @author    Stefano Kowalke <blueduck@gmx.net>
  * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffUnitTest

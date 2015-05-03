@@ -29,7 +29,6 @@
  * @copyright 2013-2015 Stefano Kowalke
  * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_SwitchDeclarationSniff implements PHP_CodeSniffer_Sniff
