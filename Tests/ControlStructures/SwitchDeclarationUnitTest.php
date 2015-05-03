@@ -6,7 +6,7 @@
  *
  * @category  ControlStructures
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2013 Stefano Kowalke
@@ -23,13 +23,9 @@
  *
  * @category  ControlStructures
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2013 Stefano Kowalke
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
+ * @copyright 2013-2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends AbstractSniffUnitTest
@@ -47,24 +43,19 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
     public function getErrorList()
     {
         return array(
-                6 => 1,
-                16 => 1,
-                27 => 1,
-                29 => 1,
-                32 => 1,
-                33 => 1,
-                35 => 1,
-                47 => 1,
-                50 => 1,
-                61 => 1,
-                73 => 1,
-                78 => 1,
-                98 => 1,
-                107 => 1,
-                147 => 0,
-                155 => 0,
-                164 => 0,
-                174 => 0
+                31  => 1,
+                33  => 2,
+                36  => 2,
+                37  => 1,
+                39  => 2,
+                51  => 1,
+                54  => 1,
+                65  => 1,
+                77  => 1,
+                82  => 1,
+                102 => 1,
+                111 => 1,
+                186 => 1,
                );
 
     }//end getErrorList()
@@ -81,13 +72,11 @@ class TYPO3SniffPool_Tests_ControlStructures_SwitchDeclarationUnitTest extends A
     public function getWarningList()
     {
         return array(
-                127 => 1,
-                134 => 1
-        );
+                131 => 1,
+                138 => 1,
+               );
 
     }//end getWarningList()
 
 
 }//end class
-
-?>

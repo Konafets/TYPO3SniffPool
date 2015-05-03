@@ -1,18 +1,33 @@
 <?php
-class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
+class PHPCodeSnifferFileUnitTestFileForFunctionComment {
 
 	/**
 	 * A simple function comment.
 	 *
 	 * long desc here
 	 *
-	 * @param int $stackPt  The position in @ @unknown the stack of the token that opened the scope
-	 * @param int $detph    How many scope levels down we are.
-	 * @param int $index    The index
+	 * @param string $stackPtr The position in @ @unknown the stack of the token that opened the scope.
+	 * @param int $depth How many scope levels down we are.
+	 * @param int $index The index
+	 * @return integer
+	 * @throws Exception
+	 */
+	private function foo($stackPtr, $depth=1, $index) {
+		return $stackPtr;
+	}
+
+	/**
+	 * A simple function comment.
+	 *
+	 * long desc here
+	 *
+	 * @param integer $stackPt  The position in @ @unknown the stack of the token that opened the scope
+	 * @param boolean $detph    How many scope levels down we are.
+	 * @param array $index    The index.
 	 * @return
 	 * @throws
 	 */
-	private function foo($stackPtr, $depth=1, $index) {
+	private function foo($stackPtr, $depth=1, array $index) {
 		return $stackPtr;
 	}
 
@@ -35,7 +50,7 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	 * Long description with extra blank line before and after
 	 *
 	 *
-	 * @return void
+	 * @return     void
 	 */
 	public function extraDescriptionNewlines() {
 
@@ -63,26 +78,13 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 
 	/**
 	 * Constructor
-	 *
-	 * No return tag
 	 */
-	function PHP_CodeSniffer_File() {
+	function __construct() {
 		return;
 	}
-
 
 	/**
 	 * Destructor
-	 *
-	 * No return tag too
-	 */
-	function _PHP_CodeSniffer_File() {
-		return;
-	}
-
-
-	/**
-	 * Destructor PHP5
 	 */
 	function __destruct() {
 		return;
@@ -107,7 +109,7 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	 * Param not immediate
 	 *
 	 * @return
-	 * @param int $threeSpaces Comment
+	 * @param int $threeSpaces Comment.
 	 * @param int $superfluous
 	 * @param int Comment
 	 * @param int
@@ -122,11 +124,12 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 	/**
 	 * Params intend style
 	 *
-	 * @param   int			$one	comment
-	 * @param	int         $two	comment
-	 * @param	string		$three	comment
-	 * @param	array		$four	comment
-	 * @param	array		$five	comment
+	 * @param   int			$one	parameter comment must start with capital letter.
+	 * @param	int         $two	Comment.
+	 * @param	string		$three	Comment.
+	 * @param	array		$four   Comment.
+	 * @param	array		$five	Comment.
+	 * @param	array		$five	Comment.
 	 * @return	void
 	 */
 	public function paramsIntendStyle($one, $two, $three, $four, $five) {
@@ -138,7 +141,7 @@ class PHPCodeSnifferFileUnitTestFileForFunctionDocComment {
 /**
  * A simple function comment
  *
- * @param string $str The string passed in by reference
+ * @param string $str The string passed in by reference.
  *
  * @return void
  */
@@ -173,7 +176,7 @@ function noReturnOutsideClass() {
 /**
  * Missing param comment
  *
- * @param int $one comment
+ * @param int $one comment.
  *
  * @return void
  * @fine  Unknown tag
@@ -194,7 +197,7 @@ function emptyFunctionDocComment() {
 /**
  * Test function.
  *
- * @param string $arg1 An argument
+ * @param string $arg1 An argument.
  *
  * @access public
  * @return bool
@@ -207,7 +210,7 @@ function myFunction($arg1) {
 /**
  * Test function.
  *
- * @param string $arg1 An argument
+ * @param string $arg1 An argument.
  *
  * @access public
  * @return bool
@@ -224,8 +227,8 @@ function myFunction($arg1) {
  *
  * @access public
  * @return bool
- * @throws MyException
- * @throws MyException When I feel like it
+ * @throws MyException when I feel like it
+ * @throws MyException When I feel like it.
  */
 function myFunction() {
 
@@ -242,22 +245,54 @@ class MyClass {
 
 class YourClass {
 
-    /**
+	/**
 	 * Params are commented, but not passed to the function
-     * Params are indented with tabs, which is not allowed, but should
-     * be ignored for those commeted params who superfluous ($superfluous, Comment, ..)
+	 * Params are indented with tabs, which is not allowed, but should
+	 * be ignored for those commeted params who superfluous ($superfluous, Comment, ..)
 	 *
-	 * @param	int	$threeTabs	Comment
+	 * @param	int	$threeTabs	Comment.
 	 * @param	int	$superfluous
 	 * @param	int	Comment
 	 * @param	int
 	 * @param	missing
+	 * @param   bla
 	 * @param
-     *
-     * @return void
+	 *
+	 * @return int
 	 */
-	public function missingDescriptionOfParameters($threeTabs) {
-
+	public function missingDescriptionOfParameters() {
+        return;
 	}
 }
-?>
+
+/**
+ * Test function.
+ *
+ * @return array
+ * @return int
+ */
+public function myFunction(Test ) {
+
+}
+
+/**
+ * Test function.
+ *
+ * @return void
+ */
+public function myFunction() {
+    return 'test';
+}
+
+/**
+ * Params are commented, but not passed to the function
+ * Params are indented with tabs, which is not allowed, but should
+ * be ignored for those commeted params who superfluous ($superfluous, Comment, ..)
+ *
+ * @param array $threeTabs Comment.
+ * @param int $superfluous Comment.
+ *
+ * @return void
+ */
+public function missingDescriptionOfParameters(\Test $threeTabs, array $superFluous) {
+}

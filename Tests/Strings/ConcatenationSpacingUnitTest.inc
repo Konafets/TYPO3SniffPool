@@ -7,4 +7,3 @@ $string = 'Hello'. $there;
 $string = 'Hello' .$there;
 $string = 'Hello'  .  $there;
 $string = 'Hello' .   $there;
-?>

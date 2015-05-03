@@ -3,10 +3,9 @@
  * TYPO3_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -16,11 +15,10 @@
  * Checks that the PHP function "each()" is not used in loop conditions.
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff implements PHP_CodeSniffer_Sniff
@@ -33,6 +31,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff i
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -41,7 +40,9 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff i
     public function register()
     {
         return array(T_WHILE);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -54,14 +55,16 @@ class TYPO3SniffPool_Sniffs_ControlStructures_DisallowEachInLoopConditionSniff i
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $startToken = $tokens[$stackPtr]['parenthesis_opener'] + 1;
-        $endToken = $tokens[$stackPtr]['parenthesis_closer'] - 1;
-        $result = $phpcsFile->findNext(T_STRING, $startToken, $endToken, false, 'each');
+        $tokens     = $phpcsFile->getTokens();
+        $startToken = ($tokens[$stackPtr]['parenthesis_opener'] + 1);
+        $endToken   = ($tokens[$stackPtr]['parenthesis_closer'] - 1);
+        $result     = $phpcsFile->findNext(T_STRING, $startToken, $endToken, false, 'each');
         if ($result !== false) {
             $message = 'Usage of "each()" not allowed in loop condition. Use "foreach"-loop instead.';
             $phpcsFile->addError($message, $stackPtr, 'EachInWhileLoopNotAllowed');
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

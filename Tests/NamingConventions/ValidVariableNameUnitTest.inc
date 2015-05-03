@@ -83,4 +83,3 @@ foreach ($variable as $key => $value) {
 foreach ($variable as $key => $_) {
 
 }
-?>

@@ -15,4 +15,3 @@ $code = "$actions = array();" .
 	"lalla\n";
 $code = "$actions = array();"
 . "lalla\n";
-?>

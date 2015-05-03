@@ -38,4 +38,3 @@ if (($fields = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
 if (FALSE !== ($fields = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
     // Do something
 }
-?>

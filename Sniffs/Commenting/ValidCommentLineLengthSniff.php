@@ -3,12 +3,14 @@
  * TYPO3_Sniffs_Commenting_ValidCommentLineLengthSniff.
  *
  * PHP version 5
- * TYPO3 version 4
+ * TYPO3 CMS
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Laura Thewalt
+ * @copyright 2014 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
@@ -18,11 +20,12 @@
  * (excluding tabs)
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Laura Thewalt
+ * @copyright 2014 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PHP_CodeSniffer_Sniff
@@ -32,7 +35,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      *
      * @var int
      */
-    protected $maxCommentLength = 80;
+    public $maxCommentLength = 80;
 
     /**
      * A list of tokenizers this sniff supports
@@ -41,6 +44,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public $supportedTokenizes = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -48,8 +52,13 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public function register()
     {
-        return array(T_COMMENT, T_DOC_COMMENT);
-    }
+        return array(
+                T_DOC_COMMENT_STAR,
+                T_COMMENT,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -62,11 +71,21 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $commentLength = strlen(trim($tokens[$stackPtr]['content']));
-        if ($commentLength > $this->maxCommentLength) {
-            $phpcsFile->addWarning('Comment lines should be kept within a limit of about ' . $this->maxCommentLength . ' characters but this comment has ' . $commentLength . ' character!', $stackPtr);
+        $tokens      = $phpcsFile->getTokens();
+        $commentLine = $tokens[$stackPtr]['content'];
+        $lineEnd     = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, ($stackPtr + 1), null, false, $phpcsFile->eolChar);
+
+        for ($i = ($stackPtr + 1); $i < $lineEnd; $i++) {
+            $commentLine .= $tokens[$i]['content'];
         }
-    }
-}
-?>
+
+        $commentLength = strlen($commentLine);
+
+        if ($commentLength > $this->maxCommentLength) {
+            $phpcsFile->addWarning('Comment lines should be kept within a limit of about '.$this->maxCommentLength.' characters but this comment has '.$commentLength.' character!', $stackPtr);
+        }
+
+    }//end process()
+
+
+}//end class

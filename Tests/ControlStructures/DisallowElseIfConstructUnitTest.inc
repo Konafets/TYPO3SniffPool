@@ -4,4 +4,3 @@ if ($true === FALSE) {
 } else if ($true === TRUE) {
 	// do something other
 }
-?>

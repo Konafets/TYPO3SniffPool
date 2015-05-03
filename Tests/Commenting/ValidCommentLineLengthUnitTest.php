@@ -6,10 +6,9 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -22,11 +21,10 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  Commenting
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Commenting_ValidCommentLineLengthUnitTest extends AbstractSniffUnitTest
@@ -66,4 +64,3 @@ class TYPO3SniffPool_Tests_Commenting_ValidCommentLineLengthUnitTest extends Abs
         );
     }
 }
-?>

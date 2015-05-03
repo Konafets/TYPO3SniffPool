@@ -7,4 +7,3 @@
 
 					// This is a valid comment line cause its shorter than 80 characters.
 					// The comment begin with the chars "//" and not in the beginning of the line !!!
-?>

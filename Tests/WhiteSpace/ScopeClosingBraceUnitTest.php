@@ -6,7 +6,7 @@
  *
  * @category  WhiteSpace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2013 Stefano Kowalke
@@ -23,13 +23,12 @@
  *
  * @category  WhiteSpace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2013 Stefano Kowalke
  * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 class TYPO3SniffPool_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends AbstractSniffUnitTest
@@ -76,4 +75,3 @@ class TYPO3SniffPool_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends Abstract
 
 }//end class
 
-?>

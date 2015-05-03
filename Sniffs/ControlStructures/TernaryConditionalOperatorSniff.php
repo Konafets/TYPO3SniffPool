@@ -3,11 +3,10 @@
  * TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2013 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
@@ -17,23 +16,26 @@
  *
  * @category  ControlStructures
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2013 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff implements PHP_CodeSniffer_Sniff
 {
+
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
-    public function register() 
+    public function register()
     {
         return array(T_INLINE_THEN);
-    } //end register()
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -44,11 +46,11 @@ class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff im
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) 
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $isNested = $phpcsFile->findNext(
             T_INLINE_THEN,
-            $stackPtr + 1,
+            ($stackPtr + 1),
             null,
             false,
             null,
@@ -59,8 +61,8 @@ class TYPO3SniffPool_Sniffs_ControlStructures_TernaryConditionalOperatorSniff im
             $error = 'Nested ternary conditional operators are not allowed;';
             $phpcsFile->addError($error, $stackPtr);
         }
-    } //end process()
 
-} //end class
+    }//end process()
 
-?>
+
+}//end class

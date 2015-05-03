@@ -4,4 +4,3 @@ $bar = 'baz';// Assign 'baz' to $bar
 
 // Assign 'foo' to $bar
 $bar = 'foo';
-?>

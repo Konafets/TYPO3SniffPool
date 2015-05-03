@@ -3,10 +3,9 @@
  * Unit test class for the AlignedBreakStatement sniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -19,15 +18,16 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @copyright 2010 Laura Thewalt
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_ControlStructures_AlignedBreakStatementUnitTest extends AbstractSniffUnitTest
 {
+
+
     /**
      * Returns the lines where errors should occur.
      *
@@ -39,21 +39,23 @@ class TYPO3SniffPool_Tests_ControlStructures_AlignedBreakStatementUnitTest exten
     public function getErrorList()
     {
         return array(
-                    6 => 1,
-                    9 => 0,
-                    16 => 0,
-                    19 => 1,
-                    22 => 0,
-                    28 => 0,
-                    30 => 1,
-                    38 => 1,
-                    42 => 0,
-                    46 => 0,
-                    56 => 0,
-                    67 => 1,
-                    73 => 0,
-                );
-    }
+                6  => 1,
+                9  => 0,
+                16 => 0,
+                19 => 1,
+                22 => 0,
+                28 => 0,
+                30 => 1,
+                38 => 1,
+                42 => 0,
+                46 => 0,
+                56 => 0,
+                67 => 1,
+                73 => 0,
+               );
+
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -66,6 +68,8 @@ class TYPO3SniffPool_Tests_ControlStructures_AlignedBreakStatementUnitTest exten
     public function getWarningList()
     {
         return array();
-    }
-}
-?>
+
+    }//end getWarningList()
+
+
+}//end class

@@ -3,10 +3,9 @@
  * Unit test class for the LowercaseClassKeywords sniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Classes
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -19,11 +18,10 @@
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  Classes
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2010 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Classes_LowercaseClassKeywordsUnitTest extends AbstractSniffUnitTest
@@ -73,4 +71,3 @@ class TYPO3SniffPool_Tests_Classes_LowercaseClassKeywordsUnitTest extends Abstra
         return array();
     }
 }
-?>

@@ -1,33 +1,37 @@
 <?php
 /**
- * Unit test class for the AsteriksWhitespaces sniff.
+ * Unit test class for the NoWhitespaceAtInDecrementTest sniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Andy Grunwald
+ * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 /**
- * Unit test class for the AsteriksWhitespaces sniff.
+ * Unit test class for the NoWhitespaceAtInDecrementTest sniff.
  *
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
  * @category  Whitespace
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @copyright 2010 Andy Grunwald
+ * @copyright 2015 Stefano Kowalke
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends AbstractSniffUnitTest
+class TYPO3SniffPool_Tests_WhiteSpace_NoWhitespaceAtInDecrementUnitTest extends AbstractSniffUnitTest
 {
+
+
     /**
      * Returns the lines where errors should occur.
      *
@@ -38,12 +42,10 @@ class TYPO3SniffPool_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends Abstra
      */
     public function getErrorList()
     {
-        return array(
-                    4 => 0,
-                    5 => 1,
-                    10 => 0,
-                );
-    }
+        return array();
+
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -55,7 +57,22 @@ class TYPO3SniffPool_Tests_WhiteSpace_AsteriksWhitespacesUnitTest extends Abstra
      */
     public function getWarningList()
     {
-        return array();
-    }
-}
-?>
+        return array(
+                4  => 1,
+                8  => 1,
+                12 => 1,
+                16 => 1,
+                22 => 1,
+                30 => 1,
+                38 => 1,
+                46 => 1,
+                51 => 1,
+                53 => 1,
+                55 => 1,
+                57 => 1,
+               );
+
+    }//end getWarningList()
+
+
+}//end class
