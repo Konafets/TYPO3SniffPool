@@ -11,6 +11,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\Commenting;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the DoubleSlashCommentsInNewLine sniff.
  *
@@ -24,7 +29,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Commenting_DoubleSlashCommentsInNewLineUnitTest extends AbstractSniffUnitTest
+class DoubleSlashCommentsInNewLineUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

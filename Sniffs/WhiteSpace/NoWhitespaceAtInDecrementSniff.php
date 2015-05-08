@@ -1,6 +1,7 @@
 <?php
 /**
- * TYPO3_Sniffs_WhiteSpace_NoWhitespaceAtInDecrementSniff.
+ * Checks that no whitespace is before postfix and after prefix
+ * increment or decrement operators.
  *
  * PHP version 5
  *
@@ -13,6 +14,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Sniffs\WhiteSpace;
+
+use \PHP_CodeSniffer\Sniffs\Sniff;
+use \PHP_CodeSniffer\Files\File;
+
 /**
  * Checks that no whitespace is before postfix and after prefix
  * increment or decrement operators.
@@ -26,7 +33,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Sniffs_WhiteSpace_NoWhitespaceAtInDecrementSniff implements PHP_CodeSniffer_Sniff
+class NoWhitespaceAtInDecrementSniff implements Sniff
 {
     /**
      * A list of tokenizers this sniff supports
@@ -54,13 +61,13 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_NoWhitespaceAtInDecrementSniff implements
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
      *                                        the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens      = $phpcsFile->getTokens();
         $found       = $this->getFoundString($tokens, $stackPtr);
@@ -123,14 +130,14 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_NoWhitespaceAtInDecrementSniff implements
      * Returns the kind of token.
      * Possible values: assignment, arithmetic, comparison
      *
-     * @param array                $token     All tokens of the current file
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
+     * @param array $token     All tokens of the current file
+     * @param File  $phpcsFile The file being scanned.
+     * @param int   $stackPtr  The position of the current token in the stack passed in $tokens.
      *                                        the stack passed in $tokens.
      *
      * @return string
      */
-    protected function getKindOfToken(array $token, PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function getKindOfToken(array $token, File $phpcsFile, $stackPtr)
     {
         $result = '';
         if (in_array($token['code'], $this->register()) === true) {

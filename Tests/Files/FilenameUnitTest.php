@@ -12,6 +12,10 @@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\Files;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the Filename sniff.
  *
@@ -25,7 +29,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class TYPO3SniffPool_Tests_Files_FilenameUnitTest extends AbstractSniffUnitTest
+class FilenameUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

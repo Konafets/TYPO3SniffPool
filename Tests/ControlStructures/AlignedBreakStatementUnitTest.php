@@ -11,6 +11,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\ControlStructures;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the AlignedBreakStatement sniff.
  *
@@ -24,7 +29,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_ControlStructures_AlignedBreakStatementUnitTest extends AbstractSniffUnitTest
+class AlignedBreakStatementUnitTest extends AbstractSniffUnitTest
 {
 
 

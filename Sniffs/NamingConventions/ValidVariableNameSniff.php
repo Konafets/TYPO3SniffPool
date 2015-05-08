@@ -1,6 +1,6 @@
 <?php
 /**
- * TYPO3_Sniffs_NamingConventions_ValidVariableNameSniff.
+ * Checks the naming of member variables.
  *
  * PHP version 5
  *
@@ -12,13 +12,21 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === false) {
-    $error = 'Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found';
-    throw new PHP_CodeSniffer_Exception($error);
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Sniffs\NamingConventions;
+
+use \PHP_CodeSniffer\Files\File;
+use \PHP_CodeSniffer\Sniffs\AbstractVariableSniff;
+use PHP_CodeSniffer\Util;
+
+if (class_exists('\PHP_CodeSniffer\Sniffs\AbstractVariableSniff', true) === false) {
+    $error = 'Class \PHP_CodeSniffer\Sniffs\AbstractVariableSniff not found';
+    throw new \PHP_CodeSniffer\Exceptions\RuntimeException($error);
 }
 
 /**
  * Checks the naming of member variables.
+ *
  * All identifiers must use camelCase and start with a lower case letter.
  * Underscore characters are not allowed.
  *
@@ -30,7 +38,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class ValidVariableNameSniff extends AbstractVariableSniff
 {
     /**
      * Contains built-in TYPO3 variables which we don't check
@@ -79,12 +87,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
     /**
      * Processes class member variables.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
      *
      * @return void
      */
-    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processMemberVar(File $phpcsFile, $stackPtr)
     {
         $memberProps = $phpcsFile->getMemberProperties($stackPtr);
         if (empty($memberProps) === true) {
@@ -99,12 +107,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
     /**
      * Processes normal variables.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
      *
      * @return void
      */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariable(File $phpcsFile, $stackPtr)
     {
         $this->processVariableNameCheck($phpcsFile, $stackPtr);
 
@@ -114,12 +122,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
     /**
      * Processes variables in double quoted strings.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
      *
      * @return void
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariableInString(File $phpcsFile, $stackPtr)
     {
         // We don't care about variables in strings.
         return;
@@ -131,13 +139,13 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      * Proceed the whole variable name check.
      * Checks if the variable name has underscores or is written in lowerCamelCase.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
-     * @param string               $scope     The variable scope. For example "member" if variable is a class property.
+     * @param File   $phpcsFile The file where this token was found.
+     * @param int    $stackPtr  The position where the token was found.
+     * @param string $scope     The variable scope. For example "member" if variable is a class property.
      *
      * @return void
      */
-    protected function processVariableNameCheck(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $scope = '')
+    protected function processVariableNameCheck(File $phpcsFile, $stackPtr, $scope = '')
     {
         $tokens       = $phpcsFile->getTokens();
         $variableName = ltrim($tokens[$stackPtr]['content'], '$');
@@ -159,7 +167,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
             return;
         }
 
-        $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps($variableName, false, true, true);
+        $isLowerCamelCase = Util\Common::isCamelCaps($variableName, false, true, true);
         if ($hasUnderscores !== false) {
             $messageData = array(
                             $scope,
@@ -214,13 +222,13 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      * But this case is checked by
      * TYPO3SniffPoo.ControlStructures.UnusedVariableInForEachLoop
      *
-     * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
-     * @param int                  $stackPtr  The position of the current token in
+     * @param File $phpcsFile All the tokens found in the document.
+     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
      *                                        the stack passed in $tokens.
      *
      * @return bool
      */
-    protected function isVariableValuePartInForEach(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isVariableValuePartInForEach(File $phpcsFile, $stackPtr)
     {
         $result = false;
         $tokens = $phpcsFile->getTokens();
@@ -277,7 +285,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP
      */
     protected function strToLowerStringIfNecessary($namePart)
     {
-        if (PHP_CodeSniffer::isCamelCaps($namePart, false, true, true) === false) {
+        if (Util\Common::isCamelCaps($namePart, false, true, true) === false) {
             $namePart = strtolower($namePart);
         }
 

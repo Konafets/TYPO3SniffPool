@@ -15,6 +15,10 @@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\WhiteSpace;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the ScopeClosingBrace sniff.
  *
@@ -31,7 +35,7 @@
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class TYPO3SniffPool_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends AbstractSniffUnitTest
+class ScopeClosingBraceUnitTest extends AbstractSniffUnitTest
 {
 
 

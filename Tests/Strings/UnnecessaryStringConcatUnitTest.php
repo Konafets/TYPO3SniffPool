@@ -12,6 +12,11 @@
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\Strings;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the UnnecessaryStringConcat sniff.
  *
@@ -26,7 +31,7 @@
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Strings_UnnecessaryStringConcatUnitTest extends AbstractSniffUnitTest
+class UnnecessaryStringConcatUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

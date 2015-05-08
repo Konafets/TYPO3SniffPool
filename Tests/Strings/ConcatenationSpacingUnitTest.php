@@ -13,6 +13,10 @@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 
+namespace TYPO3CI\Standards\TYPO3SniffPool\Tests\Strings;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the ConcatenationSpacing sniff.
  *
@@ -28,7 +32,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
+class ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

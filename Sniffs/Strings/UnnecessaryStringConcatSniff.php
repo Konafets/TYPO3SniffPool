@@ -1,6 +1,7 @@
 <?php
 /**
- * TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff.
+ * Checks that two strings are not concatenated together; suggests
+ * using one string instead.
  *
  * PHP version 5
  *
@@ -12,9 +13,14 @@
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
+
+namespace TYPO3CI\Standards\TYPO3SniffPool\Sniffs\Strings;
+
+use \PHP_CodeSniffer\Sniffs\Sniff;
+use \PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
 /**
- * TYPO3_Sniffs_Strings_UnnecessaryStringConcatSniff.
- *
  * Checks that two strings are not concatenated together; suggests
  * using one string instead.
  *
@@ -26,7 +32,7 @@
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
-class TYPO3SniffPool_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_CodeSniffer_Sniff
+class UnnecessaryStringConcatSniff implements Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -64,13 +70,13 @@ class TYPO3SniffPool_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
      *                                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         // Work out which type of file this is for.
         $tokens = $phpcsFile->getTokens();
@@ -107,7 +113,7 @@ class TYPO3SniffPool_Sniffs_Strings_UnnecessaryStringConcatSniff implements PHP_
             return;
         }
 
-        $stringTokens = PHP_CodeSniffer_Tokens::$stringTokens;
+        $stringTokens = Tokens::$stringTokens;
         if (in_array($tokens[$prev]['code'], $stringTokens) === true && in_array($tokens[$next]['code'], $stringTokens) === true) {
             if ($tokens[$prev]['content'][0] === $tokens[$next]['content'][0]) {
                 $error = 'String concat is not required here; use a single string instead';
