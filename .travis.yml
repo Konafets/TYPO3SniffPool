@@ -15,10 +15,10 @@ matrix:
 before_script:
   - composer self-update
   - composer install --prefer-source
-  - mkdir ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool
-  - ln -s ../../../../../../ruleset.xml ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/ruleset.xml
-  - ln -s ../../../../../../Sniffs ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/Sniffs
-  - ln -s ../../../../../../Tests ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool/Tests
+  - mkdir ./vendor/squizlabs/php_codesniffer/src/Standards/TYPO3SniffPool
+  - ln -s ../../../../../../ruleset.xml ./vendor/squizlabs/php_codesniffer/src/Standards/TYPO3SniffPool/ruleset.xml
+  - ln -s ../../../../../../Sniffs ./vendor/squizlabs/php_codesniffer/src/Standards/TYPO3SniffPool/Sniffs
+  - ln -s ../../../../../../Tests ./vendor/squizlabs/php_codesniffer/src/Standards/TYPO3SniffPool/Tests
 
 script:
  - ant build-travis
