@@ -18,9 +18,16 @@
 		}
 	],
 
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/Konafets/ComposerPlugins"
+		}
+	],
+
 	"require": {
 		"squizlabs/php_codesniffer": "3.0.*@dev",
-		"simplyadmire/composer-plugins": "~1.0"
+		"simplyadmire/composer-plugins": "dev-patch-2"
 	},
 
 	"require-dev": {
