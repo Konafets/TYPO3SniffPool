@@ -35,7 +35,7 @@
     </target>
 
     <target name="phpcs_sniffs_travis">
-        <exec executable="./vendor/squizlabs/php_codesniffer/scripts/phpcs">
+        <exec executable="./vendor/squizlabs/php_codesniffer/bin/phpcs">
             <arg value="--standard=PHPCS"/>
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
@@ -58,7 +58,7 @@
     </target>
 
     <target name="phpcs_tests_travis">
-        <exec executable="./vendor/squizlabs/php_codesniffer/scripts/phpcs">
+        <exec executable="./vendor/squizlabs/php_codesniffer/bin/phpcs">
             <arg value="--standard=PEAR"/>
             <arg value="--extensions=php"/>
             <arg value="--report=summary"/>
