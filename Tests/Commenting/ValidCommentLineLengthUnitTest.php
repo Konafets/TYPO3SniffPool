@@ -61,6 +61,7 @@ class TYPO3SniffPool_Tests_Commenting_ValidCommentLineLengthUnitTest extends Abs
         return array(
             5 => 1,
             9 => 1,
+            11 => 1,
         );
     }
 }
