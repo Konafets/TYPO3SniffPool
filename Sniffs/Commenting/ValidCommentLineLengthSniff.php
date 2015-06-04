@@ -72,20 +72,41 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens      = $phpcsFile->getTokens();
-        $commentLine = $tokens[$stackPtr]['content'];
-        $lineEnd     = $phpcsFile->findNext(T_DOC_COMMENT_WHITESPACE, ($stackPtr + 1), null, false, $phpcsFile->eolChar);
 
-        for ($i = ($stackPtr + 1); $i < $lineEnd; $i++) {
-            $commentLine .= $tokens[$i]['content'];
+        $commentLineLength = $tokens[$stackPtr]['length'];
+        $lastTokenOnLine   = $this->getLastTokenOnLine($tokens, $stackPtr);
+
+        for ($i = ($stackPtr + 1); $i <= $lastTokenOnLine; $i++) {
+            $commentLineLength += $tokens[$i]['length'];
         }
 
-        $commentLength = strlen($commentLine);
-
-        if ($commentLength > $this->maxCommentLength) {
-            $phpcsFile->addWarning('Comment lines should be kept within a limit of about '.$this->maxCommentLength.' characters but this comment has '.$commentLength.' character!', $stackPtr);
+        if ($commentLineLength > $this->maxCommentLength) {
+            $phpcsFile->addWarning('Comment lines should be kept within a limit of about ' . $this->maxCommentLength . ' characters but this comment has ' . $commentLineLength . ' character!', $stackPtr);
         }
 
     }//end process()
+
+    /**
+     * Find the last token on the same line of code.
+     *
+     * @param array $tokens   The token stack for this file
+     * @param int   $stackPtr The position of the current token in the stack passed in $tokens.
+     *
+     * @return int
+     */
+    protected function getLastTokenOnLine(array $tokens, $stackPtr)
+    {
+        $line = $tokens[$stackPtr]['line'];
+        $lastToken = $stackPtr;
+
+        $stackPtr++;
+        while ($tokens[$stackPtr]['line'] === $line) {
+            $lastToken = $stackPtr;
+            $stackPtr++;
+        }
+
+        return $lastToken;
+    }//end getLastTokenOnLine()
 
 
 }//end class
