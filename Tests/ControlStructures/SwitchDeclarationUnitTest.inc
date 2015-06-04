@@ -3,8 +3,8 @@
 // Valid SWITCH statement.
 switch ($something) {
 	case '1':
-	$case = '1';
-		$content .= $this->extendedUse();
+		$case = '1';
+		$content = $this->extendedUse();
 		break;
 	case '2':
 		$case = '2';
@@ -13,7 +13,11 @@ switch ($something) {
 		$case = '5';
 		break;
 	case '4':
-			$case = '4';
+		$case = '4';
+		break;
+	case '5':
+		// Fall through
+	case '6':
 		break;
 	default:
 		$case = NULL;
@@ -23,7 +27,7 @@ switch ($something) {
 switch ($something) {
 	case '1':
 		$case = '1';
-		return '1';
+		break;
 case '2':
 	$case = '2';
 	break;
@@ -68,7 +72,7 @@ switch ($something) {
 switch ($something) {
 	case '1':
 		$case = '1';
-		$content .= $this->extendedUse();
+		$content = $this->extendedUse();
 		break;
 	case '2':
 		$case = '2';
@@ -176,4 +180,13 @@ function returnInDefault($variable) {
 
 	return $result;
 }
-?>
+
+// No space after case.
+switch ($something) {
+	case'1':
+		$case = '1';
+		$content = $this->extendedUse();
+		break;
+	default:
+		$case = NULL;
+}

@@ -21,12 +21,11 @@
  *
  * @category  PHP
  * @package   PHP_CodeSniffer
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
@@ -68,4 +67,3 @@ class TYPO3SniffPool_Tests_Strings_ConcatenationSpacingUnitTest extends Abstract
 
     }
 }
-?>

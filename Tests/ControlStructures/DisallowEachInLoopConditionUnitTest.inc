@@ -14,4 +14,3 @@ do {
 do {
 	array_pop($fruit);
 } while (count($fruit) > 0);
-?>

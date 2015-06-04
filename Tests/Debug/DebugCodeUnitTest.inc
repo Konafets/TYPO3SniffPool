@@ -1,26 +1,26 @@
 <?php
 debug($foo);
-t3lib_div::debug();
+GeneralUtility::debug();
 print_r();
 var_dump();
 xdebug();
 // debug($foo);
-// t3lib_div::debug();
+// GeneralUtility::debug();
 // print_r();
 // var_dump();
 // xdebug();
 /* debug($foo); */
-/* t3lib_div::debug(); */
+/* GeneralUtility::debug(); */
 /* print_r(); */
 /* var_dump(); */
 /* xdebug(); */
 # debug($foo);
-# t3lib_div::debug();
+# GeneralUtility::debug();
 # print_r();
 # var_dump();
 # xdebug();
 if ($this->debug) {
-	$pt = t3lib_div::milliseconds();
+	$pt = GeneralUtility::milliseconds();
 }
 
 class debug {
@@ -29,11 +29,10 @@ class debug {
 	}
 }
 
-t3lib_utility_Debug::debug();
+DebugUtility::debug();
 
-final class t3lib_utility_Debug {
+final class DebugUtility {
 	public static function debug($var = '', $header = '', $group = 'Debug') {
 
 	}
 }
-?>

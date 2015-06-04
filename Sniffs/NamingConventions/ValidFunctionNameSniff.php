@@ -3,11 +3,10 @@
  * TYPO3_Sniffs_NamingConventions_ValidFunctionNameSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @package   TYPO3SniffPool
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2013 Stefano Kowalke
@@ -24,14 +23,13 @@
  *            function TestFunctionname ()
  *
  * @category  NamingConventions
- * @package   TYPO3_PHPCS_Pool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @package   TYPO3SniffPool
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Laura Thewalt <laura.thewalt@wmdb.de>
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2013 Stefano Kowalke
  * @copyright 2010 Laura Thewalt, Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements PHP_CodeSniffer_Sniff
@@ -43,6 +41,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
      */
     public $supportedTokenizes = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -51,7 +50,9 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
     public function register()
     {
         return array(T_FUNCTION);
-    }
+
+    }//end register()
+
 
     /**
      * Processes this sniff, when one of its tokens is encountered.
@@ -64,7 +65,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens       = $phpcsFile->getTokens();
         $functionName = $phpcsFile->findNext(array(T_STRING), $stackPtr);
         if (($this->isFunctionAMagicFunction($tokens[$functionName]['content']) === true)
             || ($this->isFunctionAPiBaseFunction($tokens[$functionName]['content']) === true)
@@ -72,33 +73,38 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
         ) {
             return;
         }
-        $hasUnderscores = stripos($tokens[$functionName]['content'], '_');
+
+        $hasUnderscores   = stripos($tokens[$functionName]['content'], '_');
         $isLowerCamelCase = PHP_CodeSniffer::isCamelCaps(
             $tokens[$functionName]['content'],
-            false, true, true
+            false,
+            true,
+            true
         );
-        $scope = $this->getCorrectScopeOfToken($tokens, $stackPtr);
+        $scope            = $this->getCorrectScopeOfToken($tokens, $stackPtr);
         if ($hasUnderscores !== false) {
-            $error = 'Underscores are not allowed in %s names "%s"; ';
+            $error  = 'Underscores are not allowed in %s names "%s"; ';
             $error .= 'use lowerCamelCase for %s names instead';
-            $error.= '';
-            $data = array(
-                        $scope,
-                        $tokens[$functionName]['content'],
-                        $scope
-            );
+            $error .= '';
+            $data   = array(
+                       $scope,
+                       $tokens[$functionName]['content'],
+                       $scope,
+                      );
 
             $phpcsFile->addError($error, $stackPtr, 'UnderscoresInFunctionName', $data);
-        } elseif ($isLowerCamelCase === false) {
+        } else if ($isLowerCamelCase === false) {
             $error = '%s name "%s" must use lowerCamelCase';
-            $data = array(
-                        ucfirst($scope),
-                        $tokens[$functionName]['content']
-                    );
+            $data  = array(
+                      ucfirst($scope),
+                      $tokens[$functionName]['content'],
+                     );
 
             $phpcsFile->addError($error, $stackPtr, 'FilenameLowerCase', $data);
         }
-    }
+
+    }//end process()
+
 
     /**
      * Returns the scope (function|method) of a found function.
@@ -111,17 +117,21 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
     public function getCorrectScopeOfToken(array $tokens, $stackPtr)
     {
         $scope = 'function';
-        if (!is_array($tokens[$stackPtr]['conditions'])) {
+        if (is_array($tokens[$stackPtr]['conditions']) === false) {
             return $scope;
         }
+
         foreach ($tokens[$stackPtr]['conditions'] as $tokenType) {
-            if ($tokenType == T_CLASS) {
+            if ($tokenType === T_CLASS) {
                 $scope = 'method';
                 break;
             }
         }
+
         return $scope;
-    }
+
+    }//end getCorrectScopeOfToken()
+
 
     /**
      * Returns TRUE if the called function / method is a magic method of php
@@ -129,7 +139,7 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
      * @param string $name Name of function
      *
      * @return boolean
-     * @see http://php.net/manual/en/language.oop5.magic.php
+     * @see    http://php.net/manual/en/language.oop5.magic.php
      */
     public function isFunctionAMagicFunction($name)
     {
@@ -153,8 +163,11 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
             $result = true;
             break;
         }
+
         return $result;
-    }
+
+    }//end isFunctionAMagicFunction()
+
 
     /**
      * Returns TRUE if called function / method is a pi_-based method
@@ -211,10 +224,12 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
         case 'pi_wrapInBaseClass':
             $result = true;
             break;
-        }
+        }//end switch
 
         return $result;
-    }
+
+    }//end isFunctionAPiBaseFunction()
+
 
     /**
      * Returns true if the function is an user function
@@ -232,6 +247,8 @@ class TYPO3SniffPool_Sniffs_NamingConventions_ValidFunctionNameSniff implements 
         }
 
         return $result;
-    }
-}
-?>
+
+    }//end isFunctionUserFunction()
+
+
+}//end class

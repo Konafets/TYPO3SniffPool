@@ -28,4 +28,3 @@ FINAL class lowercaseClassKeywordsFinal {
 }
 
 Trait MyTrait {}
-?>

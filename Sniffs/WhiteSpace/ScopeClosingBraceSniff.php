@@ -6,7 +6,7 @@
  *
  * @category  WhiteSpace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2013 Stefano Kowalke
@@ -22,13 +22,12 @@
  *
  * @category  WhiteSpace
  * @package   TYPO3SniffPool
- * @author    Stefano Kowalke <blueduck@gmx.net>
+ * @author    Stefano Kowalke <blueduck@mailbox.org>
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
  * @copyright 2013 Stefano Kowalke
  * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_CodeSniffer_Sniff
@@ -73,8 +72,8 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
             return;
         }
 
-        $scopeStart  = $tokens[$stackPtr]['scope_opener'];
-        $scopeEnd    = $tokens[$stackPtr]['scope_closer'];
+        $scopeStart = $tokens[$stackPtr]['scope_opener'];
+        $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
 
         // If the scope closer doesn't think it belongs to this scope opener
         // then the opener is sharing its closer with other tokens. We only
@@ -120,7 +119,7 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
         }
 
         // Check now that the closing brace is lined up correctly.
-        $braceIndent   = $tokens[$scopeEnd]['column'];
+        $braceIndent = $tokens[$scopeEnd]['column'];
         if (in_array($tokens[$stackPtr]['code'], array(T_CASE, T_DEFAULT)) === true) {
             // BREAK statements should be indented one tab from the
             // CASE or DEFAULT statement.
@@ -141,11 +140,9 @@ class TYPO3SniffPool_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_Cod
                          );
                 $phpcsFile->addError($error, $scopeEnd, 'Indent', $data);
             }
-        }
+        }//end if
 
     }//end process()
 
 
 }//end class
-
-?>

@@ -3,10 +3,9 @@
  * TYPO3_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff.
  *
  * PHP version 5
- * TYPO3 version 4
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
@@ -16,11 +15,10 @@
  * Checks that all assignments in loop conditions uses extra braces.
  *
  * @category  ControlStructures
- * @package   TYPO3_PHPCS_Pool
+ * @package   TYPO3SniffPool
  * @author    Andy Grunwald <andygrunwald@gmail.com>
  * @copyright 2012 Andy Grunwald
  * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
  * @link      https://github.com/typo3-ci/TYPO3SniffPool
  */
 class TYPO3SniffPool_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff implements PHP_CodeSniffer_Sniff
@@ -32,6 +30,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff
      */
     public $supportedTokenizers = array('PHP');
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,10 +39,12 @@ class TYPO3SniffPool_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff
     public function register()
     {
         return array(
-            T_WHILE,
-            T_IF
-        );
-    }
+                T_WHILE,
+                T_IF,
+               );
+
+    }//end register()
+
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -56,10 +57,10 @@ class TYPO3SniffPool_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens           = $phpcsFile->getTokens();
         $parenthesisStart = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr);
         $parenthesisStart = $tokens[$parenthesisStart]['parenthesis_opener'];
-        $parenthesisEnd = $tokens[$parenthesisStart]['parenthesis_closer'];
+        $parenthesisEnd   = $tokens[$parenthesisStart]['parenthesis_closer'];
 
         $equalOperator = $phpcsFile->findNext(T_EQUAL, $parenthesisStart, $parenthesisEnd);
         if ($equalOperator === false) {
@@ -71,6 +72,8 @@ class TYPO3SniffPool_Sniffs_ControlStructures_ExtraBracesByAssignmentInLoopSniff
             $message = 'Assignments in condition should be surrounded by the extra pair of brackets';
             $phpcsFile->addError($message, $stackPtr, 'AssignmentsInCondition');
         }
-    }
-}
-?>
+
+    }//end process()
+
+
+}//end class

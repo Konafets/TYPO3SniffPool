@@ -2,7 +2,7 @@
 	"name": "typo3-ci/typo3sniffpool",
 	"type": "phpcodesniffer-standard",
 	"description": "This repository contains custom sniffs which are compatible with the PHP_CodeSniffer. Understand this package as a sniff pool. It contains all custom sniffs for the TYPO3 project.",
-	"homepage": "http://forge.typo3.org/projects/show/team-php_codesniffer",
+	"homepage": "https://github.com/typo3-ci/TYPO3SniffPool",
 	"keywords": ["typo3", "phpcs", "standards", "coding guidelines", "codesniffer", "quality assurance"],
 	"license": "GPL-2.0",
 	"authors": [
@@ -20,17 +20,17 @@
 
 	"require": {
 		"php": ">=5.2.1",
-		"squizlabs/php_codesniffer": "1.*",
-		"simplyadmire/composer-plugins": "*"
+		"squizlabs/php_codesniffer": "~2.3",
+		"simplyadmire/composer-plugins": "~1.0"
 	},
 
 	"require-dev": {
-		"phpunit/phpunit": "4.1.*"
+		"phpunit/phpunit": "~4.6"
 	},
 
 	"suggest": {
-		"typo3-ci/typo3cms": "*",
-		"typo3-ci/typo3flow": "*"
+		"typo3-ci/typo3cms": "The coding standard for TYPO3 CMS",
+		"typo3-ci/typo3flow": "The coding standard for TYPO3 Flow"
 	},
 
 	"replace": {
@@ -38,8 +38,8 @@
 	},
 
 	"support": {
-		"issues": "http://forge.typo3.org/projects/team-php_codesniffer/issues",
-		"wiki": "http://forge.typo3.org/projects/team-php_codesniffer/wiki",
+		"issues": "https://github.com/typo3-ci/TYPO3SniffPool/issues",
+		"wiki": "https://github.com/typo3-ci/TYPO3SniffPool/wiki",
 		"source": "https://github.com/typo3-ci/TYPO3SniffPool.git"
 	},
 
@@ -47,6 +47,12 @@
 		"classmap": [
 		"Sniffs/"
 		]
-	}
+	},
 
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.x-dev",
+			"dev-develop": "2.0.x-dev"
+		}
+	}
 }

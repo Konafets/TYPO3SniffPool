@@ -199,4 +199,3 @@ function pi_fooBar() {}
 
 function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {}
 
-?>

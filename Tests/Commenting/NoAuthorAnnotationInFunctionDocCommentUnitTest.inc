@@ -44,4 +44,33 @@ class NoAuthorAnnotationUnitTest {
 	}
 }
 
-?>
+/**
+ * Class Foo
+ *
+ * @author Stefano Kowalke
+ */
+class Foo {
+
+}
+
+/**
+ * Class Bar
+ *
+ */
+class Bar {
+
+}
+
+/**
+ * Interface Bar
+ */
+interface Bar {
+
+}
+
+/**
+ * Class Baz
+ */
+trait Baz {
+
+}
