@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.1](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.0.1) (2015-06-04)
+
+[Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/2.0.0...2.0.1)
+
+**Fixed bugs:**
+
+- \[BUG\] Bugfix the broken checks [\#31](https://github.com/typo3-ci/TYPO3CMS/issues/31)
+
 ## [2.0.0](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.0.0) (2015-05-03)
 
 [Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/1.0.1...2.0.0)
