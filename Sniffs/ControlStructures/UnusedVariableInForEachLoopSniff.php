@@ -72,8 +72,21 @@ class TYPO3SniffPool_Sniffs_ControlStructures_UnusedVariableInForEachLoopSniff i
             unset($tmpToken);
         }
 
-        $scopeOpener = $tokens[$stackPtr]['scope_opener'];
-        $scopeCloser = $tokens[$stackPtr]['scope_closer'];
+        // If there are no scope_opener & scope_closer, the developer uses no parenthesis for the loop, like
+        //      foreach($myArray as $key => $value)
+        //          echo $key . ' - ' . $value;
+        //
+        // In this case we have to determine the next statement / scope_opener & scope_closer on our own.
+        if (array_key_exists('scope_opener', $tokens[$stackPtr]) === false
+            && array_key_exists('scope_closer', $tokens[$stackPtr]) === false) {
+
+            $scopeOpener = $phpcsFile->findNext([T_WHITESPACE], ($endToken + 1), null, true, null, true);
+            $scopeCloser = $phpcsFile->findEndOfStatement($scopeOpener);
+
+        } else {
+            $scopeOpener = $tokens[$stackPtr]['scope_opener'];
+            $scopeCloser = $tokens[$stackPtr]['scope_closer'];
+        }
 
         // If a $key is used in foreach loop but not used in the foreach body.
         if ($keyToken !== false && $phpcsFile->findNext(T_VARIABLE, $scopeOpener, $scopeCloser, false, $tokens[$keyToken]['content']) === false) {

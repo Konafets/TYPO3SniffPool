@@ -30,3 +30,11 @@ foreach ($array as $value) {
 foreach ($array as $_) {
 	echo $_;
 }
+
+foreach($conf['extraMarkers.'] as $marker => $value)
+    $markerArray['###' . $marker . '###'] = $value;
+
+foreach([1, 2, 3] as $val)
+    // foo comment
+    /* foo */
+    echo $val . chr(10);
