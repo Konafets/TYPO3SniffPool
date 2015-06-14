@@ -1,5 +1,17 @@
 # Change Log
 
+## [2.1.0](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.1.0) (2015-06-14)
+
+[Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/2.0.1...2.1.0)
+
+**Implemented enhancements:**
+
+- \[FEATURE\] Updated composer dependencies
+
+**Fixed bugs:**
+
+- \[BUG\] Undefined index: scope_opener [\#73](https://github.com/typo3-ci/TYPO3SniffPool/issues/73)
+
 ## [2.0.1](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.0.1) (2015-06-04)
 
 [Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/2.0.0...2.0.1)
