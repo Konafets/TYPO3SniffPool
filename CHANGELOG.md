@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.1.1](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.1.1) (2015-06-04)
+
+[Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/2.1.0...2.1.1)
+
+**Fixed bugs:**
+
+- \[BUG\] Replace 5.5. array syntax with 5.3 compatible one [\#74](https://github.com/typo3-ci/TYPO3SniffPool/pull/74)
+
 ## [2.1.0](https://github.com/typo3-ci/TYPO3SniffPool/tree/2.1.0) (2015-06-14)
 
 [Full Changelog](https://github.com/typo3-ci/TYPO3SniffPool/compare/2.0.1...2.1.0)
