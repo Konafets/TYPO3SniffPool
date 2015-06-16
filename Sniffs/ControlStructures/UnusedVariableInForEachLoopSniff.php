@@ -80,7 +80,7 @@ class TYPO3SniffPool_Sniffs_ControlStructures_UnusedVariableInForEachLoopSniff i
         if (array_key_exists('scope_opener', $tokens[$stackPtr]) === false
             && array_key_exists('scope_closer', $tokens[$stackPtr]) === false) {
 
-            $scopeOpener = $phpcsFile->findNext([T_WHITESPACE], ($endToken + 1), null, true, null, true);
+            $scopeOpener = $phpcsFile->findNext(array(T_WHITESPACE), ($endToken + 1), null, true, null, true);
             $scopeCloser = $phpcsFile->findEndOfStatement($scopeOpener);
 
         } else {
