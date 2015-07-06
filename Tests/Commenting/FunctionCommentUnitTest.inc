@@ -296,3 +296,14 @@ public function myFunction() {
  */
 public function missingDescriptionOfParameters(\Test $threeTabs, array $superFluous) {
 }
+
+/**
+ * Set the file references
+ *
+ * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files The files
+ *
+ * @return void
+ */
+public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files) {
+    $this->files = $files;
+}

@@ -356,7 +356,7 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionCommentSniff extends Squiz_Sniffs
             $typeNames = explode('|', $param['type']);
             foreach ($typeNames as $typeName) {
                 $suggestedName = self::suggestType($typeName);
-                if ($typeName !== $suggestedName) {
+                if (($suggestedName !== '\TYPO3\CMS\Extbase\Persistence\ObjectStorage') && ($typeName !== $suggestedName)) {
                     $error = 'Expected "%s" but found "%s" for parameter type';
                     $data  = array(
                               $suggestedName,
@@ -559,6 +559,8 @@ class TYPO3SniffPool_Sniffs_Commenting_FunctionCommentSniff extends Squiz_Sniffs
             } else if (in_array($lowerVarType, self::$allowedTypes) === true) {
                 // A valid type, but not lower cased.
                 return $lowerVarType;
+            } else if (strpos($varType, '\TYPO3\CMS\Extbase\Persistence\ObjectStorage') !== false) {
+                return '\TYPO3\CMS\Extbase\Persistence\ObjectStorage';
             } else {
                 // Must be a custom type name.
                 return $varType;
