@@ -32,6 +32,12 @@
 class TYPO3SniffPool_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_CodeSniffer_Sniff
 {
 
+    /**
+     * The number of spaces before and after a string concat.
+     *
+     * @var int
+     */
+    public $spacing = 1;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -56,22 +62,54 @@ class TYPO3SniffPool_Sniffs_Strings_ConcatenationSpacingSniff implements PHP_Cod
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $prevToken = $tokens[($stackPtr - 1)];
-        $nextToken = $tokens[($stackPtr + 1)];
+        $tokens = $phpcsFile->getTokens();
 
-        if ($prevToken['code'] !== T_WHITESPACE
-            || $nextToken['code'] !== T_WHITESPACE
-        ) {
-            $error = 'Concat operator must be surrounded by spaces. ';
-            $phpcsFile->addError($error, $stackPtr, 'NoSpaceAroundConcat');
+        if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE) {
+            $before = 0;
+        } else {
+            if ($tokens[($stackPtr - 2)]['line'] !== $tokens[$stackPtr]['line']) {
+                $before = 'newline';
+            } else {
+                $before = $tokens[($stackPtr - 1)]['length'];
+            }
         }
 
-        if (($prevToken['code'] === T_WHITESPACE && stristr($prevToken['content'], '  ') !== false)
-            || ($nextToken['code'] === T_WHITESPACE && stristr($nextToken['content'], '  ') !== false)
-        ) {
+        if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
+            $after = 0;
+        } else {
+            if ($tokens[($stackPtr + 2)]['line'] !== $tokens[$stackPtr]['line']) {
+                $after = 'newline';
+            } else {
+                $after = $tokens[($stackPtr + 1)]['length'];
+            }
+        }
+
+        $phpcsFile->recordMetric($stackPtr, 'Spacing before string concat', $before);
+        $phpcsFile->recordMetric($stackPtr, 'Spacing after string concat', $after);
+
+        if (($before == $this->spacing || $before === 'newline')
+            && ($after == $this->spacing || $after === 'newline'))
+        {
+            return;
+        }
+
+        if (($before > $this->spacing) || ($after > $this->spacing)) {
             $error = 'Concat operator should be surrounded by just one space';
             $phpcsFile->addWarning($error, $stackPtr, 'OnlyOneSpaceAroundConcat');
+        } else {
+            $message = 'Concat operator must be surrounded by at least one space; zero found';
+            $fix = $phpcsFile->addFixableError($message, $stackPtr, 'NoSpacesFound');
+
+            if ($fix === true) {
+                $padding = str_repeat(' ', $this->spacing);
+                if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE) {
+                    $phpcsFile->fixer->addContent(($stackPtr - 1), $padding);
+                }
+
+                if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
+                    $phpcsFile->fixer->addContent($stackPtr, $padding);
+                }
+            }
         }
 
     }//end process()
