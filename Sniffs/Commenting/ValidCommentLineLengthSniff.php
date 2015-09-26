@@ -100,7 +100,7 @@ class TYPO3SniffPool_Sniffs_Commenting_ValidCommentLineLengthSniff implements PH
         $lastToken = $stackPtr;
 
         $stackPtr++;
-        while ($tokens[$stackPtr]['line'] === $line) {
+        while (isset($tokens[$stackPtr]) && $tokens[$stackPtr]['line'] === $line) {
             $lastToken = $stackPtr;
             $stackPtr++;
         }
